@@ -34,16 +34,22 @@ public class NodeUI : MonoBehaviour
     public GameObject purchaseBtn;
     public Text purchaseBtnTxt;
 
+    public GameObject notEnoughGoldDialog;
+
     private AttackingUnit selectedUnit;
     private AttackingUnit currentlyPlacedUnit;
 
     private Node target;
     private BuildManager buildManager;
     private List<Node> currentNodes;
+    private UnitButton[] buttons;
 
     void Start()
     {
         buildManager = BuildManager.instance;
+        buttons = FindObjectsOfType<UnitButton>();
+
+
     }
 
     public void SetTarget(Node _target)
@@ -60,12 +66,10 @@ public class NodeUI : MonoBehaviour
             unitImg.sprite = selectedUnit.unitSprite;
             unitNameTxt.text = selectedUnit.unitName;
             damageTxt.text = "Damage: " + selectedUnit.damage;
-            attackSpeedTxt.text = "Speed: " + selectedUnit.attackSpeed;
+            attackSpeedTxt.text = "Speed: " + selectedUnit.attackSpeed + "s";
             descrptionTxt.text = selectedUnit.description;
         }
 
-        /*
-         * 
         // Checks to see if the selected unit is unlocked and changes the panel accordingly
         foreach (AttackingUnit unlockedUnit in buildManager.unlockedUnits)
         {
@@ -79,15 +83,10 @@ public class NodeUI : MonoBehaviour
             }
         }
 
-        purchaseBtnTxt.text = "Purchase\n" + buildManager.GetUnitToPlace().cost + "g";
+        purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
         purchaseBtn.SetActive(true);
         equipUpgradeBtnGroup.SetActive(false);
 
-        */
-
-        purchaseBtn.SetActive(false);
-        equipUpgradeBtnGroup.SetActive(true);
-        UpdatePanelButton();
 
         unitPanelUI.SetActive(true);
     }
@@ -214,13 +213,43 @@ public class NodeUI : MonoBehaviour
     {
         AttackingUnit unitToPurchase = buildManager.GetUnitToPlace().prefab.GetComponent<AttackingUnit>();
 
-        if (PlayerStats.Gold >= buildManager.GetUnitToPlace().cost)
+        // First checks if the player has enough gold and if so, subtracts it from player gold count
+        if (PlayerStats.Gold >= unitToPurchase.baseCost)
         {
-            PlayerStats.Gold -= buildManager.GetUnitToPlace().cost;
-            buildManager.UnlockUnit(unitToPurchase);
+            PlayerStats.Gold -= unitToPurchase.baseCost;
+            buildManager.UnlockUnit(unitToPurchase); // Unlocks the unit so the player doesn't have to purchase it again
+
+            // Checks each unit button and unlocks it according to the unit purchased
+            foreach (UnitButton button in buttons)
+            {
+                if (!button.isUnlocked)
+                {
+                    if (button.unit.unitName == unitToPurchase.unitName)
+                    {
+                        button.UnlockButton();
+                    }
+                }
+            }
 
             PlaceRemoveButton();
         }
+        else
+        {
+            StartCoroutine(DisplayNotEnoughGoldDialog());
+        }
     }
+
+    // Displays the not enough gold dialog by first disabling it and then setting it active again
+    // so the animation resets
+    IEnumerator DisplayNotEnoughGoldDialog()
+    {
+        float timeToWait = 3f;
+
+        notEnoughGoldDialog.SetActive(false);
+        notEnoughGoldDialog.SetActive(true);
+
+        yield return new WaitForSeconds(timeToWait);
+    }
+    
 
 }

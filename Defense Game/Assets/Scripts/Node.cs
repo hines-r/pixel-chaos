@@ -27,8 +27,6 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     public void PlaceUnit(UnitBlueprint blueprint)
     {
-        /*
-         * 
         AttackingUnit unitToPlace = blueprint.prefab.GetComponent<AttackingUnit>();
 
         // Checks to see if there are any units of the same type within the nodes
@@ -44,8 +42,6 @@ public class Node : MonoBehaviour, IPointerClickHandler
                 }
             }    
         }
-
-        */
 
         if (unit != null)
         {

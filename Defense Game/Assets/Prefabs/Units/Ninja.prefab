@@ -55,11 +55,15 @@ MonoBehaviour:
   projectile: {fileID: 1072636770896822, guid: 732fd3d93acd5e14d97339b5ded4f6ad, type: 2}
   damage: 50
   attackSpeed: 1
+  splashRadius: 0
   unitName: Ninja
+  baseCost: 350
   description: Stealthy and sly, the Ninja is equipped with a special shuriken capable
     of piercing multiple enemies.
-  baseCost: 250
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
+  upgradeBaseCost: 100
+  damageIncrement: 0
+  attackSpeedReduction: 0
 --- !u!212 &212297796681069836
 SpriteRenderer:
   m_ObjectHideFlags: 1

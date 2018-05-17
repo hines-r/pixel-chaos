@@ -11,17 +11,29 @@ public class UnitButton : MonoBehaviour
     [Header("Image")]
     public Image unitImg;
 
-    [Header("Name")]
+    [Header("Name/Price")]
     public Text unitName;
+    public Text priceTxt;
 
-    [Header("Button Settings")]
-    public Color lockedColor;
-    public Color unlockedColor;
+    [Header("Button Info")]
+    public GameObject lockedArea;
+
+    internal bool isUnlocked;
 
     void Start()
     {
-        unitImg.sprite = unit.unitSprite;
-        unitName.text = unit.unitName;
+        if (unit != null)
+        {
+            unitImg.sprite = unit.unitSprite;
+            unitName.text = unit.unitName;
+            priceTxt.text = unit.baseCost + "g";
+        }
+    }
+
+    public void UnlockButton()
+    {
+        isUnlocked = true;
+        lockedArea.SetActive(false);
     }
 
 }

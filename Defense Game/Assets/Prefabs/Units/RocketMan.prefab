@@ -56,11 +56,14 @@ MonoBehaviour:
   damage: 50
   attackSpeed: 2
   unitName: Rocket Man
+  baseCost: 500
   description: Rocket Man wields a massive rocket launcher that is capable of mowing
     down enemies! Each rocket causes an explosion capable of cleaving down enemies
     in a radius.
-  baseCost: 500
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
+  upgradeBaseCost: 0
+  damageIncrement: 0
+  attackSpeedReduction: 0
 --- !u!212 &212020847260105368
 SpriteRenderer:
   m_ObjectHideFlags: 1

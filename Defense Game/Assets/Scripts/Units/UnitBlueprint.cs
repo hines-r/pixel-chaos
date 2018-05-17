@@ -6,10 +6,6 @@ using UnityEngine;
 public class UnitBlueprint
 {
     public GameObject prefab;
-    public int cost;
-
-    public GameObject upgradedPrefab;
-    public int upgradeCost;
 
     internal bool isUnlocked;
 }

@@ -8,18 +8,26 @@ public class AttackingUnit : MonoBehaviour
     public GameObject projectile;
     public float damage;
     public float attackSpeed;
+    public float splashRadius;
 
     [Header("Unit Info")]
     public string unitName;
-    public string description;
     public int baseCost;
+    public string description;
     public Sprite unitSprite;
+
+    [Header("Upgrade Info")]
+    public float upgradeBaseCost;
+    private float upgradeCost;
+    public float damageIncrement;
+    public float attackSpeedReduction;
 
     private float nextAttackTime;
     private float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
     void Start()
     {
+        upgradeCost = upgradeBaseCost;
         nextAttackTime = attackSpeed;
     }
 
@@ -79,4 +87,5 @@ public class AttackingUnit : MonoBehaviour
             }
         }
     }
+
 }
