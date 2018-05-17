@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1470906498378156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7450037, y: -2.9530253, z: 0}
+  m_LocalPosition: {x: 1.0764352, y: 0.40819356, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,14 +55,15 @@ MonoBehaviour:
   projectile: {fileID: 1100319195004842, guid: c77991805b15b814788c8177e0205db9, type: 2}
   damage: 100
   attackSpeed: 3
+  splashRadius: 0
   unitName: Lightning Wizard
   baseCost: 500
   description: Lightning Wizards are capable of calling down deadly lightning storms
     from the sky!
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  upgradeBaseCost: 0
-  damageIncrement: 0
-  attackSpeedReduction: 0
+  multiplier: 1.08
+  upgradeBaseCost: 100
+  damageIncrement: 5
 --- !u!212 &212444170745706214
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -99,7 +100,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  m_Color: {r: 0.2198736, g: 0.764151, b: 0.73220664, a: 1}
+  m_Color: {r: 0.36081776, g: 0.21960783, b: 0.7647059, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

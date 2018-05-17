@@ -8,7 +8,6 @@ public class AttackingUnit : MonoBehaviour
     public GameObject projectile;
     public float damage;
     public float attackSpeed;
-    public float splashRadius;
 
     [Header("Unit Info")]
     public string unitName;
@@ -17,13 +16,15 @@ public class AttackingUnit : MonoBehaviour
     public Sprite unitSprite;
 
     [Header("Upgrade Info")]
+    public float multiplier = 1.08f;
     public float upgradeBaseCost;
     private float upgradeCost;
     public float damageIncrement;
-    public float attackSpeedReduction;
 
     private float nextAttackTime;
     private float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
+
+    internal int level = 1;
 
     void Start()
     {
@@ -46,7 +47,7 @@ public class AttackingUnit : MonoBehaviour
         if (Time.time >= nextAttackTime)
         {
             nextAttackTime = Time.time + attackSpeed;
-            FireProjectile();
+            Attack();
         }
     }
 
@@ -74,7 +75,7 @@ public class AttackingUnit : MonoBehaviour
         return false;
     }
 
-    void FireProjectile()
+    void Attack()
     {
         if (CheckForTargets())
         {
@@ -86,6 +87,16 @@ public class AttackingUnit : MonoBehaviour
                 p.Damage = damage; // Sets the damage of the projectile being fired
             }
         }
+    }
+
+    public void Upgrade()
+    {
+        level++;
+        damage += damageIncrement;
+
+        float upgradedCost = upgradeBaseCost * Mathf.Pow(multiplier, level);
+
+        upgradeCost = (int)upgradedCost;
     }
 
 }

@@ -33,6 +33,8 @@ public class Enemy : LivingEntity
     public enum State { Moving, Attacking }
     private State currentState;
 
+    private float slowDuration;
+
     protected override void Start()
     {
         base.Start();
@@ -51,6 +53,15 @@ public class Enemy : LivingEntity
                 StartCoroutine(Attack());
             }
         }
+
+        if (slowDuration > 0)
+        {
+            slowDuration -= Time.deltaTime;           
+        }
+        else
+        {
+            speed = startSpeed;
+        }
     }
 
     void FixedUpdate()
@@ -66,8 +77,6 @@ public class Enemy : LivingEntity
         {
             currentState = State.Attacking;
         }
-
-        speed = startSpeed; // Used to revert back to normal movement speed when a slow ends
     }
 
     IEnumerator Attack()
@@ -96,9 +105,10 @@ public class Enemy : LivingEntity
         }
     }
 
-    public void Slow(float percentage)
+    public void Slow(float percentage, float _slowDuration)
     {
         speed = startSpeed * (1f - percentage);
+        slowDuration = _slowDuration;
     }
 
     public float GetVelocity()
@@ -113,7 +123,6 @@ public class Enemy : LivingEntity
         if (deathEffect != null)
         {
             float enemyHeight = spriteRenderer.bounds.size.y;
-            Vector2 spawnPos = new Vector2(transform.position.x, transform.position.y + enemyHeight / 2);
 
             GameObject income = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Text incomeText = income.GetComponentInChildren<Text>();

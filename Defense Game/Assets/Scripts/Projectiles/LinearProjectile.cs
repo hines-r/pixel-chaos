@@ -5,7 +5,9 @@ using UnityEngine;
 public class LinearProjectile : Projectile
 {
     public float speed = 25f;
-    public int penetrationCount = 2;
+    public int penetrationCount = 1;
+    public float slowAmount = 0;
+    public float slowDuration = 0;
     private int targetsHit;
 
     private float timeTillDestroyed = 4f;
@@ -50,6 +52,11 @@ public class LinearProjectile : Projectile
         if (enemy != null)
         {
             enemy.TakeDamage(Damage);
+
+            if (slowAmount > 0)
+            {
+                enemy.Slow(slowAmount, slowDuration);
+            }
         }
     }
 }

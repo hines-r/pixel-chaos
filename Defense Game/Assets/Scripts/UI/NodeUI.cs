@@ -19,12 +19,14 @@ public class NodeUI : MonoBehaviour
     public UnitBlueprint ninja;
     public UnitBlueprint lightningWizard;
     public UnitBlueprint explosionWizard;
+    public UnitBlueprint iceWizard;
 
     [Space]
 
     [Header("Unit Panel Info")]
     public Image unitImg;
     public Text unitNameTxt;
+    public Text unitLevelTxt;
     public Text damageTxt;
     public Text attackSpeedTxt;
     public Text descrptionTxt;
@@ -48,13 +50,21 @@ public class NodeUI : MonoBehaviour
     {
         buildManager = BuildManager.instance;
         buttons = FindObjectsOfType<UnitButton>();
-
-
     }
 
     public void SetTarget(Node _target)
     {
         target = _target;
+    }
+
+    public void UpgradeButton()
+    {
+        if (selectedUnit != null)
+        {
+            selectedUnit.Upgrade(); // Updates values on unit panel
+            currentlyPlacedUnit.Upgrade(); // Upgrades selected unit
+            UpdateUnitPanel();
+        }
     }
 
     void UpdateUnitPanel()
@@ -64,6 +74,7 @@ public class NodeUI : MonoBehaviour
         if (selectedUnit != null)
         {
             unitImg.sprite = selectedUnit.unitSprite;
+            unitLevelTxt.text = "Level: " + selectedUnit.level;
             unitNameTxt.text = selectedUnit.unitName;
             damageTxt.text = "Damage: " + selectedUnit.damage;
             attackSpeedTxt.text = "Speed: " + selectedUnit.attackSpeed + "s";
@@ -188,6 +199,12 @@ public class NodeUI : MonoBehaviour
     public void SelectExplosionWizard()
     {
         buildManager.SelectUnitToPlace(explosionWizard);
+        UpdateUnitPanel();
+    }
+
+    public void SelectIceWizard()
+    {
+        buildManager.SelectUnitToPlace(iceWizard);
         UpdateUnitPanel();
     }
 
