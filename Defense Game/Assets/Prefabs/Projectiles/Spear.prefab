@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwHeight: 1
-  randomTarget: 1
-  nearestTarget: 0
+  isNearest: 0
+  isRandom: 1
 --- !u!212 &212320767906893564
 SpriteRenderer:
   m_ObjectHideFlags: 1

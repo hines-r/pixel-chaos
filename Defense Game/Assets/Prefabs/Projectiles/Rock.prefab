@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwHeight: 2
-  randomTarget: 1
-  nearestTarget: 0
+  isNearest: 0
+  isRandom: 1
 --- !u!212 &212735907244055780
 SpriteRenderer:
   m_ObjectHideFlags: 1
