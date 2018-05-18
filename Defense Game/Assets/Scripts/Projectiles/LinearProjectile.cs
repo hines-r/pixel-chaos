@@ -5,10 +5,28 @@ using UnityEngine;
 public class LinearProjectile : Projectile
 {
     public float speed = 25f;
+
+    [Header("Optional Piercing")]
     public int penetrationCount = 1;
+    private int targetsHit;
+
+    [Header("Optional Slow")]
     public float slowAmount = 0;
     public float slowDuration = 0;
-    private int targetsHit;
+
+    [Header("Optional DOT")]
+    public bool hasDot;
+    public float damageDuration;
+
+    [Header("Impact Effect (Optional)")]
+    public GameObject impactEffect;
+    private float particleTime = 3f;
+
+    [Header("Targetting Type (Choose 1)")]
+    public bool isNearest;
+    public bool isRandom;
+    public bool isDotTarget;
+
 
     private float timeTillDestroyed = 4f;
 
@@ -27,14 +45,41 @@ public class LinearProjectile : Projectile
 
     void UpdateTarget()
     {
-        if (NearestTarget() != null)
+        if (isRandom)
         {
-            target = NearestTarget().transform;
-            transform.right = target.position - transform.position;
+            if (RandomTarget() != null)
+            {
+                target = RandomTarget().transform;
+                transform.right = target.position - transform.position;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
+        else if (isDotTarget)
         {
-            Destroy(gameObject);
+            if (NoDotTarget() != null)
+            {
+                target = NoDotTarget().transform;
+                transform.right = target.position - transform.position;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+        else if (isNearest)
+        {
+            if (NearestTarget() != null)
+            {
+                target = NearestTarget().transform;
+                transform.right = target.position - transform.position;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -44,6 +89,12 @@ public class LinearProjectile : Projectile
 
         if(targetsHit >= penetrationCount)
         {
+            if (impactEffect != null)
+            {
+                GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
+                Destroy(impact, particleTime);
+            }
+
             Destroy(gameObject);
         }
 
@@ -51,7 +102,14 @@ public class LinearProjectile : Projectile
 
         if (enemy != null)
         {
-            enemy.TakeDamage(Damage);
+            if (hasDot)
+            {
+                enemy.ApplyDoT(Damage, damageDuration);
+            }
+            else
+            {
+                enemy.TakeDamage(Damage);
+            }
 
             if (slowAmount > 0)
             {

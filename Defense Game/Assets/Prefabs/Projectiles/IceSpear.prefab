@@ -103,6 +103,11 @@ MonoBehaviour:
   penetrationCount: 3
   slowAmount: 0.5
   slowDuration: 1.5
+  hasDot: 0
+  damageDuration: 0
+  isNearest: 1
+  isRandom: 0
+  isDotTarget: 0
 --- !u!212 &212692155192404730
 SpriteRenderer:
   m_ObjectHideFlags: 1

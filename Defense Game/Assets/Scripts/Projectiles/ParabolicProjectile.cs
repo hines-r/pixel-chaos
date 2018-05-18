@@ -6,8 +6,8 @@ public class ParabolicProjectile : Projectile
 {
     public float throwHeight = 5;
 
-    public bool randomTarget;
-    public bool nearestTarget;
+    public bool isNearest;
+    public bool isRandom;
 
     private Rigidbody2D rb;
 
@@ -24,11 +24,11 @@ public class ParabolicProjectile : Projectile
     {
         GameObject target = null;
 
-        if (randomTarget)
+        if (isRandom)
         {
             target = RandomTarget();
         }
-        else if (nearestTarget)
+        else if (isNearest)
         {
             target = NearestTarget();
         }

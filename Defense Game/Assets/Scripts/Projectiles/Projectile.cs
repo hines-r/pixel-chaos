@@ -46,4 +46,52 @@ public class Projectile : MonoBehaviour
         return null;
     }
 
+    protected GameObject NoDotTarget()
+    {
+        GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> enemiesWithDoT = new List<GameObject>();
+
+        foreach (GameObject enemy in possibleTargets)
+        {
+            LivingEntity livingEnemy = enemy.GetComponent<Enemy>();
+
+            if (livingEnemy != null)
+            {
+                if (!livingEnemy.isDamagedOverTime)
+                {
+                    enemiesWithDoT.Add(livingEnemy.gameObject);
+                }
+            }
+        }
+
+        // Attempts to find the nearest target without a DoT
+        if (enemiesWithDoT.Count > 0)
+        {
+            return FindNearestInList(enemiesWithDoT);
+        }
+
+        // Defaults to nearest target without searching for dot if none are found
+        return NearestTarget();
+    }
+
+    GameObject FindNearestInList(List<GameObject> listToSearch)
+    {
+        GameObject nearestEnemy = null;
+        float closestDistanceSqr = Mathf.Infinity;
+        Vector3 currentPosition = transform.position;
+
+        foreach (GameObject enemy in listToSearch)
+        {
+            Vector3 directionToTarget = enemy.transform.position - currentPosition;
+            float dSqrtToTarget = directionToTarget.sqrMagnitude;
+            if (dSqrtToTarget < closestDistanceSqr)
+            {
+                closestDistanceSqr = dSqrtToTarget;
+                nearestEnemy = enemy;
+            }
+        }
+
+        return nearestEnemy;
+    }
+
 }

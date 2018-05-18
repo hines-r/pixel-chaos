@@ -10,6 +10,10 @@ public class LivingEntity : MonoBehaviour, IDamageable
     protected float health;
     protected bool isDead;
 
+    internal bool isDamagedOverTime;
+    private float dotDamage;
+    protected float dotDuration;
+
     protected virtual void Start()
     {
         health = startingHealth;
@@ -25,6 +29,25 @@ public class LivingEntity : MonoBehaviour, IDamageable
         {
             Die();
         }
+    }
+
+    public void TakeDamageOverTime()
+    {
+        health -= dotDamage * Time.deltaTime;
+
+        healthBar.fillAmount = health / startingHealth;
+
+        if (health <= 0 && !isDead)
+        {
+            Die();
+        }
+    }
+
+    public void ApplyDoT(float damage, float duration)
+    {
+        isDamagedOverTime = true;
+        dotDuration = duration;
+        dotDamage = damage;
     }
 
     protected virtual void Die()

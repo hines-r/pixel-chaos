@@ -8,6 +8,8 @@ public class Enemy : LivingEntity
     [Header("Enemy Attributes")]
     public float startSpeed = 1;
     private float speed;
+    private float isSlowed;
+    private float slowDuration;
 
     public float damage = 5f;
     public float attackSpeed = 1f;
@@ -28,12 +30,14 @@ public class Enemy : LivingEntity
 
     private Transform target;
 
+    [Header("Debuffs")]
+    public GameObject poisonDebuff;
+    public GameObject slowDebuff;
+
     private SpriteRenderer spriteRenderer;
 
     public enum State { Moving, Attacking }
     private State currentState;
-
-    private float slowDuration;
 
     protected override void Start()
     {
@@ -45,6 +49,20 @@ public class Enemy : LivingEntity
 
     void Update()
     {
+        if (isDamagedOverTime)
+        {
+            poisonDebuff.SetActive(true);
+            dotDuration -= Time.deltaTime;
+
+            TakeDamageOverTime();
+
+            if (dotDuration <= 0)
+            {
+                poisonDebuff.SetActive(false);
+                isDamagedOverTime = false;
+            }
+        }
+
         if (Time.time > nextAttackTime)
         {
             if (currentState == State.Attacking)
@@ -56,10 +74,12 @@ public class Enemy : LivingEntity
 
         if (slowDuration > 0)
         {
+            slowDebuff.SetActive(true);
             slowDuration -= Time.deltaTime;           
         }
         else
         {
+            slowDebuff.SetActive(false);
             speed = startSpeed;
         }
     }
