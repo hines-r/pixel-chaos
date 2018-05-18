@@ -55,7 +55,6 @@ MonoBehaviour:
   projectile: {fileID: 1072636770896822, guid: 732fd3d93acd5e14d97339b5ded4f6ad, type: 2}
   damage: 50
   attackSpeed: 1
-  splashRadius: 0
   unitName: Ninja
   baseCost: 350
   description: Stealthy and sly, the Ninja is equipped with a special shuriken capable

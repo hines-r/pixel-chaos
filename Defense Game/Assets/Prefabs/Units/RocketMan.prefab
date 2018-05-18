@@ -61,9 +61,9 @@ MonoBehaviour:
     down enemies! Each rocket causes an explosion capable of cleaving down enemies
     in a radius.
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  upgradeBaseCost: 0
-  damageIncrement: 0
-  attackSpeedReduction: 0
+  multiplier: 1.08
+  upgradeBaseCost: 100
+  damageIncrement: 1
 --- !u!212 &212020847260105368
 SpriteRenderer:
   m_ObjectHideFlags: 1

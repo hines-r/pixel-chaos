@@ -230,8 +230,8 @@ MonoBehaviour:
   timeBetweenAttacks: 2
   lungeDistance: 3
   stoppingPoint: -1.5
-  value: 15
-  expAmount: 10
+  value: 30
+  expAmount: 15
   deathEffect: {fileID: 1140325616282710, guid: 5733a12ff30c237439c830778a0c34fd,
     type: 2}
 --- !u!212 &212539065486041116

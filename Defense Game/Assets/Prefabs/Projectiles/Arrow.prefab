@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0095f31a600f0274f8ff38d4b3fa168f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwHeight: 2
+  throwHeight: 1
   randomTarget: 1
   nearestTarget: 0
 --- !u!212 &212635186826789000

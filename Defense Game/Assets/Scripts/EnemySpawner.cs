@@ -66,6 +66,12 @@ public class EnemySpawner : MonoBehaviour
         if (waveIndex > previousWaveIndex)
         {
             WaveComplete();
+
+            if (waveIndex == waves.Length)
+            {
+                GameMaster.GameIsWon = true;
+            }
+
             return;
         }
 
@@ -158,10 +164,6 @@ public class EnemySpawner : MonoBehaviour
             IsSpawning = true;
             previousWaveIndex = waveIndex;
             countdown = startCountdownTime;
-        }
-        else
-        {
-            waveIndex = 0;
         }
     }
 

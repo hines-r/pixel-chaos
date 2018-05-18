@@ -140,7 +140,7 @@ MonoBehaviour:
   lungeDistance: 3
   stoppingPoint: -1.5
   value: 5
-  expAmount: 1
+  expAmount: 5
   deathEffect: {fileID: 1140325616282710, guid: 5733a12ff30c237439c830778a0c34fd,
     type: 2}
 --- !u!114 &114012570146403188

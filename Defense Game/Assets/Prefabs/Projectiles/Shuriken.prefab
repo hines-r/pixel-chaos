@@ -91,6 +91,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   penetrationCount: 2
+  slowAmount: 0
+  slowDuration: 0
 --- !u!212 &212023857550200380
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -5,11 +5,15 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
     public static bool GameIsOver = false;
+    public static bool GameIsWon = false;
 
     public GameObject gameOverUI;
+    public GameObject gameWinUI;
+
 
     void Start()
     {
+        GameIsWon = false;
         GameIsOver = false;
     }
 
@@ -18,6 +22,11 @@ public class GameMaster : MonoBehaviour
         if (GameIsOver)
         {
             return;
+        }
+
+        if (GameIsWon)
+        {
+            WinGame();
         }
 
         if (PlayerStats.Health <= 0)
@@ -30,5 +39,10 @@ public class GameMaster : MonoBehaviour
     {
         GameIsOver = true;
         gameOverUI.SetActive(true);
+    }
+
+    void WinGame()
+    {
+        gameWinUI.SetActive(true);
     }
 }

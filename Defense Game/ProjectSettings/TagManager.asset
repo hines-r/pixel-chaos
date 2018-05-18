@@ -49,3 +49,6 @@ TagManager:
   - name: Units
     uniqueID: 910937085
     locked: 0
+  - name: Fireworks
+    uniqueID: 487027353
+    locked: 0
