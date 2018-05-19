@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackingUnit : MonoBehaviour
+public class AttackingUnit : TargetingEntity
 {
     [Header("Unit Attributes")]
     public GameObject projectile;
     public float damage;
     public float attackSpeed;
+    internal int level = 1;
 
     [Header("Unit Info")]
     public string unitName;
@@ -24,7 +25,10 @@ public class AttackingUnit : MonoBehaviour
     private float nextAttackTime;
     private float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
-    internal int level = 1;
+    public bool isTargetRandom;
+    public bool isTargetNearest;
+    public bool isTargetDot; // Used to target enemies without a DoT (damage over time) effect
+    internal Transform target;
 
     void Start()
     {
@@ -66,6 +70,7 @@ public class AttackingUnit : MonoBehaviour
                     // If an enemy is found and it is within the attack range, there is a valid target
                     if (enemy.transform.position.x < maxAttackRange)
                     {
+                        target = ObtainTarget();
                         return true;
                     }
                 }
@@ -75,16 +80,49 @@ public class AttackingUnit : MonoBehaviour
         return false;
     }
 
+    public Transform ObtainTarget()
+    {
+        if (isTargetRandom)
+        {
+            if (TargetRandomEnemy() != null)
+            {
+                return TargetRandomEnemy().transform;
+            }
+        }
+        else if (isTargetNearest)
+        {
+            if (TargetNearestEnemy() != null)
+            {
+                return TargetNearestEnemy().transform;
+            }
+        }
+        else if (isTargetDot)
+        {
+            if (TargetEnemyForDoT() != null)
+            {
+                return TargetEnemyForDoT().transform;
+            }
+        }
+        else
+        {
+            Debug.Log("Unit needs to specify targeting AI!");
+        }
+
+        return null;
+    }
+
     void Attack()
     {
         if (CheckForTargets())
         {
             GameObject obj = Instantiate(projectile, transform.position, Quaternion.identity);
-            Projectile p = obj.GetComponent<Projectile>();
+            Projectile projectileToFire = obj.GetComponent<Projectile>();
 
-            if (p != null)
+            if (projectileToFire != null)
             {
-                p.Damage = damage; // Sets the damage of the projectile being fired
+                projectileToFire.originEntity = gameObject;
+                projectileToFire.Damage = damage; // Sets the damage of the projectile being fired
+                projectileToFire.Target = target; // Sets the target for the projectile
             }
         }
     }

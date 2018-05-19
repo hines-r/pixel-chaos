@@ -12,18 +12,15 @@ public class HomingProjectile : Projectile
     private float particleTime = 4f;
 
     private Rigidbody2D rb;
-    private Transform target;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
-        UpdateTarget();
-
-        if (target != null)
+        if (Target != null)
         {
             // Rotates the projectile to face the target upon instantiation
-            Vector3 diff = target.position - transform.position;
+            Vector3 diff = Target.position - transform.position;
             diff.Normalize();
 
             float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -39,7 +36,7 @@ public class HomingProjectile : Projectile
             return;
         }
 
-        if (target == null)
+        if (Target == null)
         {
             UpdateTarget();
         }
@@ -47,21 +44,19 @@ public class HomingProjectile : Projectile
 
     void UpdateTarget()
     {
-        if (NearestTarget() != null)
+        AttackingUnit unit = originEntity.GetComponent<AttackingUnit>();
+
+        if (unit != null)
         {
-            target = NearestTarget().transform;
-        }
-        else
-        {
-            Destroy(gameObject, 5f);
+            Target = unit.ObtainTarget();
         }
     }
 
     void FixedUpdate()
     {
-        if (target != null)
+        if (Target != null)
         {
-            Vector2 direction = (Vector2)target.position - rb.position;
+            Vector2 direction = (Vector2)Target.position - rb.position;
 
             direction.Normalize();
 

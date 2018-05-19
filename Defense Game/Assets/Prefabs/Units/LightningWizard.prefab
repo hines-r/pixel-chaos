@@ -55,7 +55,6 @@ MonoBehaviour:
   projectile: {fileID: 1100319195004842, guid: c77991805b15b814788c8177e0205db9, type: 2}
   damage: 100
   attackSpeed: 3
-  splashRadius: 0
   unitName: Lightning Wizard
   baseCost: 500
   description: Lightning Wizards are capable of calling down deadly lightning storms
@@ -64,6 +63,9 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 5
+  isTargetRandom: 0
+  isTargetNearest: 1
+  isTargetDot: 0
 --- !u!212 &212444170745706214
 SpriteRenderer:
   m_ObjectHideFlags: 1

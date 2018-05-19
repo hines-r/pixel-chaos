@@ -22,65 +22,19 @@ public class LinearProjectile : Projectile
     public GameObject impactEffect;
     private float particleTime = 3f;
 
-    [Header("Targetting Type (Choose 1)")]
-    public bool isNearest;
-    public bool isRandom;
     public bool isDotTarget;
-
 
     private float timeTillDestroyed = 4f;
 
-    private Transform target;
-
     void Start()
     {
-        UpdateTarget();
+        transform.right = Target.position - transform.position;
         Destroy(gameObject, timeTillDestroyed);
     }
 
     void Update()
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
-    }
-
-    void UpdateTarget()
-    {
-        if (isRandom)
-        {
-            if (RandomTarget() != null)
-            {
-                target = RandomTarget().transform;
-                transform.right = target.position - transform.position;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-        else if (isDotTarget)
-        {
-            if (NoDotTarget() != null)
-            {
-                target = NoDotTarget().transform;
-                transform.right = target.position - transform.position;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-        else if (isNearest)
-        {
-            if (NearestTarget() != null)
-            {
-                target = NearestTarget().transform;
-                transform.right = target.position - transform.position;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

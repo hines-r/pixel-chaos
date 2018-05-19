@@ -15,7 +15,7 @@ public class Enemy : LivingEntity
     public float attackSpeed = 1f;
     public float timeBetweenAttacks = 1f;
     private float nextAttackTime;
-    public float lungeDistance = 3f;
+    private float lungeDistance = 1.5f;
 
     [Header("Enemy Misc.")]
     public float stoppingPoint = -1;
@@ -99,12 +99,12 @@ public class Enemy : LivingEntity
         }
     }
 
-    IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
-        lungeDistance = Random.Range(.5f, 1.25f);
+        float lunge = Random.Range(.5f, lungeDistance);
 
         Vector3 originalPos = transform.position;
-        Vector3 attackPos = new Vector3(stoppingPoint - lungeDistance, transform.position.y, 0);
+        Vector3 attackPos = new Vector3(stoppingPoint - lunge, transform.position.y, 0);
 
         float percent = 0;
 

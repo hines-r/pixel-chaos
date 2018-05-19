@@ -63,6 +63,9 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
+  isTargetRandom: 0
+  isTargetNearest: 1
+  isTargetDot: 0
 --- !u!212 &212366489228178140
 SpriteRenderer:
   m_ObjectHideFlags: 1

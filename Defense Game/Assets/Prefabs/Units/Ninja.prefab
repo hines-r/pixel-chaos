@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1072636770896822, guid: 732fd3d93acd5e14d97339b5ded4f6ad, type: 2}
-  damage: 50
+  damage: 35
   attackSpeed: 1
   unitName: Ninja
   baseCost: 350
@@ -63,6 +63,9 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
+  isTargetRandom: 0
+  isTargetNearest: 1
+  isTargetDot: 0
 --- !u!212 &212297796681069836
 SpriteRenderer:
   m_ObjectHideFlags: 1

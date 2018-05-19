@@ -6,9 +6,6 @@ public class ParabolicProjectile : Projectile
 {
     public float throwHeight = 5;
 
-    public bool isNearest;
-    public bool isRandom;
-
     private Rigidbody2D rb;
 
     private float h;
@@ -22,20 +19,9 @@ public class ParabolicProjectile : Projectile
 
     void Launch()
     {
-        GameObject target = null;
-
-        if (isRandom)
+        if (Target != null)
         {
-            target = RandomTarget();
-        }
-        else if (isNearest)
-        {
-            target = NearestTarget();
-        }
-
-        if (target != null)
-        {
-            rb.velocity = CalculateLaunchVelocity(target);
+            rb.velocity = CalculateLaunchVelocity(Target.gameObject);
         }
     }
 
@@ -50,9 +36,9 @@ public class ParabolicProjectile : Projectile
         RotateToTarget();
     }
 
-    Vector2 CalculateLaunchVelocity(GameObject enemyToHit)
+    Vector2 CalculateLaunchVelocity(GameObject entityToHit)
     {
-        Transform target = enemyToHit.GetComponent<Transform>();
+        Transform target = entityToHit.GetComponent<Transform>();
         h = target.position.y - transform.position.y + throwHeight;
 
         if (h < 0)
@@ -60,19 +46,22 @@ public class ParabolicProjectile : Projectile
             h = 0;
         }
 
-        float targetVelocity = enemyToHit.GetComponent<Enemy>().GetVelocity();
-
         float displacementX = target.position.x - transform.position.x;
         float displacementY = target.position.y - transform.position.y;
-
         float time = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
 
-        float distanceTraveledInTime = targetVelocity * time;
-        float futurePositionX = target.position.x - distanceTraveledInTime;
-
-        if (futurePositionX >= enemyToHit.GetComponent<Enemy>().stoppingPoint)
+        // Calculates future position if the entity to hit is a moving enemy
+        // Doesn't need to be calculated for a static enemy like the player
+        if (entityToHit.GetComponent<Enemy>() != null)
         {
-            displacementX -= distanceTraveledInTime; // Compensates for location of the target moving at a constant speed
+            float targetVelocity = entityToHit.GetComponent<Enemy>().GetVelocity();
+            float distanceTraveledInTime = targetVelocity * time;
+            float futurePositionX = target.position.x - distanceTraveledInTime;
+
+            if (futurePositionX >= entityToHit.GetComponent<Enemy>().stoppingPoint)
+            {
+                displacementX -= distanceTraveledInTime; // Compensates for location of the target moving at a constant speed
+            }
         }
 
         Vector2 velocityX = Vector2.right * displacementX / time;
@@ -88,14 +77,23 @@ public class ParabolicProjectile : Projectile
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(gameObject);
+
         Enemy enemy = collision.GetComponent<Enemy>();
 
         if (enemy != null)
         {
             enemy.TakeDamage(Damage);
+            return;
+        }
+
+        Castle castle = collision.GetComponent<Castle>();
+
+        if (castle != null)
+        {
+            castle.TakeDamage(Damage);
         }
     }
 

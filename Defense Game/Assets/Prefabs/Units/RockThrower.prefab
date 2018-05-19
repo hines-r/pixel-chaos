@@ -55,7 +55,6 @@ MonoBehaviour:
   projectile: {fileID: 1297141833555188, guid: 4a354b54b81b01c4bbfbad587f41807d, type: 2}
   damage: 50
   attackSpeed: 2
-  splashRadius: 0
   unitName: Rock Thrower
   baseCost: 100
   description: These guys hurl heavy rocks towards the enemy inflicting moderate damage!
@@ -63,6 +62,9 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 500
   damageIncrement: 1
+  isTargetRandom: 1
+  isTargetNearest: 0
+  isTargetDot: 0
 --- !u!212 &212842012790873936
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -6,14 +6,11 @@ public class ExplosionMagic : Projectile
 {
     public float splashRadius = 5f;
 
-    private Transform target;
-
     private float timeAlive = 5f;
 
     void Start()
     {
-        target = NearestTarget().transform;
-        transform.position = target.position;
+        transform.position = Target.position;
         Explode();
     }
 
