@@ -21,7 +21,7 @@ public class ParabolicProjectile : Projectile
     {
         if (Target != null)
         {
-            rb.velocity = CalculateLaunchVelocity(Target.gameObject);
+            rb.velocity = CalculateLaunchVelocity(Target);
         }
     }
 
@@ -38,16 +38,16 @@ public class ParabolicProjectile : Projectile
 
     Vector2 CalculateLaunchVelocity(GameObject entityToHit)
     {
-        Transform target = entityToHit.GetComponent<Transform>();
-        h = target.position.y - transform.position.y + throwHeight;
+        Vector3 target = entityToHit.GetComponent<Transform>().position;
+        h = target.y - transform.position.y + throwHeight;
 
         if (h < 0)
         {
             h = 0;
         }
 
-        float displacementX = target.position.x - transform.position.x;
-        float displacementY = target.position.y - transform.position.y;
+        float displacementX = target.x - transform.position.x;
+        float displacementY = target.y - transform.position.y;
         float time = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
 
         // Calculates future position if the entity to hit is a moving enemy
@@ -56,7 +56,7 @@ public class ParabolicProjectile : Projectile
         {
             float targetVelocity = entityToHit.GetComponent<Enemy>().GetVelocity();
             float distanceTraveledInTime = targetVelocity * time;
-            float futurePositionX = target.position.x - distanceTraveledInTime;
+            float futurePositionX = target.x - distanceTraveledInTime;
 
             if (futurePositionX >= entityToHit.GetComponent<Enemy>().stoppingPoint)
             {

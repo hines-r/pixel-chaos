@@ -7,12 +7,16 @@ public class RangedEnemy : Enemy
     [Header("Projectile")]
     public GameObject projectile;
 
-    private TargetingEntity targetingEntity;
+    [Header("Target")]
+    public GameObject castle;
+
+    private Vector3 target;
 
     protected override void Start()
     {
         base.Start();
-        targetingEntity = GetComponent<TargetingEntity>();
+
+        target = castle.transform.position;
     }
 
     protected override IEnumerator Attack()
@@ -24,7 +28,7 @@ public class RangedEnemy : Enemy
         {
             projectileToFire.originEntity = gameObject;
             projectileToFire.Damage = damage;
-            projectileToFire.Target = targetingEntity.TargetPlayer().transform;
+            projectileToFire.Target = castle;
         }
 
         yield return null;

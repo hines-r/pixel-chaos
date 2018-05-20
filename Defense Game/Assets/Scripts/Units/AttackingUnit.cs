@@ -28,7 +28,7 @@ public class AttackingUnit : TargetingEntity
     public bool isTargetRandom;
     public bool isTargetNearest;
     public bool isTargetDot; // Used to target enemies without a DoT (damage over time) effect
-    internal Transform target;
+    internal GameObject target;
 
     void Start()
     {
@@ -80,27 +80,27 @@ public class AttackingUnit : TargetingEntity
         return false;
     }
 
-    public Transform ObtainTarget()
+    public GameObject ObtainTarget()
     {
         if (isTargetRandom)
         {
             if (TargetRandomEnemy() != null)
             {
-                return TargetRandomEnemy().transform;
+                return TargetRandomEnemy();
             }
         }
         else if (isTargetNearest)
         {
             if (TargetNearestEnemy() != null)
             {
-                return TargetNearestEnemy().transform;
+                return TargetNearestEnemy();
             }
         }
         else if (isTargetDot)
         {
             if (TargetEnemyForDoT() != null)
             {
-                return TargetEnemyForDoT().transform;
+                return TargetEnemyForDoT();
             }
         }
         else

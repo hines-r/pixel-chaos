@@ -8,5 +8,5 @@ public class Projectile : MonoBehaviour
 
     public float Damage { get; set; }
 
-    public Transform Target { get; set; }
+    public GameObject Target { get; set; }
 }

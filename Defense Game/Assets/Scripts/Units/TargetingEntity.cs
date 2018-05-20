@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TargetingEntity : MonoBehaviour
 {
-
     protected GameObject TargetNearestEnemy()
     {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
@@ -87,10 +86,4 @@ public class TargetingEntity : MonoBehaviour
 
         return nearestEnemy;
     }
-
-    public GameObject TargetPlayer()
-    {
-        return GameObject.FindGameObjectWithTag("Player");
-    }
-
 }

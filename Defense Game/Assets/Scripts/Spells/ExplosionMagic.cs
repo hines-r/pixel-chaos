@@ -10,7 +10,7 @@ public class ExplosionMagic : Projectile
 
     void Start()
     {
-        transform.position = Target.position;
+        transform.position = Target.transform.position;
         Explode();
     }
 

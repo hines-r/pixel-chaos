@@ -9,7 +9,7 @@ public class Lightning : Projectile
     void Start()
     {
         Vector2 screenHalfSizeWorldUnits = new Vector2(Camera.main.aspect * Camera.main.orthographicSize, Camera.main.orthographicSize);
-        transform.position = new Vector3(Target.position.x, screenHalfSizeWorldUnits.y + yOffset);
+        transform.position = new Vector3(Target.transform.position.x, screenHalfSizeWorldUnits.y + yOffset);
 
         Destroy(gameObject, 5f);
     }

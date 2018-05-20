@@ -28,7 +28,7 @@ public class LinearProjectile : Projectile
 
     void Start()
     {
-        transform.right = Target.position - transform.position;
+        transform.right = Target.transform.position - transform.position;
         Destroy(gameObject, timeTillDestroyed);
     }
 

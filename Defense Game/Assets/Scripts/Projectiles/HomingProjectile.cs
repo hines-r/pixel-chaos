@@ -20,7 +20,7 @@ public class HomingProjectile : Projectile
         if (Target != null)
         {
             // Rotates the projectile to face the target upon instantiation
-            Vector3 diff = Target.position - transform.position;
+            Vector3 diff = Target.transform.position - transform.position;
             diff.Normalize();
 
             float rotationZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -56,7 +56,7 @@ public class HomingProjectile : Projectile
     {
         if (Target != null)
         {
-            Vector2 direction = (Vector2)Target.position - rb.position;
+            Vector2 direction = (Vector2)Target.transform.position - rb.position;
 
             direction.Normalize();
 
