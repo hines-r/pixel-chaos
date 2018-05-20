@@ -10,15 +10,6 @@ public class RangedEnemy : Enemy
     [Header("Target")]
     public GameObject castle;
 
-    private Vector3 target;
-
-    protected override void Start()
-    {
-        base.Start();
-
-        target = castle.transform.position;
-    }
-
     protected override IEnumerator Attack()
     {
         GameObject obj = Instantiate(projectile, transform.position, Quaternion.identity);

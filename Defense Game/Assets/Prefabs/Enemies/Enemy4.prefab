@@ -139,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1352309320274128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.76, y: -2.78, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.71027064, y: 0.71027064, z: 0.71027064}
   m_Children:
   - {fileID: 224393492146464396}
@@ -223,6 +223,7 @@ MonoBehaviour:
   poisonDebuff: {fileID: 1920588512294772}
   slowDebuff: {fileID: 1173504440285108}
   projectile: {fileID: 1275422147326350, guid: 51ca9c29bc64d3c439c3cb2624c4053b, type: 2}
+  castle: {fileID: 1474536848834078, guid: 15596088e45aa914c976fa4e8af816c8, type: 2}
 --- !u!114 &114052761605502614
 MonoBehaviour:
   m_ObjectHideFlags: 1

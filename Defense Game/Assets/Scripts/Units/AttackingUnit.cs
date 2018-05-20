@@ -28,7 +28,8 @@ public class AttackingUnit : TargetingEntity
     public bool isTargetRandom;
     public bool isTargetNearest;
     public bool isTargetDot; // Used to target enemies without a DoT (damage over time) effect
-    internal GameObject target;
+
+    private GameObject target;
 
     void Start()
     {
@@ -105,7 +106,7 @@ public class AttackingUnit : TargetingEntity
         }
         else
         {
-            Debug.Log("Unit needs to specify targeting AI!");
+            Debug.Log(this + ": Unit needs to specify targeting AI!");
         }
 
         return null;
