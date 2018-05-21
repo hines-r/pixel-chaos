@@ -41,7 +41,7 @@ public class LinearProjectile : Projectile
     {
         targetsHit++;
 
-        if(targetsHit >= penetrationCount)
+        if (targetsHit >= penetrationCount)
         {
             if (impactEffect != null)
             {
@@ -71,4 +71,5 @@ public class LinearProjectile : Projectile
             }
         }
     }
+
 }

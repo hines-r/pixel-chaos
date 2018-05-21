@@ -105,8 +105,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4746301279817026}
   - component: {fileID: 212546187972591438}
-  - component: {fileID: 114054746013343616}
   - component: {fileID: 61921191379373648}
+  - component: {fileID: 50479920497048752}
+  - component: {fileID: 114054746013343616}
   m_Layer: 9
   m_Name: Enemy1
   m_TagString: Enemy
@@ -138,13 +139,33 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1798139755632974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.17396945, y: -2.72, z: 0}
+  m_LocalPosition: {x: 14.12, y: -0.49, z: 0}
   m_LocalScale: {x: 0.71027064, y: 0.71027064, z: 0.71027064}
   m_Children:
   - {fileID: 224285531780006628}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50479920497048752
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1798139755632974}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61921191379373648
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -187,7 +208,6 @@ MonoBehaviour:
   damage: 5
   attackSpeed: 5
   timeBetweenAttacks: 1
-  lungeDistance: 3
   stoppingPoint: -1.5
   value: 15
   expAmount: 5

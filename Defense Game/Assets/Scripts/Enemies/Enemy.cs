@@ -28,21 +28,23 @@ public class Enemy : LivingEntity
     private float velocity;
     private Vector3 previousPosition;
 
-    private Transform target;
-
     [Header("Debuffs")]
     public GameObject poisonDebuff;
     public GameObject slowDebuff;
 
-    private SpriteRenderer spriteRenderer;
+    internal bool isUnderForces;
 
-    public enum State { Moving, Attacking }
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rb;
+
+    public enum State { Moving, Attacking, UnderForces }
     private State currentState;
 
     protected override void Start()
     {
         base.Start();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
         speed = startSpeed;
         currentState = State.Moving;
     }
@@ -82,6 +84,11 @@ public class Enemy : LivingEntity
             slowDebuff.SetActive(false);
             speed = startSpeed;
         }
+
+        if (!isUnderForces)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     void FixedUpdate()
@@ -95,7 +102,10 @@ public class Enemy : LivingEntity
         }
         else
         {
-            currentState = State.Attacking;
+            if (!isUnderForces)
+            {
+                currentState = State.Attacking;
+            }
         }
     }
 
@@ -142,8 +152,6 @@ public class Enemy : LivingEntity
 
         if (deathEffect != null)
         {
-            float enemyHeight = spriteRenderer.bounds.size.y;
-
             GameObject income = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Text incomeText = income.GetComponentInChildren<Text>();
             incomeText.text = "+" + value + "g";

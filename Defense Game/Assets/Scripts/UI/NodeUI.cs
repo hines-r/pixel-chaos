@@ -21,6 +21,7 @@ public class NodeUI : MonoBehaviour
     public UnitBlueprint explosionWizard;
     public UnitBlueprint iceWizard;
     public UnitBlueprint dartBlower;
+    public UnitBlueprint voidSage;
 
     [Space]
 
@@ -212,6 +213,12 @@ public class NodeUI : MonoBehaviour
     public void SelectDartBlower()
     {
         buildManager.SelectUnitToPlace(dartBlower);
+        UpdateUnitPanel();
+    }
+
+    public void SelectVoidSage()
+    {
+        buildManager.SelectUnitToPlace(voidSage);
         UpdateUnitPanel();
     }
 

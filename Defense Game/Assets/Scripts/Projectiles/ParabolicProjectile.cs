@@ -79,12 +79,11 @@ public class ParabolicProjectile : Projectile
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
-
         Enemy enemy = collision.GetComponent<Enemy>();
 
         if (enemy != null)
         {
+            Destroy(gameObject);
             enemy.TakeDamage(Damage);
             return;
         }
