@@ -17,6 +17,7 @@ public class UnitButton : MonoBehaviour
 
     [Header("Button Info")]
     public GameObject lockedArea;
+    public Text buttonLevelText;
 
     internal bool isUnlocked;
 
@@ -27,13 +28,20 @@ public class UnitButton : MonoBehaviour
             unitImg.sprite = unit.unitSprite;
             unitName.text = unit.unitName;
             priceTxt.text = unit.baseCost + "g";
+            UpdateLevelText();
         }
+    }
+
+    public void UpdateLevelText()
+    {
+        buttonLevelText.text = unit.level.ToString();
     }
 
     public void UnlockButton()
     {
         isUnlocked = true;
         lockedArea.SetActive(false);
+        buttonLevelText.gameObject.SetActive(true);
     }
 
 }

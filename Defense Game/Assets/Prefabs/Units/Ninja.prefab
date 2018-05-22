@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1004716221765792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2997377, y: 0.3764008, z: 0}
+  m_LocalPosition: {x: -5.5, y: -2.75, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,10 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1072636770896822, guid: 732fd3d93acd5e14d97339b5ded4f6ad, type: 2}
-  damage: 35
+  damage: 40
   attackSpeed: 1
+  level: 1
   unitName: Ninja
-  baseCost: 350
+  baseCost: 500
   description: Stealthy and sly, the Ninja is equipped with a special shuriken capable
     of piercing multiple enemies.
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}

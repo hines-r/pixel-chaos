@@ -28,7 +28,7 @@ public class ParabolicProjectile : Projectile
 
     void Update()
     {
-        if (EnemySpawner.EnemiesAlive <= 0)
+        if (ProceduralSpawner.EnemiesAlive <= 0)
         {
             Destroy(gameObject);
             return;
@@ -39,21 +39,33 @@ public class ParabolicProjectile : Projectile
 
     Vector2 CalculateLaunchVelocity(GameObject entityToHit)
     {
+        Enemy enemy = entityToHit.GetComponent<Enemy>();
+
         Vector3 target = entityToHit.GetComponent<Transform>().position;
         h = target.y - transform.position.y + throwHeight;
 
+        // Won't add any additional throw height if the unit is throwing from a point above the target
+        // They will instead simply throw the projectile downwards
         if (h < 0)
         {
             h = 0;
         }
 
+        // Will attempt to aim at the stopping point of an enemy if it is attacking
+        // This way the projectile won't miss as often when enemies are performing a lunge attack
+        if (enemy != null && enemy.currentState == Enemy.State.Attacking)
+        {
+            target.x = enemy.stoppingPoint;
+        }
+
         float displacementX = target.x - transform.position.x;
         float displacementY = target.y - transform.position.y;
+
         float time = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
 
         // Calculates future position if the entity to hit is a moving enemy
         // Doesn't need to be calculated for a static enemy like the player
-        if (entityToHit.GetComponent<Enemy>() != null)
+        if (enemy != null && !enemy.isUnderForces)
         {
             float targetVelocity = entityToHit.GetComponent<Enemy>().GetVelocity();
             float distanceTraveledInTime = targetVelocity * time;
@@ -77,7 +89,7 @@ public class ParabolicProjectile : Projectile
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.GetComponent<Enemy>();
 
@@ -92,6 +104,7 @@ public class ParabolicProjectile : Projectile
 
         if (castle != null)
         {
+            Destroy(gameObject);
             castle.TakeDamage(Damage);
         }
     }

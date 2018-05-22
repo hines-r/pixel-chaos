@@ -56,7 +56,7 @@ MonoBehaviour:
   damage: 50
   attackSpeed: 0.75
   unitName: Dart Blower
-  baseCost: 500
+  baseCost: 1000
   description: The Dart Blower fires a nasty caustic tipped dart that damages enemies
     over time!
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}

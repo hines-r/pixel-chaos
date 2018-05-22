@@ -53,10 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1278352684841026, guid: d27e57b246d9f4c4c82ccbc12e2e0013, type: 2}
-  damage: 200
+  damage: 175
   attackSpeed: 5
+  level: 1
   unitName: Explosion Wizard
-  baseCost: 500
+  baseCost: 5000
   description: The Explosion Wizard is slow at attacking, but when it does, it creates
     a HUGE explosion to blast enemies away!
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}

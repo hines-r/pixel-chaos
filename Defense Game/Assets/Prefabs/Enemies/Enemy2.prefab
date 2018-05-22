@@ -369,15 +369,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8335c5b49bfb5144fa2f25e9bbaf0464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 250
+  startingHealth: 240
   healthBar: {fileID: 114309138149978218}
   startSpeed: 1
   damage: 10
   attackSpeed: 3
   timeBetweenAttacks: 2
   stoppingPoint: -1.5
-  value: 30
-  expAmount: 15
+  goldValue: 15
+  expAmount: 20
   deathEffect: {fileID: 1140325616282710, guid: 5733a12ff30c237439c830778a0c34fd,
     type: 2}
   poisonDebuff: {fileID: 1439493100676422}

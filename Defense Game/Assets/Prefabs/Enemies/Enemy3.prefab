@@ -209,7 +209,7 @@ MonoBehaviour:
   attackSpeed: 5
   timeBetweenAttacks: 0.5
   stoppingPoint: -1.5
-  value: 5
+  goldValue: 5
   expAmount: 5
   deathEffect: {fileID: 1140325616282710, guid: 5733a12ff30c237439c830778a0c34fd,
     type: 2}

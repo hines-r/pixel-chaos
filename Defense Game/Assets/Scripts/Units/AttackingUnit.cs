@@ -8,7 +8,7 @@ public class AttackingUnit : TargetingEntity
     public GameObject projectile;
     public float damage;
     public float attackSpeed;
-    internal int level = 1;
+    public int level = 1;
 
     [Header("Unit Info")]
     public string unitName;
@@ -19,16 +19,18 @@ public class AttackingUnit : TargetingEntity
     [Header("Upgrade Info")]
     public float multiplier = 1.08f;
     public float upgradeBaseCost;
-    private float upgradeCost;
+    internal float upgradeCost;
     public float damageIncrement;
 
     private float nextAttackTime;
     private float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
+    [Header("Unit AI (Choose One!)")]
     public bool isTargetRandom;
     public bool isTargetNearest;
     public bool isTargetDot; // Used to target enemies without a DoT (damage over time) effect
 
+    internal Node currentNode; // The node the unit is currently placed on
     private GameObject target;
 
     void Start()
@@ -44,7 +46,7 @@ public class AttackingUnit : TargetingEntity
             return;
         }
 
-        if (EnemySpawner.EnemiesAlive <= 0)
+        if (ProceduralSpawner.EnemiesAlive <= 0)
         {
             return;
         }
@@ -118,6 +120,7 @@ public class AttackingUnit : TargetingEntity
         {
             GameObject obj = Instantiate(projectile, transform.position, Quaternion.identity);
             Projectile projectileToFire = obj.GetComponent<Projectile>();
+            projectileToFire.transform.parent = transform; // Makes the projectile a child of the unit
 
             if (projectileToFire != null)
             {
@@ -137,5 +140,4 @@ public class AttackingUnit : TargetingEntity
 
         upgradeCost = (int)upgradedCost;
     }
-
 }

@@ -86,7 +86,7 @@ public class BlackHole : Projectile
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, c2d.radius);
     }
 }

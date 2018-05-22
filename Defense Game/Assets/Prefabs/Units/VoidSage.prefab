@@ -55,15 +55,16 @@ MonoBehaviour:
   projectile: {fileID: 1286406467829774, guid: 01d0c06cb22e6c048a364e34111de6d3, type: 2}
   damage: 15
   attackSpeed: 5
+  level: 1
   unitName: Void Sage
-  baseCost: 500
+  baseCost: 5000
   description: The Void Sage conjures dimensional rifts capable of pulling enemies
     towards the center. The sage is slow at summoning rifts but they damage enemies
     quickly!
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
   multiplier: 1.08
   upgradeBaseCost: 100
-  damageIncrement: 0
+  damageIncrement: 3
   isTargetRandom: 1
   isTargetNearest: 0
   isTargetDot: 0

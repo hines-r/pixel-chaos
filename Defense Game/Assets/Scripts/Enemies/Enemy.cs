@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : LivingEntity
 {
     [Header("Enemy Attributes")]
@@ -19,7 +20,7 @@ public class Enemy : LivingEntity
 
     [Header("Enemy Misc.")]
     public float stoppingPoint = -1;
-    public int value = 10;
+    public int goldValue = 10;
     public int expAmount = 5;
 
     [Header("Death Effect (Optional)")]
@@ -34,19 +35,20 @@ public class Enemy : LivingEntity
 
     internal bool isUnderForces;
 
-    private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
 
     public enum State { Moving, Attacking, UnderForces }
-    private State currentState;
+    internal State currentState;
 
     protected override void Start()
     {
         base.Start();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         speed = startSpeed;
         currentState = State.Moving;
+
+        goldValue = EnemyScaler.ScaleGold(goldValue, ProceduralSpawner.WaveIndex - 1);
+        expAmount = EnemyScaler.ScaleExpValue(expAmount, ProceduralSpawner.WaveIndex - 1);
     }
 
     void Update()
@@ -65,19 +67,10 @@ public class Enemy : LivingEntity
             }
         }
 
-        if (Time.time > nextAttackTime)
-        {
-            if (currentState == State.Attacking)
-            {
-                nextAttackTime = Time.time + timeBetweenAttacks;
-                StartCoroutine(Attack());
-            }
-        }
-
         if (slowDuration > 0)
         {
             slowDebuff.SetActive(true);
-            slowDuration -= Time.deltaTime;           
+            slowDuration -= Time.deltaTime;
         }
         else
         {
@@ -88,6 +81,14 @@ public class Enemy : LivingEntity
         if (!isUnderForces)
         {
             rb.velocity = Vector2.zero;
+        }
+        if (Time.time > nextAttackTime)
+        {
+            if (currentState == State.Attacking && !isUnderForces)
+            {
+                nextAttackTime = Time.time + timeBetweenAttacks;
+                StartCoroutine(Attack());
+            }
         }
     }
 
@@ -154,12 +155,14 @@ public class Enemy : LivingEntity
         {
             GameObject income = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Text incomeText = income.GetComponentInChildren<Text>();
-            incomeText.text = "+" + value + "g";
+            incomeText.text = "+" + goldValue + "g";
 
-            Destroy(income, 2f);
+            float effectTime = 1f;
+
+            Destroy(income, effectTime);
         }
 
-        PlayerStats.Gold += value;
+        PlayerStats.Gold += goldValue;
         PlayerStats.Experience += expAmount;
     }
 }

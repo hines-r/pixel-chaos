@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1960008798988652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.45, y: -4.02, z: 0}
+  m_LocalPosition: {x: -5.5, y: -1.5, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,16 +55,17 @@ MonoBehaviour:
   projectile: {fileID: 1264995214624336, guid: a7ac4171d0633254c97f8494e148324b, type: 2}
   damage: 75
   attackSpeed: 2
+  level: 1
   unitName: Spear Thrower
   baseCost: 150
   description: Spear Throwers throw sharp pointy spears! They are well trained and
     never miss (most of the time)!
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
   multiplier: 1.08
-  upgradeBaseCost: 500
+  upgradeBaseCost: 100
   damageIncrement: 1
-  isTargetRandom: 1
-  isTargetNearest: 0
+  isTargetRandom: 0
+  isTargetNearest: 1
   isTargetDot: 0
 --- !u!212 &212911822520939934
 SpriteRenderer:

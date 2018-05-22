@@ -30,7 +30,7 @@ public class HomingProjectile : Projectile
 
     void Update()
     {
-        if (EnemySpawner.EnemiesAlive <= 0)
+        if (ProceduralSpawner.EnemiesAlive <= 0)
         {
             Destroy(gameObject);
             return;

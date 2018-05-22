@@ -230,14 +230,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2e343eae3f9fa4e85e33b6cd33bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 125
   healthBar: {fileID: 114972637113623340}
-  startSpeed: 1
+  startSpeed: 1.5
   damage: 5
   attackSpeed: 1
   timeBetweenAttacks: 3
-  stoppingPoint: 1
-  value: 25
+  stoppingPoint: 1.5
+  goldValue: 10
   expAmount: 15
   deathEffect: {fileID: 1140325616282710, guid: 5733a12ff30c237439c830778a0c34fd,
     type: 2}

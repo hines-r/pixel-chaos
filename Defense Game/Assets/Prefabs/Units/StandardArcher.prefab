@@ -53,8 +53,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 1222516748984328, guid: b530f09d99c40d545ad04910b88eabf1, type: 2}
-  damage: 25
+  damage: 35
   attackSpeed: 0.5
+  level: 1
   unitName: Standard Archer
   baseCost: 250
   description: Highly skilled with the bow, the Standard Archer is capable of producing
@@ -63,8 +64,8 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
-  isTargetRandom: 1
-  isTargetNearest: 0
+  isTargetRandom: 0
+  isTargetNearest: 1
   isTargetDot: 0
 --- !u!212 &212635637867990940
 SpriteRenderer:

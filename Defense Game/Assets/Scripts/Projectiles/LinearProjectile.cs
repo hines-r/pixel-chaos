@@ -22,8 +22,6 @@ public class LinearProjectile : Projectile
     public GameObject impactEffect;
     private float particleTime = 3f;
 
-    public bool isDotTarget;
-
     private float timeTillDestroyed = 4f;
 
     void Start()

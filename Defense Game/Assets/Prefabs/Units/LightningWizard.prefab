@@ -56,7 +56,7 @@ MonoBehaviour:
   damage: 100
   attackSpeed: 3
   unitName: Lightning Wizard
-  baseCost: 500
+  baseCost: 1000
   description: Lightning Wizards are capable of calling down deadly lightning storms
     from the sky!
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}

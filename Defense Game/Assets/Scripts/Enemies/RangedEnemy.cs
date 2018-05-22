@@ -12,6 +12,8 @@ public class RangedEnemy : Enemy
 
     protected override IEnumerator Attack()
     {
+        currentState = State.Attacking;
+
         GameObject obj = Instantiate(projectile, transform.position, Quaternion.identity);
         Projectile projectileToFire = obj.GetComponent<Projectile>();
 

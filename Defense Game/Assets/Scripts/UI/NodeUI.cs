@@ -45,12 +45,13 @@ public class NodeUI : MonoBehaviour
 
     private Node target;
     private BuildManager buildManager;
-    private List<Node> currentNodes;
+    private UnitManager unitManager;
     private UnitButton[] buttons;
 
     void Start()
     {
         buildManager = BuildManager.instance;
+        unitManager = UnitManager.instance;
         buttons = FindObjectsOfType<UnitButton>();
     }
 
@@ -63,9 +64,25 @@ public class NodeUI : MonoBehaviour
     {
         if (selectedUnit != null)
         {
-            selectedUnit.Upgrade(); // Updates values on unit panel
-            currentlyPlacedUnit.Upgrade(); // Upgrades selected unit
-            UpdateUnitPanel();
+            foreach (GameObject unlockedUnit in unitManager.unlockedUnits)
+            {
+                AttackingUnit storedUnit = unlockedUnit.GetComponent<AttackingUnit>();
+
+                if (selectedUnit.unitName == storedUnit.unitName)
+                {
+                    if (PlayerStats.Gold >= storedUnit.upgradeCost)
+                    {
+                        PlayerStats.Gold -= (int)storedUnit.upgradeCost;
+                        storedUnit.Upgrade();
+                        UpdateUnitPanel();
+                        return;
+                    }
+                    else
+                    {
+                        StartCoroutine(DisplayNotEnoughGoldDialog());
+                    }
+                }
+            }
         }
     }
 
@@ -75,33 +92,43 @@ public class NodeUI : MonoBehaviour
 
         if (selectedUnit != null)
         {
-            unitImg.sprite = selectedUnit.unitSprite;
-            unitLevelTxt.text = "Level: " + selectedUnit.level;
-            unitNameTxt.text = selectedUnit.unitName;
-            damageTxt.text = "Damage: " + selectedUnit.damage;
-            attackSpeedTxt.text = "Speed: " + selectedUnit.attackSpeed + "s";
-            descrptionTxt.text = selectedUnit.description;
-        }
-
-        // Checks to see if the selected unit is unlocked and changes the panel accordingly
-        foreach (AttackingUnit unlockedUnit in buildManager.unlockedUnits)
-        {
-            if (unlockedUnit.unitName == selectedUnit.unitName)
+            foreach (GameObject unlockedUnit in unitManager.unlockedUnits)
             {
-                purchaseBtn.SetActive(false);
-                equipUpgradeBtnGroup.SetActive(true);
-                unitPanelUI.SetActive(true);
-                UpdatePanelButton();
-                return;
+                AttackingUnit storedUnit = unlockedUnit.GetComponent<AttackingUnit>();
+
+                if (storedUnit != null)
+                {
+                    if (selectedUnit.unitName == storedUnit.unitName)
+                    {
+                        UpdateUnitPanelComponents(storedUnit);
+                        purchaseBtn.SetActive(false);
+                        equipUpgradeBtnGroup.SetActive(true);
+                        unitPanelUI.SetActive(true);
+                        UpdatePanelButton();
+                        return;
+                    }
+                }
             }
         }
+
+        UpdateUnitPanelComponents(selectedUnit);
 
         purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
         purchaseBtn.SetActive(true);
         equipUpgradeBtnGroup.SetActive(false);
 
-
         unitPanelUI.SetActive(true);
+    }
+
+    void UpdateUnitPanelComponents(AttackingUnit unit)
+    {
+        unitImg.sprite = unit.unitSprite;
+        unitLevelTxt.text = "Level: " + unit.level;
+        unitNameTxt.text = unit.unitName;
+        damageTxt.text = "Damage: " + unit.damage;
+        attackSpeedTxt.text = "Speed: " + unit.attackSpeed + "s";
+        descrptionTxt.text = unit.description;
+        upgradeBtnTxt.text = "Upgrade\n" + unit.upgradeCost + "g";
     }
 
     void SwapActiveButtons()
@@ -143,17 +170,12 @@ public class NodeUI : MonoBehaviour
         anim.SetBool("Slide", true);
     }
 
-    IEnumerator DisableComponent(GameObject obj, float time)
-    {
-        yield return new WaitForSeconds(time);
-        obj.SetActive(!obj.activeSelf);
-    }
-
     public void RemoveUnit()
     {
         if (target.unit != null)
         {
-            Destroy(target.unit);
+            target.unit.SetActive(false);
+            target.unit = null;
             equipBtnTxt.text = "Equip";
         }
         else
@@ -248,7 +270,6 @@ public class NodeUI : MonoBehaviour
         if (PlayerStats.Gold >= unitToPurchase.baseCost)
         {
             PlayerStats.Gold -= unitToPurchase.baseCost;
-            buildManager.UnlockUnit(unitToPurchase); // Unlocks the unit so the player doesn't have to purchase it again
 
             // Checks each unit button and unlocks it according to the unit purchased
             foreach (UnitButton button in buttons)
@@ -258,6 +279,7 @@ public class NodeUI : MonoBehaviour
                     if (button.unit.unitName == unitToPurchase.unitName)
                     {
                         button.UnlockButton();
+                        break;
                     }
                 }
             }
@@ -270,17 +292,27 @@ public class NodeUI : MonoBehaviour
         }
     }
 
-    // Displays the not enough gold dialog by first disabling it and then setting it active again
-    // so the animation resets
+    // Displays the not enough gold dialog by first disabling it and then
+    // setting it active again so the animation resets
     IEnumerator DisplayNotEnoughGoldDialog()
     {
-        float timeToWait = 3f;
+        float timeToWait = 5f;
 
         notEnoughGoldDialog.SetActive(false);
         notEnoughGoldDialog.SetActive(true);
 
         yield return new WaitForSeconds(timeToWait);
-    }
-    
 
+        // After waiting a bit, check the alpha of the not enough gold dialog
+        // If it is 0 (not visible), set it as unactive
+        CanvasGroup canvasGroup = notEnoughGoldDialog.GetComponent<CanvasGroup>();
+
+        if (canvasGroup != null)
+        {
+            if (canvasGroup.alpha <= 0)
+            {
+                notEnoughGoldDialog.SetActive(false);
+            }
+        }
+    }
 }

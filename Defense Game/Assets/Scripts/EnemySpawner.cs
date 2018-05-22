@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
+    /*
     public static int EnemiesAlive;
     public static bool IsSpawning;
 
@@ -172,4 +173,5 @@ public class EnemySpawner : MonoBehaviour
         // Sets the button on or off depending on its current state
         battleBtn.gameObject.SetActive(!battleBtn.gameObject.activeSelf);
     }
+    */
 }
