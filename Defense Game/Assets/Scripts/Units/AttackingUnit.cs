@@ -120,7 +120,6 @@ public class AttackingUnit : TargetingEntity
         {
             GameObject obj = Instantiate(projectile, transform.position, Quaternion.identity);
             Projectile projectileToFire = obj.GetComponent<Projectile>();
-            projectileToFire.transform.parent = transform; // Makes the projectile a child of the unit
 
             if (projectileToFire != null)
             {
