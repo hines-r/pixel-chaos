@@ -301,6 +301,10 @@ public class NodeUI : MonoBehaviour
                 RemoveUnit();
                 return;
             }
+            else
+            {
+                target.unit.SetActive(false);
+            }
         }
 
         target.PlaceUnit(buildManager.GetUnitToPlace());

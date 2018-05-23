@@ -28,7 +28,6 @@ public class BuildManager : MonoBehaviour
     {
         if (selectedNode == node)
         {
-            nodeUI.RemoveUnit();
             return;
         }
 
