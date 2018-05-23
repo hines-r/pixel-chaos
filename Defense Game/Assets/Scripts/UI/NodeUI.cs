@@ -8,11 +8,10 @@ public class NodeUI : MonoBehaviour
 {
     public GameObject unitSelectionUI;
     public GameObject unitPanelUI;
-    public GameObject aiPanel;
-    public GameObject aiPanelExtended;
-
     public ScrollRect scrollRect;
     public RectTransform contentPanel;
+    public AIPanel aiPanel;
+    public AIPanel aiPanelExtended;
 
     [Header("Available Units")]
     public UnitBlueprint rockThrower;
@@ -103,6 +102,9 @@ public class NodeUI : MonoBehaviour
 
                 if (storedUnit != null)
                 {
+                    // Compares the unit name of the unit blueprint to see if it is already unlocked
+                    // If so, sets the values within the unit panel equal to the unlocked unit instead
+                    // This allows the panel to display the units upgrades and AI properly
                     if (selectedUnit.unitName == storedUnit.unitName)
                     {
                         unitIsStored = true;
@@ -111,6 +113,7 @@ public class NodeUI : MonoBehaviour
                         UpdateAIPanel();
                         UpdateUnitPanelComponents(storedUnit);
 
+                        // Displays the equip and upgrade buttons instead of the purchase button
                         purchaseBtn.SetActive(false);
                         equipUpgradeBtnGroup.SetActive(true);
                         unitPanelUI.SetActive(true);
@@ -126,6 +129,7 @@ public class NodeUI : MonoBehaviour
         UpdateUnitPanelComponents(selectedUnit);
         UpdateAIPanel();
 
+        // Displays the purchase button instead of the equip and upgrade buttons
         purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
         purchaseBtn.SetActive(true);
         equipUpgradeBtnGroup.SetActive(false);
@@ -148,35 +152,35 @@ public class NodeUI : MonoBehaviour
     {
         if (unitIsStored)
         {
-            Projectile p = selectedUnit.projectile.GetComponent<Projectile>();
+            Projectile p = selectedStoredUnit.projectile.GetComponent<Projectile>();
 
             if (p != null)
             {
                 LinearProjectile linearProjectile = p.GetComponent<LinearProjectile>();
 
+                // If the unit selected is using a linear projectile with 
+                // a DoT (damage over time), display the extended ai panel
                 if (linearProjectile != null && linearProjectile.hasDot)
                 {
-                    aiPanel.SetActive(false);
-                    aiPanelExtended.SetActive(true);
+                    aiPanel.panel.SetActive(false);
+                    aiPanelExtended.panel.SetActive(true);
                 }
                 else
                 {
-                    aiPanel.SetActive(true);
-                    aiPanelExtended.SetActive(false);
+                    aiPanel.panel.SetActive(true);
+                    aiPanelExtended.panel.SetActive(false);
                 }
             }
+
+            // Selects the currently active AI when the panel is displayed
+            SelectCurrentAIToggle();
         }
         else
         {
-            aiPanel.SetActive(false);
-            aiPanelExtended.SetActive(false);
+            // Wont display the AI panel if the unit has not been purchased first
+            aiPanel.panel.SetActive(false);
+            aiPanelExtended.panel.SetActive(false);
         }
-    }
-
-    void SwapActiveButtons()
-    {
-        purchaseBtn.SetActive(!purchaseBtn.activeSelf);
-        equipUpgradeBtnGroup.SetActive(!equipUpgradeBtnGroup.activeSelf);
     }
 
     void UpdatePanelButton()
@@ -355,6 +359,65 @@ public class NodeUI : MonoBehaviour
             {
                 notEnoughGoldDialog.SetActive(false);
             }
+        }
+    }
+
+    public void SetAINearest()
+    {
+        selectedStoredUnit.unitAI = AttackingUnit.AIType.Nearest;
+    }
+
+    public void SetAIRandom()
+    {
+        selectedStoredUnit.unitAI = AttackingUnit.AIType.Random;
+    }
+
+    public void SetAIDoT()
+    {
+        selectedStoredUnit.unitAI = AttackingUnit.AIType.Dot;
+    }
+
+    // Used to set the toggle of the currently active unit AI
+    void SelectCurrentAIToggle()
+    {       
+        if (selectedStoredUnit.unitAI == AttackingUnit.AIType.Nearest)
+        {
+            aiPanel.SelectToggle(0);
+            aiPanelExtended.SelectToggle(0);
+        }
+        else if (selectedStoredUnit.unitAI == AttackingUnit.AIType.Random)
+        {
+            aiPanel.SelectToggle(1);
+            aiPanelExtended.SelectToggle(1);
+        }
+        else if (selectedStoredUnit.unitAI == AttackingUnit.AIType.Dot)
+        {
+            aiPanelExtended.SelectToggle(2);
+        }
+    }
+
+    [System.Serializable]
+    public struct AIPanel
+    {
+        public GameObject panel;
+        public ToggleGroup toggleGroup;
+
+        public Toggle[] Toggles
+        {
+            get { return toggleGroup.GetComponentsInChildren<Toggle>(); }
+        }
+
+        public void SelectToggle(int id)
+        {
+            // First sets all other toggles to false to ensure only one toggle is selected
+            // (I had a problem with multiple toggles being active when changing them through
+            // the script despite them being within a toggle group)
+            for (int i = 0; i < Toggles.Length; i++)
+            {
+                Toggles[i].isOn = false;
+            }
+
+            Toggles[id].isOn = true;
         }
     }
 }

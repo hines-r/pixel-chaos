@@ -55,6 +55,7 @@ MonoBehaviour:
   projectile: {fileID: 1919772747253142, guid: 31b379ae66f5fca4dba9533be2b79e80, type: 2}
   damage: 50
   attackSpeed: 0.75
+  level: 1
   unitName: Dart Blower
   baseCost: 1000
   description: The Dart Blower fires a nasty caustic tipped dart that damages enemies
@@ -63,9 +64,7 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
-  isTargetRandom: 0
-  isTargetNearest: 0
-  isTargetDot: 1
+  unitAI: 2
 --- !u!212 &212161621629735034
 SpriteRenderer:
   m_ObjectHideFlags: 1

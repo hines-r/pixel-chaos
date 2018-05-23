@@ -25,10 +25,15 @@ public class AttackingUnit : TargetingEntity
     private float nextAttackTime;
     private float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
-    [Header("Unit AI (Choose One!)")]
-    public bool isTargetRandom;
-    public bool isTargetNearest;
-    public bool isTargetDot; // Used to target enemies without a DoT (damage over time) effect
+    public enum AIType
+    {
+        Nearest,
+        Random,
+        Dot // Used to target nearest enemies without a DoT (damage over time) effect
+    }
+
+    [Header("Artificial Intelligence")]
+    public AIType unitAI;
 
     internal Node currentNode; // The node the unit is currently placed on
     private GameObject target;
@@ -85,21 +90,21 @@ public class AttackingUnit : TargetingEntity
 
     public GameObject ObtainTarget()
     {
-        if (isTargetRandom)
-        {
-            if (TargetRandomEnemy() != null)
-            {
-                return TargetRandomEnemy();
-            }
-        }
-        else if (isTargetNearest)
+        if (unitAI == AIType.Nearest)
         {
             if (TargetNearestEnemy() != null)
             {
                 return TargetNearestEnemy();
             }
         }
-        else if (isTargetDot)
+        else if (unitAI == AIType.Random)
+        {
+            if (TargetRandomEnemy() != null)
+            {
+                return TargetRandomEnemy();
+            }
+        }
+        else if (unitAI == AIType.Dot)
         {
             if (TargetEnemyForDoT() != null)
             {
