@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,8 @@ public class NodeUI : MonoBehaviour
 {
     public GameObject unitSelectionUI;
     public GameObject unitPanelUI;
+    public GameObject aiPanel;
+    public GameObject aiPanelExtended;
 
     public ScrollRect scrollRect;
     public RectTransform contentPanel;
@@ -42,6 +45,8 @@ public class NodeUI : MonoBehaviour
 
     private AttackingUnit selectedUnit;
     private AttackingUnit currentlyPlacedUnit;
+    private AttackingUnit selectedStoredUnit;
+    private bool unitIsStored;
 
     private Node target;
     private BuildManager buildManager;
@@ -100,10 +105,16 @@ public class NodeUI : MonoBehaviour
                 {
                     if (selectedUnit.unitName == storedUnit.unitName)
                     {
+                        unitIsStored = true;
+                        selectedStoredUnit = storedUnit;
+
+                        UpdateAIPanel();
                         UpdateUnitPanelComponents(storedUnit);
+
                         purchaseBtn.SetActive(false);
                         equipUpgradeBtnGroup.SetActive(true);
                         unitPanelUI.SetActive(true);
+
                         UpdatePanelButton();
                         return;
                     }
@@ -111,7 +122,9 @@ public class NodeUI : MonoBehaviour
             }
         }
 
+        unitIsStored = false;
         UpdateUnitPanelComponents(selectedUnit);
+        UpdateAIPanel();
 
         purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
         purchaseBtn.SetActive(true);
@@ -129,6 +142,35 @@ public class NodeUI : MonoBehaviour
         attackSpeedTxt.text = "Speed: " + unit.attackSpeed + "s";
         descrptionTxt.text = unit.description;
         upgradeBtnTxt.text = "Upgrade\n" + unit.upgradeCost + "g";
+    }
+
+    void UpdateAIPanel()
+    {
+        if (unitIsStored)
+        {
+            Projectile p = selectedUnit.projectile.GetComponent<Projectile>();
+
+            if (p != null)
+            {
+                LinearProjectile linearProjectile = p.GetComponent<LinearProjectile>();
+
+                if (linearProjectile != null && linearProjectile.hasDot)
+                {
+                    aiPanel.SetActive(false);
+                    aiPanelExtended.SetActive(true);
+                }
+                else
+                {
+                    aiPanel.SetActive(true);
+                    aiPanelExtended.SetActive(false);
+                }
+            }
+        }
+        else
+        {
+            aiPanel.SetActive(false);
+            aiPanelExtended.SetActive(false);
+        }
     }
 
     void SwapActiveButtons()
