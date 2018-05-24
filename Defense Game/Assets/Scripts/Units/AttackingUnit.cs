@@ -53,6 +53,7 @@ public class AttackingUnit : TargetingEntity
 
         if (ProceduralSpawner.EnemiesAlive <= 0)
         {
+            nextAttackTime = 0;
             return;
         }
 

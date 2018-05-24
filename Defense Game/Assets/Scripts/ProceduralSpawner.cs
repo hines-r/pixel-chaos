@@ -80,7 +80,7 @@ public class ProceduralSpawner : MonoBehaviour
 
         ToggleBattleBtn();
 
-        print(Randomizer.GetEndWaveGold(WaveIndex));
+        Debug.Log("End of wave gold: " + Randomizer.GetEndWaveGold(WaveIndex));
 
         PlayerStats.Gold += Randomizer.GetEndWaveGold(WaveIndex);
         PlayerStats.Gems++; // Gives the player a gem after each wave
