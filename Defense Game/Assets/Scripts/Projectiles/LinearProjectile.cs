@@ -22,6 +22,9 @@ public class LinearProjectile : Projectile
     public GameObject impactEffect;
     private float particleTime = 3f;
 
+    [Header("Death Effect (Optional)")]
+    public GameObject deathEffect;
+
     private float timeTillDestroyed = 4f;
 
     void Start()
@@ -45,6 +48,12 @@ public class LinearProjectile : Projectile
             {
                 GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
                 Destroy(impact, particleTime);
+            }
+
+            if (deathEffect != null)
+            {
+                GameObject death = Instantiate(deathEffect, transform.position, Quaternion.identity);
+                Destroy(death, particleTime);
             }
 
             Destroy(gameObject);
