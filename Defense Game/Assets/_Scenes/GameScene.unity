@@ -1561,7 +1561,7 @@ Prefab:
         type: 2}
       propertyPath: unit
       value: 
-      objectReference: {fileID: 114557047151289764, guid: 0f6c2b1727e117c46ba0a8c1c3a62b50,
+      objectReference: {fileID: 114321954197424558, guid: 0f6c2b1727e117c46ba0a8c1c3a62b50,
         type: 2}
     - target: {fileID: 114931570628101240, guid: f4ff5606bc825704d851c495b875e42f,
         type: 2}
@@ -9477,7 +9477,7 @@ Prefab:
         type: 2}
       propertyPath: unit
       value: 
-      objectReference: {fileID: 114011129736395596, guid: 832c9fcf083d5d54da69a7e51640a8ca,
+      objectReference: {fileID: 114440606444629590, guid: 832c9fcf083d5d54da69a7e51640a8ca,
         type: 2}
     - target: {fileID: 114931570628101240, guid: f4ff5606bc825704d851c495b875e42f,
         type: 2}
@@ -13108,7 +13108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1414789138
@@ -13684,7 +13684,7 @@ Prefab:
         type: 2}
       propertyPath: unit
       value: 
-      objectReference: {fileID: 114130617296381884, guid: ea2674af565beac49836632b2210b3ca,
+      objectReference: {fileID: 114482901662269648, guid: ea2674af565beac49836632b2210b3ca,
         type: 2}
     - target: {fileID: 114931570628101240, guid: f4ff5606bc825704d851c495b875e42f,
         type: 2}
@@ -20096,7 +20096,7 @@ MonoBehaviour:
   startingExperiene: 0
   experienceToNextLevel: 150
   startingHealth: 150
-  startGold: 19999
+  startGold: 99999
   startingGems: 0
 --- !u!114 &1978738897
 MonoBehaviour:

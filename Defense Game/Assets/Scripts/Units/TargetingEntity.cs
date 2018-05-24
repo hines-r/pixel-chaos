@@ -26,13 +26,23 @@ public class TargetingEntity : MonoBehaviour
         return nearestEnemy;
     }
 
-    protected GameObject TargetRandomEnemy()
+    protected GameObject TargetRandomEnemy(AttackingUnit unit)
     {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> enemiesInRange = new List<GameObject>();
 
-        if (possibleTargets.Length > 0)
+        foreach (GameObject enemy in possibleTargets)
         {
-            GameObject randomTarget = possibleTargets[Random.Range(0, possibleTargets.Length - 1)];
+            // Random target must be within attack range of the unit
+            if (enemy.transform.position.x <= unit.maxAttackRange)
+            {
+                enemiesInRange.Add(enemy);
+            }
+        }
+
+        if (enemiesInRange.Count > 0)
+        {
+            GameObject randomTarget = enemiesInRange[Random.Range(0, enemiesInRange.Count - 1)];
             return randomTarget;
         }
 

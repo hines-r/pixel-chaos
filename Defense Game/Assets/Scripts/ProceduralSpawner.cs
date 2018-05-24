@@ -7,6 +7,7 @@ public class ProceduralSpawner : MonoBehaviour
 {
     public static int WaveIndex;
     public static int EnemiesAlive;
+    public static State CurrentState;
 
     [Header("UI Components")]
     public Text enemiesAliveText;
@@ -38,29 +39,27 @@ public class ProceduralSpawner : MonoBehaviour
         Spawning
     }
 
-    private State currentState;
-
     void Start()
     {
-        currentState = State.Waiting;
+        CurrentState = State.Waiting;
         WaveIndex = startWave;
         waveNumberText.text = "Current Wave: " + (WaveIndex + 1);
     }
 
     void Update()
     {
-        if (currentState == State.Waiting)
+        if (CurrentState == State.Waiting)
         {
             return;
         }
 
-        if (currentState == State.Countdown)
+        if (CurrentState == State.Countdown)
         {
             countdownText.text = string.Format("{0:0}", countdown);
             return;
         }
 
-        if (currentState == State.Spawning)
+        if (CurrentState == State.Spawning)
         {
             enemiesAliveText.text = "Enemies Alive: " + EnemiesAlive;
 
@@ -77,7 +76,7 @@ public class ProceduralSpawner : MonoBehaviour
 
     void WaveComplete()
     {
-        currentState = State.Waiting;
+        CurrentState = State.Waiting;
 
         ToggleBattleBtn();
 
@@ -114,7 +113,7 @@ public class ProceduralSpawner : MonoBehaviour
 
     IEnumerator StartCountdown()
     {
-        currentState = State.Countdown;
+        CurrentState = State.Countdown;
 
         while (countdown > 0)
         {
@@ -131,7 +130,7 @@ public class ProceduralSpawner : MonoBehaviour
 
     public IEnumerator SpawnWave()
     {
-        currentState = State.Spawning;
+        CurrentState = State.Spawning;
 
         int enemyCount = Randomizer.GetEnemyCount(WaveIndex);
         EnemiesAlive = enemyCount;

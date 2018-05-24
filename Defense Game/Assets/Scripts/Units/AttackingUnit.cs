@@ -6,9 +6,10 @@ public class AttackingUnit : TargetingEntity
 {
     [Header("Unit Attributes")]
     public GameObject projectile;
+    public int level = 1;
     public float damage;
     public float attackSpeed;
-    public int level = 1;
+    protected float nextAttackTime;
 
     [Header("Unit Info")]
     public string unitName;
@@ -22,8 +23,7 @@ public class AttackingUnit : TargetingEntity
     internal float upgradeCost;
     public float damageIncrement;
 
-    private float nextAttackTime;
-    private float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
+    internal float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
     public enum AIType
     {
@@ -38,13 +38,13 @@ public class AttackingUnit : TargetingEntity
     internal Node currentNode; // The node the unit is currently placed on
     private GameObject target;
 
-    void Start()
+    protected virtual void Start()
     {
         upgradeCost = upgradeBaseCost;
-        nextAttackTime = attackSpeed;
+        nextAttackTime = 0;
     }
 
-    void Update()
+    protected virtual void Update()
     {
         if (GameMaster.GameIsOver)
         {
@@ -56,11 +56,13 @@ public class AttackingUnit : TargetingEntity
             return;
         }
 
-        if (Time.time >= nextAttackTime)
+        if (nextAttackTime > attackSpeed)
         {
-            nextAttackTime = Time.time + attackSpeed;
+            nextAttackTime = 0;
             Attack();
         }
+
+        nextAttackTime += Time.deltaTime;
     }
 
     bool CheckForTargets()
@@ -99,9 +101,9 @@ public class AttackingUnit : TargetingEntity
         }
         else if (unitAI == AIType.Random)
         {
-            if (TargetRandomEnemy() != null)
+            if (TargetRandomEnemy(this) != null)
             {
-                return TargetRandomEnemy();
+                return TargetRandomEnemy(this);
             }
         }
         else if (unitAI == AIType.Dot)
