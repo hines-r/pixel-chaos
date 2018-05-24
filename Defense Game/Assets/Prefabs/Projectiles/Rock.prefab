@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwHeight: 2
-  isNearest: 0
-  isRandom: 1
+  impactEffect: {fileID: 1268375018677118, guid: b5e2a5c31535bb344b98be1845be1f2c,
+    type: 2}
 --- !u!212 &212735907244055780
 SpriteRenderer:
   m_ObjectHideFlags: 1

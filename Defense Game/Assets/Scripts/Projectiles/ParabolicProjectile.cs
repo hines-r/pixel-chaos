@@ -6,6 +6,10 @@ public class ParabolicProjectile : Projectile
 {
     public float throwHeight = 5;
 
+    [Header("Death Effect (Optional)")]
+    public GameObject impactEffect;
+    private float particleTime = 1f;
+
     private Rigidbody2D rb;
 
     private float h;
@@ -95,6 +99,12 @@ public class ParabolicProjectile : Projectile
 
         if (enemy != null)
         {
+            if (impactEffect != null)
+            {
+                GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
+                Destroy(impact, particleTime);
+            }
+
             Destroy(gameObject);
             enemy.TakeDamage(Damage);
             return;
