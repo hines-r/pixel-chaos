@@ -39,12 +39,14 @@ public class NodeUI : MonoBehaviour
     public GameObject equipUpgradeBtnGroup;
     public GameObject purchaseBtn;
     public Text purchaseBtnTxt;
+    public GameObject awakenBtn;
 
     public GameObject notEnoughGoldDialog;
 
-    private AttackingUnit selectedUnit;
+    internal AttackingUnit selectedUnit;
     private AttackingUnit currentlyPlacedUnit;
-    private AttackingUnit selectedStoredUnit;
+    
+    internal AttackingUnit selectedStoredUnit;
     private bool unitIsStored;
 
     private Node target;
@@ -106,7 +108,7 @@ public class NodeUI : MonoBehaviour
         }
     }
 
-    void UpdateUnitPanel()
+    public void UpdateUnitPanel()
     {
         selectedUnit = buildManager.GetUnitToPlace().prefab.GetComponent<AttackingUnit>();
 
@@ -132,8 +134,10 @@ public class NodeUI : MonoBehaviour
                         // Displays the equip and upgrade buttons instead of the purchase button
                         purchaseBtn.SetActive(false);
                         equipUpgradeBtnGroup.SetActive(true);
-                        unitPanelUI.SetActive(true);
 
+                        awakenBtn.SetActive(true);
+
+                        unitPanelUI.SetActive(true);
                         UpdatePanelButton();
                         return;
                     }
@@ -149,6 +153,8 @@ public class NodeUI : MonoBehaviour
         purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
         purchaseBtn.SetActive(true);
         equipUpgradeBtnGroup.SetActive(false);
+
+        awakenBtn.SetActive(false);
 
         unitPanelUI.SetActive(true);
     }

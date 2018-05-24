@@ -23,6 +23,12 @@ public class AttackingUnit : TargetingEntity
     internal float upgradeCost;
     public float damageIncrement;
 
+    [Header("Awoken Units")]
+    public float levelToAwaken;
+    public UnitBlueprint firstChoiceBP;
+    public UnitBlueprint secondChoiceBP;
+    internal bool isAwoken;
+
     internal float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
     public enum AIType

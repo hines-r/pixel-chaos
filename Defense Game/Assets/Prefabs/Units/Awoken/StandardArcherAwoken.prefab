@@ -56,7 +56,7 @@ MonoBehaviour:
   level: 1
   damage: 35
   attackSpeed: 0.15
-  unitName: Standard Archer
+  unitName: Swift Archer
   baseCost: 250
   description: Highly skilled with the bow, the Standard Archer is capable of producing
     devastation on the battlefield with a flurry of arrows.
@@ -64,6 +64,9 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
+  levelToAwaken: 0
+  firstChoice: {fileID: 0}
+  secondChoice: {fileID: 0}
   unitAI: 0
 --- !u!212 &212946941563349646
 SpriteRenderer:
