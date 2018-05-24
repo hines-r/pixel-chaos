@@ -78,6 +78,7 @@ public class NodeUI : MonoBehaviour
                     {
                         PlayerStats.Gold -= (int)storedUnit.upgradeCost;
                         storedUnit.Upgrade();
+                        UpdateUnitButtonLevel();
                         UpdateUnitPanel();
                         return;
                     }
@@ -85,6 +86,21 @@ public class NodeUI : MonoBehaviour
                     {
                         StartCoroutine(DisplayNotEnoughGoldDialog());
                     }
+                }
+            }
+        }
+    }
+
+    void UpdateUnitButtonLevel()
+    {
+        foreach (UnitButton button in buttons)
+        {
+            if (button.isUnlocked)
+            {
+                if (button.unit.unitName == selectedStoredUnit.unitName)
+                {
+                    button.UpdateLevelText(selectedStoredUnit);
+                    break;
                 }
             }
         }

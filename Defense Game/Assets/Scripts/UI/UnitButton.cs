@@ -28,13 +28,13 @@ public class UnitButton : MonoBehaviour
             unitImg.sprite = unit.unitSprite;
             unitName.text = unit.unitName;
             priceTxt.text = unit.baseCost + "g";
-            UpdateLevelText();
+            UpdateLevelText(unit);
         }
     }
 
-    public void UpdateLevelText()
+    public void UpdateLevelText(AttackingUnit _unit)
     {
-        buttonLevelText.text = unit.level.ToString();
+        buttonLevelText.text = _unit.level.ToString();
     }
 
     public void UnlockButton()
