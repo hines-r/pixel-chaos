@@ -80,11 +80,13 @@ public class Enemy : LivingEntity
 
         if (!isUnderForces)
         {
-            rb.velocity = Vector2.zero;
+            rb.velocity = Vector2.zero; // Sets velocity to 0 after exiting a black hole
         }
-        if (Time.time > nextAttackTime)
+
+        if (Time.time > nextAttackTime && currentState == State.Attacking)
         {
-            if (currentState == State.Attacking && !isUnderForces)
+            // Can't attack if under the effects of a black hole
+            if (!isUnderForces)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
                 StartCoroutine(Attack());
@@ -97,8 +99,9 @@ public class Enemy : LivingEntity
         velocity = ((transform.position - previousPosition).magnitude) / Time.deltaTime;
         previousPosition = transform.position;
 
-        if (transform.position.x >= stoppingPoint && currentState == State.Moving)
+        if (transform.position.x >= stoppingPoint)
         {
+            currentState = State.Moving;
             transform.position -= transform.right * speed * Time.deltaTime;
         }
         else
