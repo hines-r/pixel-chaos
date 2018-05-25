@@ -11811,7 +11811,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unlockedUnits: []
-  nodes: []
 --- !u!4 &1193631909
 Transform:
   m_ObjectHideFlags: 0
@@ -21953,35 +21952,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
-        type: 2}
-      propertyPath: m_Color.a
-      value: 0.39215687
-      objectReference: {fileID: 0}
-    - target: {fileID: 1859981552853728, guid: 8229916203bb32a43841f5a9ce8e1df7, type: 2}
-      propertyPath: m_Name
-      value: Node (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
-        type: 2}
-      propertyPath: unitUI
-      value: 
-      objectReference: {fileID: 1159458241}
-    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
         type: 2}
       propertyPath: nodeUI
       value: 
       objectReference: {fileID: 515690561}
+    - target: {fileID: 1859981552853728, guid: 8229916203bb32a43841f5a9ce8e1df7, type: 2}
+      propertyPath: m_Name
+      value: Node (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8229916203bb32a43841f5a9ce8e1df7, type: 2}
   m_IsPrefabParent: 0

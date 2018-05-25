@@ -20,12 +20,10 @@ public class UnitManager : MonoBehaviour
     #endregion
 
     public List<GameObject> unlockedUnits;
-    public Node[] nodes;
 
     void Start()
     {
         unlockedUnits = new List<GameObject>();
-        nodes = FindObjectsOfType<Node>();
     }
 
     public void UnlockUnit(GameObject unitToUnlock)

@@ -7,12 +7,18 @@ public class TargetingEntity : MonoBehaviour
     protected GameObject TargetNearestEnemy()
     {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
+        List<GameObject> listOfPossibleTargets = new List<GameObject>(possibleTargets);
 
+        return FindNearestTargetInList(listOfPossibleTargets);
+    }
+
+    GameObject FindNearestTargetInList(List<GameObject> listToSearch)
+    {
         GameObject nearestEnemy = null;
         float closestDistanceSqr = Mathf.Infinity;
         Vector3 currentPosition = transform.position;
 
-        foreach (GameObject enemy in possibleTargets)
+        foreach (GameObject enemy in listToSearch)
         {
             Vector3 directionToTarget = enemy.transform.position - currentPosition;
             float dSqrtToTarget = directionToTarget.sqrMagnitude;
@@ -75,25 +81,5 @@ public class TargetingEntity : MonoBehaviour
 
         // Defaults to nearest target without searching for dot if none are found
         return TargetNearestEnemy();
-    }
-
-    GameObject FindNearestTargetInList(List<GameObject> listToSearch)
-    {
-        GameObject nearestEnemy = null;
-        float closestDistanceSqr = Mathf.Infinity;
-        Vector3 currentPosition = transform.position;
-
-        foreach (GameObject enemy in listToSearch)
-        {
-            Vector3 directionToTarget = enemy.transform.position - currentPosition;
-            float dSqrtToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrtToTarget < closestDistanceSqr)
-            {
-                closestDistanceSqr = dSqrtToTarget;
-                nearestEnemy = enemy;
-            }
-        }
-
-        return nearestEnemy;
     }
 }

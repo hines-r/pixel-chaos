@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour, IPointerClickHandler
 {
-    public Color hoverColor;
+    public Color selectedColor;
     public Color startColor;
 
     public GameObject nodeUI;
