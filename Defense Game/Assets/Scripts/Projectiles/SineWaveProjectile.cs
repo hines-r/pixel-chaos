@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SineWaveProjectile : Projectile
 {
+    [Header("Properties")]
     public float speed = 10f;
     public float frequency = 2f;
     public float magnitude = 0.5f;
@@ -11,14 +12,18 @@ public class SineWaveProjectile : Projectile
     private Vector3 axis;
     private Vector3 pos;
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         pos = transform.position;
         axis = transform.up;
     }
 
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+
         pos += transform.right * Time.deltaTime * speed;
         transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
     }

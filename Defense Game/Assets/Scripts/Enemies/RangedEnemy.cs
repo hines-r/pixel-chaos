@@ -26,5 +26,4 @@ public class RangedEnemy : Enemy
 
         yield return null;
     }
-
 }

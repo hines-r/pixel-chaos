@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class ParabolicProjectile : Projectile
 {
+    [Header("Physics")]
     public float throwHeight = 5;
-
-    [Header("Death Effect (Optional)")]
-    public GameObject impactEffect;
-    private float particleTime = 1f;
 
     private Rigidbody2D rb;
 
-    private float h;
-    private float gravity = -9.81f;
-
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         rb = GetComponent<Rigidbody2D>();
         RotateToTarget(CalculateLaunchVelocity(Target));
         Launch();
@@ -30,13 +26,9 @@ public class ParabolicProjectile : Projectile
         }
     }
 
-    void Update()
+    protected override void Update()
     {
-        if (ProceduralSpawner.EnemiesAlive <= 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Update();
 
         RotateToTarget(rb.velocity);
     }
@@ -44,9 +36,10 @@ public class ParabolicProjectile : Projectile
     Vector2 CalculateLaunchVelocity(GameObject entityToHit)
     {
         Enemy enemy = entityToHit.GetComponent<Enemy>();
-
         Vector3 target = entityToHit.GetComponent<Transform>().position;
-        h = target.y - transform.position.y + throwHeight;
+
+        float h = target.y - transform.position.y + throwHeight; ;
+        float gravity = Physics2D.gravity.y;
 
         // Won't add any additional throw height if the unit is throwing from a point above the target
         // They will instead simply throw the projectile downwards
@@ -93,22 +86,9 @@ public class ParabolicProjectile : Projectile
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null)
-        {
-            if (impactEffect != null)
-            {
-                GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
-                Destroy(impact, particleTime);
-            }
-
-            Destroy(gameObject);
-            enemy.TakeDamage(Damage);
-            return;
-        }
+        base.OnTriggerEnter2D(collision);
 
         Castle castle = collision.GetComponent<Castle>();
 
@@ -118,10 +98,4 @@ public class ParabolicProjectile : Projectile
             castle.TakeDamage(Damage);
         }
     }
-
-    void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-    }
-
 }

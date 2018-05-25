@@ -161,15 +161,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f0f567311105f44821e557146c4491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 12
   penetrationCount: 3
   slowAmount: 0.5
   slowDuration: 1.5
   hasDot: 0
   damageDuration: 0
-  impactEffect: {fileID: 0}
-  deathEffect: {fileID: 1518622322293260, guid: 13d4d388c09c14645b31add2de176c84,
+  isExplosive: 0
+  splashRadius: 0
+  impactEffect: {fileID: 1518622322293260, guid: 13d4d388c09c14645b31add2de176c84,
     type: 2}
+  speed: 12
 --- !u!198 &198516753208900838
 ParticleSystem:
   m_ObjectHideFlags: 1

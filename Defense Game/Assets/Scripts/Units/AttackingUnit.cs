@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackingUnit : TargetingEntity
+public class AttackingUnit : TargetingEntity, IUpgradeable
 {
     [Header("Unit Attributes")]
-    public GameObject projectile;
+    public GameObject attackPrefab;
     public int level = 1;
     public float damage;
     public float attackSpeed;
@@ -72,7 +72,7 @@ public class AttackingUnit : TargetingEntity
         nextAttackTime += Time.deltaTime;
     }
 
-    bool CheckForTargets()
+    bool IsTargetAvailable()
     {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -130,16 +130,16 @@ public class AttackingUnit : TargetingEntity
 
     void Attack()
     {
-        if (CheckForTargets())
+        if (IsTargetAvailable())
         {
-            GameObject obj = Instantiate(projectile, transform.position, Quaternion.identity);
-            Projectile projectileToFire = obj.GetComponent<Projectile>();
+            GameObject obj = Instantiate(attackPrefab, transform.position, Quaternion.identity);
+            Attack unitAttack = obj.GetComponent<Attack>();
 
-            if (projectileToFire != null)
+            if (unitAttack != null)
             {
-                projectileToFire.originEntity = gameObject;
-                projectileToFire.Damage = damage; // Sets the damage of the projectile being fired
-                projectileToFire.Target = target; // Sets the target for the projectile
+                unitAttack.originEntity = gameObject; // Indicates the exact unit the projectile came from
+                unitAttack.Damage = damage; // Sets the damage of the projectile being fired
+                unitAttack.Target = target; // Sets the target for the projectile
             }
         }
     }

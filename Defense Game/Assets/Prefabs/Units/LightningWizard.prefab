@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a3ac092f1a1ea42af77fde49667089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1100319195004842, guid: c77991805b15b814788c8177e0205db9, type: 2}
+  attackPrefab: {fileID: 1836947550558094, guid: ae6d9d8993fb90a4fb32a2d34efb7ace,
+    type: 2}
   level: 1
   damage: 100
   attackSpeed: 3
@@ -154,6 +155,11 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 5
+  levelToAwaken: 0
+  firstChoiceBP:
+    prefab: {fileID: 0}
+  secondChoiceBP:
+    prefab: {fileID: 0}
   unitAI: 0
   castBar: {fileID: 1354156856866322}
   castProgress: {fileID: 114845080704406306}

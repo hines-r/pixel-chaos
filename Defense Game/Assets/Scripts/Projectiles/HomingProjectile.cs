@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class HomingProjectile : Projectile
 {
+    [Header("Properties")]
     public float speed = 5f;
     public float rotationSpeed = 200f;
-    public float splashRadius = 1f;
-
-    public GameObject explosionEffect;
-    private float particleTime = 4f;
 
     private Rigidbody2D rb;
 
-    void Start()
+    protected override void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -28,13 +26,9 @@ public class HomingProjectile : Projectile
         }
     }
 
-    void Update()
+    protected override void Update()
     {
-        if (ProceduralSpawner.EnemiesAlive <= 0)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        base.Update();
 
         if (Target == null)
         {
@@ -71,35 +65,8 @@ public class HomingProjectile : Projectile
         }
     }
 
-    void Explode()
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject explosion = Instantiate(explosionEffect, transform.position, transform.rotation);
-        Destroy(explosion, particleTime);
-
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), splashRadius);
-
-        foreach (Collider2D nearbyObject in colliders)
-        {
-            Enemy enemy = nearbyObject.GetComponent<Enemy>();
-
-            if (enemy != null)
-            {
-                enemy.TakeDamage(Damage);
-            }
-        }
-
-        Destroy(gameObject);
+        base.OnTriggerEnter2D(collision);
     }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Explode();
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, splashRadius);
-    }
-
 }

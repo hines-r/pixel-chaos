@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PointEffector2D), typeof(CircleCollider2D), typeof(Animator))]
-public class BlackHole : Projectile
+public class BlackHole : Attack
 {
+    [Header("Properties")]
     public float duration;
     public float damageTickTime; // How often to damage enemies within the radius
-
-    // Always ensures the black hole will slightly pull the target enemy to the left a bit
-    // In some cases, the targeted enemy would appear to be standing still when a black hole
-    // was summoned over the top of it
-    private float xOffset = .5f;
 
     private bool isBeingDestroyed;
 
     private PointEffector2D pe2d;
     private CircleCollider2D c2d;
     private Animator anim;
+
+    // Always ensures the black hole will slightly pull the target enemy to the left a bit
+    // In some cases, the targeted enemy would appear to be standing still when a black hole
+    // was summoned over the top of it
+    private readonly float xOffset = .5f;
 
     void Start()
     {

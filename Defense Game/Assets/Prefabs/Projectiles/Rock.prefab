@@ -226,9 +226,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0095f31a600f0274f8ff38d4b3fa168f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwHeight: 2
+  penetrationCount: 1
+  slowAmount: 0
+  slowDuration: 0
+  hasDot: 0
+  damageDuration: 0
+  isExplosive: 0
+  splashRadius: 0
   impactEffect: {fileID: 1268375018677118, guid: b5e2a5c31535bb344b98be1845be1f2c,
     type: 2}
+  throwHeight: 2
 --- !u!212 &212735907244055780
 SpriteRenderer:
   m_ObjectHideFlags: 1

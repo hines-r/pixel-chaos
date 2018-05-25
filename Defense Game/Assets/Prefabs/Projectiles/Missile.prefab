@@ -99,11 +99,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6464bdfaeb508b84c9a631020ada916b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  penetrationCount: 1
+  slowAmount: 0
+  slowDuration: 0
+  hasDot: 0
+  damageDuration: 0
+  isExplosive: 1
+  splashRadius: 2
+  impactEffect: {fileID: 1254220430812044, guid: 2ab2dcce13ad25646bf56dfa3a74d369,
+    type: 2}
   speed: 10
   rotationSpeed: 300
-  splashRadius: 2
-  explosionEffect: {fileID: 1254220430812044, guid: 2ab2dcce13ad25646bf56dfa3a74d369,
-    type: 2}
 --- !u!212 &212372883842694234
 SpriteRenderer:
   m_ObjectHideFlags: 1

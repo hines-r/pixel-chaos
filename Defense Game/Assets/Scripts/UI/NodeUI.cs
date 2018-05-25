@@ -174,7 +174,7 @@ public class NodeUI : MonoBehaviour
     {
         if (unitIsStored)
         {
-            Projectile p = selectedStoredUnit.projectile.GetComponent<Projectile>();
+            Projectile p = selectedStoredUnit.attackPrefab.GetComponent<Projectile>();
 
             if (p != null)
             {

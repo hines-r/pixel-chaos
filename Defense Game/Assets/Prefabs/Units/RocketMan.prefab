@@ -52,10 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46189fbe7f75df9448203588e8173737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 1820131900824002, guid: 3fe7292203749574e96e6dac482519de, type: 2}
+  attackPrefab: {fileID: 1820131900824002, guid: 3fe7292203749574e96e6dac482519de,
+    type: 2}
+  level: 1
   damage: 55
   attackSpeed: 2
-  level: 1
   unitName: Rocket Man
   baseCost: 500
   description: Rocket Man wields a massive rocket launcher that is capable of mowing
@@ -65,9 +66,12 @@ MonoBehaviour:
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
-  isTargetRandom: 0
-  isTargetNearest: 1
-  isTargetDot: 0
+  levelToAwaken: 0
+  firstChoiceBP:
+    prefab: {fileID: 0}
+  secondChoiceBP:
+    prefab: {fileID: 0}
+  unitAI: 0
 --- !u!212 &212020847260105368
 SpriteRenderer:
   m_ObjectHideFlags: 1

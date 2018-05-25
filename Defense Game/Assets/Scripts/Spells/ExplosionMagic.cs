@@ -2,21 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplosionMagic : Projectile
+public class ExplosionMagic : Attack
 {
     public float splashRadius = 5f;
 
-    private float timeAlive = 5f;
+    private readonly float timeAlive = 5f;
 
     void Start()
     {
         transform.position = Target.transform.position;
         Explode();
-    }
-
-    void Update()
-    {
-
     }
 
     void Explode()
