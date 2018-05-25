@@ -174,11 +174,11 @@ public class NodeUI : MonoBehaviour
     {
         if (unitIsStored)
         {
-            Projectile p = selectedStoredUnit.attackPrefab.GetComponent<Projectile>();
+            Attack unitAttack = selectedStoredUnit.attackPrefab.GetComponent<Attack>();
 
-            if (p != null)
+            if (unitAttack != null)
             {
-                LinearProjectile linearProjectile = p.GetComponent<LinearProjectile>();
+                LinearProjectile linearProjectile = unitAttack.GetComponent<LinearProjectile>();
 
                 // If the unit selected is using a linear projectile with 
                 // a DoT (damage over time), display the extended ai panel
