@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4333702754386236}
   - component: {fileID: 212868474667681648}
-  - component: {fileID: 50734745042335166}
   - component: {fileID: 61587302746487226}
   - component: {fileID: 114965339619425824}
   m_Layer: 10
@@ -43,26 +42,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50734745042335166
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919772747253142}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &61587302746487226
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -99,14 +78,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1f0f567311105f44821e557146c4491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  isHostile: 0
   penetrationCount: 1
   slowAmount: 0
   slowDuration: 0
   hasDot: 1
   damageDuration: 3
+  isExplosive: 0
+  splashRadius: 0
   impactEffect: {fileID: 1097002388820954, guid: 6a7eb3c73f437d64083b282c4d3cb910,
     type: 2}
+  speed: 20
 --- !u!212 &212868474667681648
 SpriteRenderer:
   m_ObjectHideFlags: 1

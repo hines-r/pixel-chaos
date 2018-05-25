@@ -26,4 +26,8 @@ public class LinearProjectile : Projectile
         base.OnTriggerEnter2D(collision);
     }
 
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
