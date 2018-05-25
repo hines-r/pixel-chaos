@@ -35,9 +35,15 @@ public class Projectile : Attack
     {
         if (ProceduralSpawner.EnemiesAlive <= 0)
         {
-            Destroy(gameObject);
+            StartCoroutine(DestroyProjectileAtRandomTime());
             return;
         }
+    }
+
+    IEnumerator DestroyProjectileAtRandomTime()
+    {
+        yield return new WaitForSeconds(Random.Range(0f, 1f));
+        Destroy(gameObject);
     }
 
     void Explode()
@@ -90,13 +96,18 @@ public class Projectile : Attack
             {
                 if (impactEffect != null)
                 {
-                    GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
-                    Destroy(impact, particleTime);
+                    Impact();
                 }
 
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void Impact()
+    {
+        GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
+        Destroy(impact, particleTime);
     }
 
     void OnDrawGizmosSelected()

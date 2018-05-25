@@ -10,6 +10,9 @@ public class ParabolicProjectile : Projectile
 
     private Rigidbody2D rb;
 
+    private Vector3 impactLocation;
+    private bool isOnGround;
+
     protected override void Start()
     {
         base.Start();
@@ -30,7 +33,55 @@ public class ParabolicProjectile : Projectile
     {
         base.Update();
 
+        if (isOnGround)
+        {
+            return;
+        }
+
+        // Simulates the projectile hitting the ground if it never hits a target
+        // Only works on friendly projectiles
+        if (!isHostile)
+        {
+            if (transform.position.x > impactLocation.x && transform.position.y < impactLocation.y)
+            {
+                HitGround();
+                return;
+            }
+        }
+
         RotateToTarget(rb.velocity);
+    }
+
+    void HitGround()
+    {
+        // If the projectile has an impact effect (ex. rock), then just 
+        // instantiate the effect and destroy the object
+        if (impactEffect != null)
+        {
+            Impact();
+            Destroy(gameObject);
+            return;
+        }
+
+        // If there is no impact effect, simulates the projectile getting stuck in the ground
+        isOnGround = true;
+        rb.gravityScale = 0;
+        rb.velocity = Vector3.zero;
+
+        Collider2D collider = GetComponent<Collider2D>();
+
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer != null)
+        {
+            // Sets the sorting order so enemies appear to walk over the projectile
+            spriteRenderer.sortingOrder = -1;
+        }
     }
 
     Vector2 CalculateLaunchVelocity(GameObject entityToHit)
@@ -57,7 +108,6 @@ public class ParabolicProjectile : Projectile
 
         float displacementX = target.x - transform.position.x;
         float displacementY = target.y - transform.position.y;
-
         float time = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
 
         // Calculates future position if the entity to hit is a moving enemy
@@ -71,7 +121,14 @@ public class ParabolicProjectile : Projectile
             if (futurePositionX >= entityToHit.GetComponent<Enemy>().stoppingPoint)
             {
                 displacementX -= distanceTraveledInTime; // Compensates for location of the target moving at a constant speed
+
+                // The calculated impact location of the projectile adjusted for future position if applicable
+                impactLocation = new Vector3(futurePositionX, Target.transform.position.y, Target.transform.position.z);
             }
+        }
+        else
+        {
+            impactLocation = Target.transform.position; // The calculated impact location unadjusted for future position
         }
 
         Vector2 velocityX = Vector2.right * displacementX / time;
