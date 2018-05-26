@@ -9,6 +9,12 @@ public class Unit : TargetingEntity, IUpgradeable
     public int level = 1;
     public float damage;
     public float attackSpeed;
+
+    [Header("Burst Type")]
+    public bool hasBurstAttack;
+    public int burstCount;
+    public float timeBetweenBursts;
+
     protected float nextAttackTime;
 
     [Header("Unit Info")]
@@ -60,7 +66,15 @@ public class Unit : TargetingEntity, IUpgradeable
         if (nextAttackTime > attackSpeed)
         {
             ResetAttackTime();
-            Attack();
+
+            if (hasBurstAttack)
+            {
+                StartCoroutine(BurstAttack());
+            }
+            else
+            {
+                Attack();
+            }
         }
 
         nextAttackTime += Time.deltaTime;
@@ -140,6 +154,15 @@ public class Unit : TargetingEntity, IUpgradeable
                 unitAttack.Damage = damage; // Sets the damage of the attack
                 unitAttack.Target = target; // Sets the target for the attack
             }
+        }
+    }
+
+    IEnumerator BurstAttack()
+    {
+        for(int i = 0; i < burstCount; i++)
+        {
+            Attack();
+            yield return new WaitForSeconds(timeBetweenBursts);
         }
     }
 

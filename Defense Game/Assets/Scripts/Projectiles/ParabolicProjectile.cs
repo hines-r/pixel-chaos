@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class ParabolicProjectile : Projectile
 {
-    [Header("Physics")]
+    [Header("Properties")]
     public float throwHeight = 5;
+    public bool isCrushing; // The projectile will hit the ground further below its target
+    private float yOffset = 1f;
 
     private Rigidbody2D rb;
 
@@ -42,10 +44,21 @@ public class ParabolicProjectile : Projectile
         // Only works on friendly projectiles
         if (!isHostile)
         {
-            if (transform.position.x > impactLocation.x && transform.position.y < impactLocation.y)
+            if (isCrushing)
             {
-                HitGround();
-                return;
+                if (transform.position.x > impactLocation.x && transform.position.y < impactLocation.y - yOffset)
+                {
+                    HitGround();
+                    return;
+                }
+            }
+            else
+            {
+                if (transform.position.x > impactLocation.x && transform.position.y < impactLocation.y)
+                {
+                    HitGround();
+                    return;
+                }
             }
         }
 
@@ -108,7 +121,7 @@ public class ParabolicProjectile : Projectile
 
         float displacementX = target.x - transform.position.x;
         float displacementY = target.y - transform.position.y;
-        float time = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
+        float timeToTarget = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
 
         impactLocation = Target.transform.position; // The calculated impact location unadjusted for future position
 
@@ -117,7 +130,7 @@ public class ParabolicProjectile : Projectile
         if (enemy != null && !enemy.isUnderForces)
         {
             float targetVelocity = entityToHit.GetComponent<Enemy>().GetVelocity();
-            float distanceTraveledInTime = targetVelocity * time;
+            float distanceTraveledInTime = targetVelocity * timeToTarget;
             float futurePositionX = target.x - distanceTraveledInTime;
 
             if (futurePositionX >= entityToHit.GetComponent<Enemy>().stoppingPoint)
@@ -129,7 +142,7 @@ public class ParabolicProjectile : Projectile
             }
         }
 
-        Vector2 velocityX = Vector2.right * displacementX / time;
+        Vector2 velocityX = Vector2.right * displacementX / timeToTarget;
         Vector2 velocityY = Vector2.up * Mathf.Sqrt(-2 * gravity * h);
 
         return velocityX + velocityY * -Mathf.Sign(gravity);

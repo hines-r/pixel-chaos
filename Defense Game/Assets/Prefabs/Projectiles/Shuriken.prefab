@@ -73,11 +73,14 @@ MonoBehaviour:
   slowAmount: 0
   slowDuration: 0
   hasDot: 0
+  isStinging: 0
   damageDuration: 0
   isExplosive: 0
   splashRadius: 0
   impactEffect: {fileID: 0}
-  speed: 20
+  isChaining: 0
+  chainingRadius: 0
+  speed: 15
 --- !u!212 &212023857550200380
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -3067,9 +3067,9 @@ MonoBehaviour:
   descrptionTxt: {fileID: 1910477131}
   upgradeBtnTxt: {fileID: 1819481362}
   equipBtnTxt: {fileID: 1720732178}
+  purchaseBtnTxt: {fileID: 647232618}
   equipUpgradeBtnGroup: {fileID: 465341946}
   purchaseBtn: {fileID: 1938990671}
-  purchaseBtnTxt: {fileID: 647232618}
   awakenBtn: {fileID: 456307925}
   notEnoughGoldDialog: {fileID: 1494207024}
 --- !u!4 &515690563
@@ -13900,7 +13900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0.000015258789}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1414789138

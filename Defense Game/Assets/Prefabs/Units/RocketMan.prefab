@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1820131900824002, guid: 3fe7292203749574e96e6dac482519de,
+  attackPrefab: {fileID: 1985585329061622, guid: 80c9670453ec13c4280588f759869165,
     type: 2}
   level: 1
   damage: 55
@@ -66,10 +66,8 @@ MonoBehaviour:
   upgradeBaseCost: 100
   damageIncrement: 1
   unitAI: 0
-  firstChoiceBP:
-    prefab: {fileID: 0}
-  secondChoiceBP:
-    prefab: {fileID: 0}
+  firstChoice: {fileID: 0}
+  secondChoice: {fileID: 0}
   levelToAwaken: 25
 --- !u!212 &212020847260105368
 SpriteRenderer:

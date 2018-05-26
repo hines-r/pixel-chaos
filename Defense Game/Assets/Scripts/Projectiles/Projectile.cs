@@ -14,6 +14,7 @@ public class Projectile : Attack
 
     [Header("DOT")]
     public bool hasDot;
+    public bool isStinging; // Instantly applies half the damage if projectile has a DoT
     public float damageDuration;
 
     [Header("Explosive")]
@@ -73,6 +74,11 @@ public class Projectile : Attack
         {
             if (hasDot)
             {
+                if (isStinging)
+                {
+                    enemyHit.TakeDamage(Damage / 2);
+                }
+
                 enemyHit.ApplyDoT(Damage, damageDuration);
             }
             else
@@ -110,7 +116,7 @@ public class Projectile : Attack
         Destroy(impact, particleTime);
     }
 
-    void OnDrawGizmosSelected()
+    protected virtual void OnDrawGizmosSelected()
     {
         if (isExplosive)
         {

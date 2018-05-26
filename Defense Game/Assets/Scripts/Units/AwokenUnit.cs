@@ -25,7 +25,20 @@ public class AwokenUnit : Unit
     {
         Unit unitToClone = unitManager.FindUnlockedUnit(originalUnit);
 
-        level = originalUnit.level;
-        upgradeCost = originalUnit.upgradeCost;
+        if (unitToClone != null)
+        {
+            upgradeCost = unitToClone.upgradeCost;
+        }
+
+        if (damage > originalUnit.damage)
+        {
+            float difference = damage - originalUnit.damage;
+            damage += difference;
+        }
+
+        for (int i = 0; i < level; i++)
+        {
+            damage += originalUnit.damageIncrement;
+        }
     }
 }
