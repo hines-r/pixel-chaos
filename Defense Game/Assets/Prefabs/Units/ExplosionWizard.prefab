@@ -72,6 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4179905784293100}
   - component: {fileID: 212255544977457566}
+  - component: {fileID: 114628336497400878}
   - component: {fileID: 114440606444629590}
   m_Layer: 8
   m_Name: ExplosionWizard
@@ -87,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1999079065853394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.84, y: -2.9530253, z: 0}
+  m_LocalPosition: {x: 0.98, y: -2.9530253, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224272129354307044}
@@ -105,25 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a3ac092f1a1ea42af77fde49667089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1278352684841026, guid: d27e57b246d9f4c4c82ccbc12e2e0013,
-    type: 2}
-  level: 1
-  damage: 175
-  attackSpeed: 5
-  unitName: Explosion Wizard
-  baseCost: 5000
-  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  description: The Explosion Wizard is slow at attacking, but when it does, it creates
-    a HUGE explosion to blast enemies away!
-  multiplier: 1.08
-  upgradeBaseCost: 1000
-  damageIncrement: 1
-  unitAI: 0
-  firstChoiceBP:
-    prefab: {fileID: 0}
-  secondChoiceBP:
-    prefab: {fileID: 0}
-  levelToAwaken: 25
+  unit: {fileID: 114628336497400878}
   castBar: {fileID: 1529580676785846}
   castProgress: {fileID: 114763094946158580}
 --- !u!114 &114503735396297774
@@ -169,6 +152,37 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114628336497400878
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1999079065853394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 1278352684841026, guid: d27e57b246d9f4c4c82ccbc12e2e0013,
+    type: 2}
+  level: 1
+  damage: 175
+  attackSpeed: 10
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  unitName: Explosion Wizard
+  baseCost: 5000
+  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
+  description: The Explosion Wizard is slow at attacking, but when it does, it creates
+    a HUGE explosion to blast enemies away!
+  multiplier: 1.08
+  upgradeBaseCost: 100
+  damageIncrement: 1
+  unitAI: 0
+  firstChoice: {fileID: 0}
+  secondChoice: {fileID: 0}
+  levelToAwaken: 25
 --- !u!114 &114763094946158580
 MonoBehaviour:
   m_ObjectHideFlags: 1

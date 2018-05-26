@@ -3,21 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CasterUnit : StandardUnit
+public class Caster : MonoBehaviour
 {
-    [Header("Cast Bar")]
+    public Unit unit;
     public GameObject castBar;
     public Image castProgress;
 
-    protected override void Start()
+    void Update()
     {
-        base.Start();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
         if (ProceduralSpawner.CurrentState == ProceduralSpawner.State.Spawning)
         {
             castBar.SetActive(true);
@@ -28,6 +21,6 @@ public class CasterUnit : StandardUnit
             return;
         }
 
-        castProgress.fillAmount = nextAttackTime / attackSpeed;
+        castProgress.fillAmount = unit.GetNextAttackTime() / unit.attackSpeed;
     }
 }

@@ -57,7 +57,10 @@ MonoBehaviour:
   level: 1
   damage: 100
   attackSpeed: 2
-  unitName: Rocket Man v2
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  unitName: Rocket Man v3
   baseCost: 20
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
   description: Has an even bigger rocket! More damage! More splash!

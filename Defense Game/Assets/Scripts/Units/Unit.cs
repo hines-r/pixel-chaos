@@ -14,8 +14,7 @@ public class Unit : TargetingEntity, IUpgradeable
     public bool hasBurstAttack;
     public int burstCount;
     public float timeBetweenBursts;
-
-    protected float nextAttackTime;
+    private float nextAttackTime;
 
     [Header("Unit Info")]
     public string unitName;
@@ -180,5 +179,10 @@ public class Unit : TargetingEntity, IUpgradeable
     {
         // Disables or enables unit based on current state
         gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    public float GetNextAttackTime()
+    {
+        return nextAttackTime;
     }
 }

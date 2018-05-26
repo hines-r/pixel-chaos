@@ -19,9 +19,4 @@ public class StandardUnit : Unit
     {
         base.Update();
     }
-
-    public void Awaken(StandardUnit unitToAwaken)
-    {
-
-    }
 }
