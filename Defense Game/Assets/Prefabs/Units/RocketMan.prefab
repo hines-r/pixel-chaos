@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4639276387999398}
   - component: {fileID: 212020847260105368}
-  - component: {fileID: 114033053527494232}
+  - component: {fileID: 114230638519884186}
   m_Layer: 8
   m_Name: RocketMan
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114033053527494232
+--- !u!114 &114230638519884186
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1462863575042672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46189fbe7f75df9448203588e8173737, type: 3}
+  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 1820131900824002, guid: 3fe7292203749574e96e6dac482519de,
@@ -59,19 +59,18 @@ MonoBehaviour:
   attackSpeed: 2
   unitName: Rocket Man
   baseCost: 500
-  description: Rocket Man wields a massive rocket launcher that is capable of mowing
-    down enemies! Each rocket causes an explosion capable of cleaving down enemies
-    in a radius.
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
+  description: Rocket Man wields a massive rocket launcher that is capable of mowing
+    down enemies! Each rocket causes an explosion that cleaves enemies in a radius.
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
-  levelToAwaken: 0
+  unitAI: 0
   firstChoiceBP:
     prefab: {fileID: 0}
   secondChoiceBP:
     prefab: {fileID: 0}
-  unitAI: 0
+  levelToAwaken: 25
 --- !u!212 &212020847260105368
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4751362522860502}
   - component: {fileID: 212161621629735034}
-  - component: {fileID: 114373073210864670}
+  - component: {fileID: 114331048898320944}
   m_Layer: 8
   m_Name: DartBlower
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114373073210864670
+--- !u!114 &114331048898320944
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1330787647682794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46189fbe7f75df9448203588e8173737, type: 3}
+  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 1919772747253142, guid: 31b379ae66f5fca4dba9533be2b79e80,
@@ -59,18 +59,18 @@ MonoBehaviour:
   attackSpeed: 0.75
   unitName: Dart Blower
   baseCost: 1000
+  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
   description: The Dart Blower fires a nasty caustic tipped dart that damages enemies
     over time!
-  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
-  levelToAwaken: 0
+  unitAI: 2
   firstChoiceBP:
     prefab: {fileID: 0}
   secondChoiceBP:
     prefab: {fileID: 0}
-  unitAI: 2
+  levelToAwaken: 25
 --- !u!212 &212161621629735034
 SpriteRenderer:
   m_ObjectHideFlags: 1

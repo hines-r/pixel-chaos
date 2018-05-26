@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CasterUnit : AttackingUnit
+public class CasterUnit : StandardUnit
 {
     [Header("Cast Bar")]
     public GameObject castBar;

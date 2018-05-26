@@ -10,8 +10,7 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     public GameObject nodeUI;
 
-    internal GameObject unit;
-    internal UnitBlueprint unitBlueprint;
+    internal Unit unit;
 
     private SpriteRenderer rend;
 
@@ -27,53 +26,42 @@ public class Node : MonoBehaviour, IPointerClickHandler
         unitManager = UnitManager.instance;
     }
 
-    public void PlaceUnit(UnitBlueprint blueprint)
+    public void PlaceUnit(Unit unitToPlace)
     {
         // Compares the names of the blueprint unit with any names within the unlocked units array
         // If there are any matches, place the unit within the unlocked unit array instead of
         // instantiating a new unit
-        foreach (GameObject unlockedUnit in unitManager.unlockedUnits)
+        foreach (Unit unlockedUnit in unitManager.unlockedUnits)
         {
-            AttackingUnit storedUnit = unlockedUnit.GetComponent<AttackingUnit>();
-
-            if (storedUnit != null)
+            if (unlockedUnit != null)
             {
-                AttackingUnit blueprintAttackingUnit = blueprint.prefab.GetComponent<AttackingUnit>();
-
-                if (blueprintAttackingUnit != null)
+                if (unitToPlace != null)
                 {
-                    if (blueprintAttackingUnit.unitName == storedUnit.unitName)
+                    if (unitToPlace.unitName == unlockedUnit.unitName)
                     {
-                        storedUnit.gameObject.SetActive(true);
-                        storedUnit.transform.position = transform.position;
-                        storedUnit.currentNode.unit = null;
-                        storedUnit.currentNode = this;
+                        unlockedUnit.gameObject.SetActive(true);
+                        unlockedUnit.transform.position = transform.position;
+                        unlockedUnit.currentNode.unit = null;
+                        unlockedUnit.currentNode = this;
 
                         if (unit != null)
                         {
-                            unit.SetActive(false);
+                            unit.gameObject.SetActive(false);
                         }
 
-                        unit = storedUnit.gameObject;
+                        unit = unlockedUnit;
                         return;
                     }
                 }
             }
         }
 
-        GameObject _unit = Instantiate(blueprint.prefab, transform.position, Quaternion.identity) as GameObject;
+        Unit _unit = Instantiate(unitToPlace, transform.position, Quaternion.identity);
         _unit.transform.parent = unitManager.transform;
         unit = _unit;
 
-        AttackingUnit placedUnit = unit.GetComponent<AttackingUnit>();
-
-        if (placedUnit != null)
-        {
-            placedUnit.currentNode = this; 
-        }
-
-        unitBlueprint = blueprint;
-        unitManager.UnlockUnit(unit.gameObject);
+        unit.currentNode = this;
+        unitManager.UnlockUnit(unit);
     }
 
     public void OnPointerClick(PointerEventData eventData)

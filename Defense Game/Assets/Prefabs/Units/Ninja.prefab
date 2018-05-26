@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4562624163135418}
   - component: {fileID: 212297796681069836}
-  - component: {fileID: 114187347405516922}
+  - component: {fileID: 114193029848637438}
   m_Layer: 8
   m_Name: Ninja
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114187347405516922
+--- !u!114 &114193029848637438
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004716221765792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46189fbe7f75df9448203588e8173737, type: 3}
+  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 1072636770896822, guid: 732fd3d93acd5e14d97339b5ded4f6ad,
@@ -59,18 +59,18 @@ MonoBehaviour:
   attackSpeed: 1
   unitName: Ninja
   baseCost: 500
+  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
   description: Stealthy and sly, the Ninja is equipped with a special shuriken capable
     of piercing multiple enemies.
-  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
-  levelToAwaken: 0
+  unitAI: 0
   firstChoiceBP:
     prefab: {fileID: 0}
   secondChoiceBP:
     prefab: {fileID: 0}
-  unitAI: 0
+  levelToAwaken: 25
 --- !u!212 &212297796681069836
 SpriteRenderer:
   m_ObjectHideFlags: 1

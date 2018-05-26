@@ -38,7 +38,7 @@ public class HomingProjectile : Projectile
 
     void UpdateTarget()
     {
-        AttackingUnit unit = originEntity.GetComponent<AttackingUnit>();
+        Unit unit = originEntity.GetComponent<Unit>();
 
         if (unit != null)
         {

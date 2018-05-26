@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4468385903478994}
   - component: {fileID: 212946941563349646}
-  - component: {fileID: 114950676678376396}
+  - component: {fileID: 114142070583743010}
   m_Layer: 8
   m_Name: StandardArcherAwoken
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114950676678376396
+--- !u!114 &114142070583743010
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,28 +49,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1464342424411948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46189fbe7f75df9448203588e8173737, type: 3}
+  m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1222516748984328, guid: b530f09d99c40d545ad04910b88eabf1,
-    type: 2}
+  attackPrefab: {fileID: 0}
   level: 1
-  damage: 35
-  attackSpeed: 0.15
-  unitName: Swift Archer
-  baseCost: 250
-  description: Highly skilled with the bow, the Standard Archer is capable of producing
-    devastation on the battlefield with a flurry of arrows.
-  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
+  damage: 0
+  attackSpeed: 0
+  unitName: 
+  baseCost: 0
+  unitSprite: {fileID: 0}
+  description: 
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 1
-  levelToAwaken: 0
-  firstChoiceBP:
-    prefab: {fileID: 0}
-  secondChoiceBP:
-    prefab: {fileID: 0}
   unitAI: 0
+  originalUnit: {fileID: 0}
 --- !u!212 &212946941563349646
 SpriteRenderer:
   m_ObjectHideFlags: 1

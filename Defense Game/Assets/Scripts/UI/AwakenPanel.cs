@@ -24,7 +24,7 @@ public class AwakenPanel : MonoBehaviour
     void UpdateAwakenPanelInfo()
     {
         unitName.text = nodeUI.selectedStoredUnit.unitName;
-        levelReqTxt.text = "Level " + nodeUI.selectedStoredUnit.levelToAwaken;
+        //levelReqTxt.text = "Level " + nodeUI.selectedStoredUnit.levelToAwaken;
     }
 
     public void ShowAwakenPanel()

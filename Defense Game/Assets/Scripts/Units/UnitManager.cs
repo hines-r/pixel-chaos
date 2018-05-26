@@ -19,18 +19,39 @@ public class UnitManager : MonoBehaviour
     }
     #endregion
 
-    public List<GameObject> unlockedUnits;
+    public List<Unit> unlockedUnits;
 
     void Start()
     {
-        unlockedUnits = new List<GameObject>();
+        unlockedUnits = new List<Unit>();
     }
 
-    public void UnlockUnit(GameObject unitToUnlock)
+    public void UnlockUnit(Unit unitToUnlock)
     {
         if (!unlockedUnits.Contains(unitToUnlock))
         {
             unlockedUnits.Add(unitToUnlock);
         }
+    }
+
+    public Unit FindUnlockedUnit(Unit unitToCompare)
+    {
+        if (unlockedUnits.Contains(unitToCompare))
+        {
+            print("this works!!");
+        }
+
+        foreach (Unit unit in unlockedUnits)
+        {
+            if (unit != null)
+            {
+                if (unitToCompare.unitName == unit.unitName)
+                {
+                    return unit;
+                }
+            }
+        }
+
+        return null;
     }
 }

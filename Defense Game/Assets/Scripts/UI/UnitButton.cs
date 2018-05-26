@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UnitButton : MonoBehaviour
 {
     [Header("Unit Prefab")]
-    public AttackingUnit unit;
+    public Unit unit;
 
     [Header("Image")]
     public Image unitImg;
@@ -32,7 +32,7 @@ public class UnitButton : MonoBehaviour
         }
     }
 
-    public void UpdateLevelText(AttackingUnit _unit)
+    public void UpdateLevelText(Unit _unit)
     {
         buttonLevelText.text = _unit.level.ToString();
     }

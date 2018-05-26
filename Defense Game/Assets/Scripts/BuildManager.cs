@@ -22,7 +22,7 @@ public class BuildManager : MonoBehaviour
     public NodeUI nodeUI;
 
     private Node selectedNode;
-    private UnitBlueprint unitToPlace;
+    private Unit unitToPlace;
 
     public void SelectNode(Node node)
     {
@@ -53,12 +53,12 @@ public class BuildManager : MonoBehaviour
         nodeUI.HideSelectionPanel();
     }
 
-    public void SelectUnitToPlace(UnitBlueprint unit)
+    public void SelectUnitToPlace(Unit unit)
     {
         unitToPlace = unit;
     }
 
-    public UnitBlueprint GetUnitToPlace()
+    public Unit GetUnitToPlace()
     {
         return unitToPlace;
     }

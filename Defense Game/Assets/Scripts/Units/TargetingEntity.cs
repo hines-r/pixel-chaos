@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TargetingEntity : MonoBehaviour
 {
+    protected float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
+
     protected GameObject TargetNearestEnemy()
     {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
@@ -32,7 +34,7 @@ public class TargetingEntity : MonoBehaviour
         return nearestEnemy;
     }
 
-    protected GameObject TargetRandomEnemy(AttackingUnit unit)
+    protected GameObject TargetRandomEnemy()
     {
         GameObject[] possibleTargets = GameObject.FindGameObjectsWithTag("Enemy");
         List<GameObject> enemiesInRange = new List<GameObject>();
@@ -40,7 +42,7 @@ public class TargetingEntity : MonoBehaviour
         foreach (GameObject enemy in possibleTargets)
         {
             // Random target must be within attack range of the unit
-            if (enemy.transform.position.x <= unit.maxAttackRange)
+            if (enemy.transform.position.x <= maxAttackRange)
             {
                 enemiesInRange.Add(enemy);
             }

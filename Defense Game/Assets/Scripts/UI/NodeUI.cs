@@ -14,16 +14,16 @@ public class NodeUI : MonoBehaviour
     public AIPanel aiPanelExtended;
 
     [Header("Available Units")]
-    public UnitBlueprint rockThrower;
-    public UnitBlueprint spearThrower;
-    public UnitBlueprint standardArcher;
-    public UnitBlueprint rocketMan;
-    public UnitBlueprint ninja;
-    public UnitBlueprint lightningWizard;
-    public UnitBlueprint explosionWizard;
-    public UnitBlueprint iceWizard;
-    public UnitBlueprint dartBlower;
-    public UnitBlueprint voidSage;
+    public Unit rockThrower;
+    public Unit spearThrower;
+    public Unit standardArcher;
+    public Unit rocketMan;
+    public Unit ninja;
+    public Unit lightningWizard;
+    public Unit explosionWizard;
+    public Unit iceWizard;
+    public Unit dartBlower;
+    public Unit voidSage;
 
     [Space]
 
@@ -36,17 +36,17 @@ public class NodeUI : MonoBehaviour
     public Text descrptionTxt;
     public Text upgradeBtnTxt;
     public Text equipBtnTxt;
+    public Text purchaseBtnTxt;
     public GameObject equipUpgradeBtnGroup;
     public GameObject purchaseBtn;
-    public Text purchaseBtnTxt;
     public GameObject awakenBtn;
 
     public GameObject notEnoughGoldDialog;
 
-    internal AttackingUnit selectedUnit;
-    private AttackingUnit currentlyPlacedUnit;
+    internal Unit selectedUnit;
+    private Unit currentlyPlacedUnit;
     
-    internal AttackingUnit selectedStoredUnit;
+    internal Unit selectedStoredUnit;
     private bool unitIsStored;
 
     private Node target;
@@ -70,24 +70,21 @@ public class NodeUI : MonoBehaviour
     {
         if (selectedUnit != null)
         {
-            foreach (GameObject unlockedUnit in unitManager.unlockedUnits)
-            {
-                AttackingUnit storedUnit = unlockedUnit.GetComponent<AttackingUnit>();
+            Unit unlockedUnit = unitManager.FindUnlockedUnit(selectedUnit);
 
-                if (selectedUnit.unitName == storedUnit.unitName)
+            if (unlockedUnit != null)
+            {
+                if (PlayerStats.Gold >= unlockedUnit.upgradeCost)
                 {
-                    if (PlayerStats.Gold >= storedUnit.upgradeCost)
-                    {
-                        PlayerStats.Gold -= (int)storedUnit.upgradeCost;
-                        storedUnit.Upgrade();
-                        UpdateUnitButtonLevel();
-                        UpdateUnitPanel();
-                        return;
-                    }
-                    else
-                    {
-                        StartCoroutine(DisplayNotEnoughGoldDialog());
-                    }
+                    PlayerStats.Gold -= (int)unlockedUnit.upgradeCost;
+                    unlockedUnit.Upgrade();
+                    UpdateUnitButtonLevel();
+                    UpdateUnitPanel();
+                    return;
+                }
+                else
+                {
+                    StartCoroutine(DisplayNotEnoughGoldDialog());
                 }
             }
         }
@@ -110,56 +107,51 @@ public class NodeUI : MonoBehaviour
 
     public void UpdateUnitPanel()
     {
-        selectedUnit = buildManager.GetUnitToPlace().prefab.GetComponent<AttackingUnit>();
+        selectedUnit = buildManager.GetUnitToPlace();
 
         if (selectedUnit != null)
         {
-            foreach (GameObject unlockedUnit in unitManager.unlockedUnits)
+            // Compares the selected unit with units within the unlocked units array for a match
+            // If a match is found, sets the values within the unit panel equal to the unlocked unit instead
+            // This allows the panel to display the units upgrades and AI properly
+            Unit unlockedUnit = unitManager.FindUnlockedUnit(selectedUnit);
+
+            if (unlockedUnit != null)
             {
-                AttackingUnit storedUnit = unlockedUnit.GetComponent<AttackingUnit>();
+                unitIsStored = true;
+                selectedStoredUnit = unlockedUnit;
 
-                if (storedUnit != null)
-                {
-                    // Compares the unit name of the unit blueprint to see if it is already unlocked
-                    // If so, sets the values within the unit panel equal to the unlocked unit instead
-                    // This allows the panel to display the units upgrades and AI properly
-                    if (selectedUnit.unitName == storedUnit.unitName)
-                    {
-                        unitIsStored = true;
-                        selectedStoredUnit = storedUnit;
+                UpdateAIPanel();
+                UpdateUnitPanelComponents(unlockedUnit);
 
-                        UpdateAIPanel();
-                        UpdateUnitPanelComponents(storedUnit);
+                // Displays the equip and upgrade buttons instead of the purchase button
+                purchaseBtn.SetActive(false);
+                equipUpgradeBtnGroup.SetActive(true);
 
-                        // Displays the equip and upgrade buttons instead of the purchase button
-                        purchaseBtn.SetActive(false);
-                        equipUpgradeBtnGroup.SetActive(true);
+                awakenBtn.SetActive(true);
 
-                        awakenBtn.SetActive(true);
+                unitPanelUI.SetActive(true);
+                UpdatePanelButton();
+            }
+            else
+            {
+                unitIsStored = false;
+                UpdateUnitPanelComponents(selectedUnit);
+                UpdateAIPanel();
 
-                        unitPanelUI.SetActive(true);
-                        UpdatePanelButton();
-                        return;
-                    }
-                }
+                // Displays the purchase button instead of the equip and upgrade buttons
+                purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
+                purchaseBtn.SetActive(true);
+                equipUpgradeBtnGroup.SetActive(false);
+
+                awakenBtn.SetActive(false);
+
+                unitPanelUI.SetActive(true);
             }
         }
-
-        unitIsStored = false;
-        UpdateUnitPanelComponents(selectedUnit);
-        UpdateAIPanel();
-
-        // Displays the purchase button instead of the equip and upgrade buttons
-        purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
-        purchaseBtn.SetActive(true);
-        equipUpgradeBtnGroup.SetActive(false);
-
-        awakenBtn.SetActive(false);
-
-        unitPanelUI.SetActive(true);
     }
 
-    void UpdateUnitPanelComponents(AttackingUnit unit)
+    void UpdateUnitPanelComponents(Unit unit)
     {
         unitImg.sprite = unit.unitSprite;
         unitLevelTxt.text = "Level: " + unit.level;
@@ -209,7 +201,7 @@ public class NodeUI : MonoBehaviour
     {
         if (target.unit != null)
         {
-            currentlyPlacedUnit = target.unit.GetComponent<AttackingUnit>();
+            currentlyPlacedUnit = target.unit.GetComponent<Unit>();
 
             if (selectedUnit.unitName == currentlyPlacedUnit.unitName)
             {
@@ -242,7 +234,7 @@ public class NodeUI : MonoBehaviour
     {
         if (target.unit != null)
         {
-            target.unit.SetActive(false);
+            target.unit.gameObject.SetActive(false);
             target.unit = null;
             equipBtnTxt.text = "Equip";
         }
@@ -316,7 +308,7 @@ public class NodeUI : MonoBehaviour
     {
         if (target.unit != null)
         {
-            currentlyPlacedUnit = target.unit.GetComponent<AttackingUnit>();
+            currentlyPlacedUnit = target.unit.GetComponent<Unit>();
 
             if (selectedUnit.unitName == currentlyPlacedUnit.unitName)
             {
@@ -325,7 +317,7 @@ public class NodeUI : MonoBehaviour
             }
             else
             {
-                target.unit.SetActive(false);
+                target.unit.gameObject.SetActive(false);
             }
         }
 
@@ -336,7 +328,7 @@ public class NodeUI : MonoBehaviour
 
     public void PurchaseUnit()
     {
-        AttackingUnit unitToPurchase = buildManager.GetUnitToPlace().prefab.GetComponent<AttackingUnit>();
+        Unit unitToPurchase = buildManager.GetUnitToPlace();
 
         // First checks if the player has enough gold and if so, subtracts it from player gold count
         if (PlayerStats.Gold >= unitToPurchase.baseCost)
@@ -390,33 +382,33 @@ public class NodeUI : MonoBehaviour
 
     public void SetAINearest()
     {
-        selectedStoredUnit.unitAI = AttackingUnit.AIType.Nearest;
+        selectedStoredUnit.unitAI = Unit.AIType.Nearest;
     }
 
     public void SetAIRandom()
     {
-        selectedStoredUnit.unitAI = AttackingUnit.AIType.Random;
+        selectedStoredUnit.unitAI = Unit.AIType.Random;
     }
 
     public void SetAIDoT()
     {
-        selectedStoredUnit.unitAI = AttackingUnit.AIType.Dot;
+        selectedStoredUnit.unitAI = Unit.AIType.Dot;
     }
 
     // Used to set the toggle of the currently active unit AI
     void SelectCurrentAIToggle()
     {       
-        if (selectedStoredUnit.unitAI == AttackingUnit.AIType.Nearest)
+        if (selectedStoredUnit.unitAI == Unit.AIType.Nearest)
         {
             aiPanel.SelectToggle(0);
             aiPanelExtended.SelectToggle(0);
         }
-        else if (selectedStoredUnit.unitAI == AttackingUnit.AIType.Random)
+        else if (selectedStoredUnit.unitAI == Unit.AIType.Random)
         {
             aiPanel.SelectToggle(1);
             aiPanelExtended.SelectToggle(1);
         }
-        else if (selectedStoredUnit.unitAI == AttackingUnit.AIType.Dot)
+        else if (selectedStoredUnit.unitAI == Unit.AIType.Dot)
         {
             aiPanelExtended.SelectToggle(2);
         }

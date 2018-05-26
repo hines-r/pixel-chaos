@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackingUnit : TargetingEntity, IUpgradeable
+public class Unit : TargetingEntity, IUpgradeable
 {
     [Header("Unit Attributes")]
     public GameObject attackPrefab;
@@ -14,22 +14,16 @@ public class AttackingUnit : TargetingEntity, IUpgradeable
     [Header("Unit Info")]
     public string unitName;
     public int baseCost;
-    public string description;
     public Sprite unitSprite;
+
+    [TextArea(5,10)]
+    public string description;
 
     [Header("Upgrade Info")]
     public float multiplier = 1.08f;
     public float upgradeBaseCost;
     internal float upgradeCost;
     public float damageIncrement;
-
-    [Header("Awoken Units")]
-    public float levelToAwaken;
-    public UnitBlueprint firstChoiceBP;
-    public UnitBlueprint secondChoiceBP;
-    internal bool isAwoken;
-
-    internal float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
     public enum AIType
     {
@@ -47,7 +41,7 @@ public class AttackingUnit : TargetingEntity, IUpgradeable
     protected virtual void Start()
     {
         upgradeCost = upgradeBaseCost;
-        nextAttackTime = 0;
+        ResetAttackTime();
     }
 
     protected virtual void Update()
@@ -59,17 +53,22 @@ public class AttackingUnit : TargetingEntity, IUpgradeable
 
         if (ProceduralSpawner.EnemiesAlive <= 0)
         {
-            nextAttackTime = 0;
+            ResetAttackTime();
             return;
         }
 
         if (nextAttackTime > attackSpeed)
         {
-            nextAttackTime = 0;
+            ResetAttackTime();
             Attack();
         }
 
         nextAttackTime += Time.deltaTime;
+    }
+
+    void ResetAttackTime()
+    {
+        nextAttackTime = 0;
     }
 
     bool IsTargetAvailable()
@@ -108,9 +107,9 @@ public class AttackingUnit : TargetingEntity, IUpgradeable
         }
         else if (unitAI == AIType.Random)
         {
-            if (TargetRandomEnemy(this) != null)
+            if (TargetRandomEnemy() != null)
             {
-                return TargetRandomEnemy(this);
+                return TargetRandomEnemy();
             }
         }
         else if (unitAI == AIType.Dot)
@@ -137,9 +136,9 @@ public class AttackingUnit : TargetingEntity, IUpgradeable
 
             if (unitAttack != null)
             {
-                unitAttack.originEntity = gameObject; // Indicates the exact unit the projectile came from
-                unitAttack.Damage = damage; // Sets the damage of the projectile being fired
-                unitAttack.Target = target; // Sets the target for the projectile
+                unitAttack.originEntity = gameObject; // Indicates the exact unit the attack came from
+                unitAttack.Damage = damage; // Sets the damage of the attack
+                unitAttack.Target = target; // Sets the target for the attack
             }
         }
     }
@@ -152,5 +151,11 @@ public class AttackingUnit : TargetingEntity, IUpgradeable
         float upgradedCost = upgradeBaseCost * Mathf.Pow(multiplier, level);
 
         upgradeCost = (int)upgradedCost;
+    }
+
+    public void Toggle()
+    {
+        // Disables or enables unit based on current state
+        gameObject.SetActive(!gameObject.activeSelf);
     }
 }
