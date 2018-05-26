@@ -12,6 +12,10 @@ public class Projectile : Attack
     public float slowAmount = 0;
     public float slowDuration = 0;
 
+    [Header("Stun")]
+    public bool hasStun;
+    public float stunDuration = 0;
+
     [Header("DOT")]
     public bool hasDot;
     public bool isStinging; // Instantly applies half the damage if projectile has a DoT
@@ -96,6 +100,11 @@ public class Projectile : Attack
             if (slowAmount > 0)
             {
                 enemyHit.Slow(slowAmount, slowDuration);
+            }
+
+            if (hasStun)
+            {
+                enemyHit.Stun(stunDuration);
             }
 
             if (targetsHit >= penetrationCount)

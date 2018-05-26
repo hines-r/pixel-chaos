@@ -9,14 +9,22 @@ public class Enemy : LivingEntity
     [Header("Enemy Attributes")]
     public float startSpeed = 1;
     private float speed;
-    private float isSlowed;
-    private float slowDuration;
 
     public float damage = 5f;
     public float attackSpeed = 1f;
     public float timeBetweenAttacks = 1f;
     private float nextAttackTime;
-    private float lungeDistance = 1.5f;
+
+    // Debuffs
+    private bool isSlowed;
+    private float slowDuration;
+
+    private bool isStunned;
+    private float stunDuration;
+
+    // Attack animation
+    private readonly float minLungeDistance = 0.5f;
+    private readonly float maxLungeDistance = 1.5f;
 
     [Header("Enemy Misc.")]
     public float stoppingPoint = -1;
@@ -32,6 +40,7 @@ public class Enemy : LivingEntity
     [Header("Debuffs")]
     public GameObject poisonDebuff;
     public GameObject slowDebuff;
+    public GameObject stunnedDebuff;
 
     internal bool isUnderForces;
 
@@ -74,8 +83,20 @@ public class Enemy : LivingEntity
         }
         else
         {
+            isSlowed = false;
             slowDebuff.SetActive(false);
             speed = startSpeed;
+        }
+
+        if (stunDuration > 0)
+        {
+            stunnedDebuff.SetActive(true);
+            stunDuration -= Time.deltaTime;
+        }
+        else
+        {
+            isStunned = false;
+            stunnedDebuff.SetActive(false);
         }
 
         if (!isUnderForces)
@@ -85,7 +106,7 @@ public class Enemy : LivingEntity
 
         if (Time.time > nextAttackTime && currentState == State.Attacking)
         {
-            // Can't attack if under the effects of a black hole
+            // Can't attack if under the effects of a black hole or other force
             if (!isUnderForces)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
@@ -102,11 +123,16 @@ public class Enemy : LivingEntity
         if (transform.position.x >= stoppingPoint)
         {
             currentState = State.Moving;
-            transform.position -= transform.right * speed * Time.deltaTime;
+
+            // Can only move is not stunned
+            if (!isStunned)
+            {
+                transform.position -= transform.right * speed * Time.deltaTime;
+            }
         }
         else
         {
-            if (!isUnderForces)
+            if (!isUnderForces && !isStunned)
             {
                 currentState = State.Attacking;
             }
@@ -115,7 +141,7 @@ public class Enemy : LivingEntity
 
     protected virtual IEnumerator Attack()
     {
-        float lunge = Random.Range(.5f, lungeDistance);
+        float lunge = Random.Range(minLungeDistance, maxLungeDistance);
 
         Vector3 originalPos = transform.position;
         Vector3 attackPos = new Vector3(stoppingPoint - lunge, transform.position.y, 0);
@@ -141,8 +167,15 @@ public class Enemy : LivingEntity
 
     public void Slow(float percentage, float _slowDuration)
     {
+        isSlowed = true;
         speed = startSpeed * (1f - percentage);
         slowDuration = _slowDuration;
+    }
+
+    public void Stun(float _stunDuration)
+    {
+        isStunned = true;
+        stunDuration = _stunDuration;
     }
 
     public float GetVelocity()

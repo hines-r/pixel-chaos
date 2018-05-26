@@ -72,14 +72,16 @@ MonoBehaviour:
   penetrationCount: 3
   slowAmount: 0
   slowDuration: 0
+  hasStun: 0
+  stunDuration: 0
   hasDot: 0
   isStinging: 0
   damageDuration: 0
   isExplosive: 0
   splashRadius: 0
+  impactEffect: {fileID: 0}
   isChaining: 1
   chainingRadius: 4
-  impactEffect: {fileID: 0}
   speed: 15
 --- !u!212 &212676801324475726
 SpriteRenderer:
