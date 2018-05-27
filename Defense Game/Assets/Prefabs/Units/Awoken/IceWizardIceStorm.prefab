@@ -55,9 +55,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4450056037380248}
   - component: {fileID: 212711114383116500}
-  - component: {fileID: 114261348267453756}
-  - component: {fileID: 114801396698308732}
   - component: {fileID: 61294451506669198}
+  - component: {fileID: 114710739788031012}
   m_Layer: 8
   m_Name: IceWizardIceStorm
   m_TagString: Untagged
@@ -121,37 +120,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114261348267453756
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1723510710516466}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1159659679194214, guid: fd41b203d73c31542ae23daa0ff44256,
-    type: 2}
-  level: 1
-  damage: 100
-  attackSpeed: 10
-  hasBurstAttack: 0
-  burstCount: 0
-  timeBetweenBursts: 0
-  hasAbility: 0
-  passiveAttacking: 1
-  unitName: Ice Witch
-  baseCost: 100
-  unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
-  description: Casts devastating ice storms above enemies!
-  multiplier: 1.08
-  upgradeBaseCost: 1000
-  damageIncrement: 1
-  unitAI: 1
-  originalUnit: {fileID: 114792873265351582, guid: 03f83d52debd4e94580342ab40892806,
-    type: 2}
 --- !u!114 &114287181734787968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,7 +184,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114801396698308732
+--- !u!114 &114710739788031012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -224,12 +192,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1723510710516466}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a3ac092f1a1ea42af77fde49667089, type: 3}
+  m_Script: {fileID: 11500000, guid: 30ba8d61ebda1ed48975b856cb4d5446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 114261348267453756}
+  attackPrefab: {fileID: 1159659679194214, guid: fd41b203d73c31542ae23daa0ff44256,
+    type: 2}
+  level: 1
+  damage: 100
+  attackSpeed: 10
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  unitName: Ice Witch
+  baseCost: 25
+  unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
+  description: Casts devastating ice storms above enemies!
+  multiplier: 1.08
+  upgradeBaseCost: 1000
+  damageIncrement: 1
+  unitAI: 0
   castBar: {fileID: 1211826117121776}
   castProgress: {fileID: 114660309251678906}
+  originalUnit: {fileID: 114792873265351582, guid: 03f83d52debd4e94580342ab40892806,
+    type: 2}
 --- !u!114 &114980976974643420
 MonoBehaviour:
   m_ObjectHideFlags: 1

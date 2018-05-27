@@ -14,7 +14,7 @@ public class Unit : TargetingEntity, IUpgradeable
     public bool hasBurstAttack;
     public int burstCount;
     public float timeBetweenBursts;
-    private float nextAttackTime;
+    protected float nextAttackTime;
 
     [Header("Unit Info")]
     public string unitName;
@@ -79,7 +79,7 @@ public class Unit : TargetingEntity, IUpgradeable
         nextAttackTime += Time.deltaTime;
     }
 
-    void ResetAttackTime()
+    protected void ResetAttackTime()
     {
         nextAttackTime = 0;
     }
@@ -140,7 +140,7 @@ public class Unit : TargetingEntity, IUpgradeable
         return null;
     }
 
-    void Attack()
+    protected void Attack()
     {
         if (IsTargetAvailable())
         {
@@ -156,7 +156,7 @@ public class Unit : TargetingEntity, IUpgradeable
         }
     }
 
-    IEnumerator BurstAttack()
+    protected IEnumerator BurstAttack()
     {
         for(int i = 0; i < burstCount; i++)
         {
@@ -179,15 +179,5 @@ public class Unit : TargetingEntity, IUpgradeable
     {
         // Disables or enables unit based on current state
         gameObject.SetActive(!gameObject.activeSelf);
-    }
-
-    public float GetNextAttackTime()
-    {
-        return nextAttackTime;
-    }
-
-    public GameObject GetTarget()
-    {
-        return target;
     }
 }

@@ -55,9 +55,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4778636848842842}
   - component: {fileID: 212580888900123992}
-  - component: {fileID: 114366110831070078}
-  - component: {fileID: 114914481329552806}
   - component: {fileID: 61829248781403672}
+  - component: {fileID: 114210359397398228}
   m_Layer: 8
   m_Name: DartBlowerMiasma
   m_TagString: Untagged
@@ -121,6 +120,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.21, y: 0.44}
   m_EdgeRadius: 0
+--- !u!114 &114210359397398228
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1376046912700018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ba8d61ebda1ed48975b856cb4d5446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 1379264186498826, guid: f1c36e44520729641bdfaaeeebcf63ea,
+    type: 2}
+  level: 1
+  damage: 100
+  attackSpeed: 8
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  unitName: Miasma Man
+  baseCost: 25
+  unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
+  description: Unleashes deadly plumes of miasma that poisons enemies as they walk
+    through it.
+  multiplier: 1.08
+  upgradeBaseCost: 1000
+  damageIncrement: 1
+  unitAI: 0
+  castBar: {fileID: 1314919818060732}
+  castProgress: {fileID: 114247031467058378}
+  originalUnit: {fileID: 114331048898320944, guid: d3272bc5a36b7ce47ac1afa22e54f4d0,
+    type: 2}
 --- !u!114 &114247031467058378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,38 +195,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114366110831070078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1376046912700018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1379264186498826, guid: f1c36e44520729641bdfaaeeebcf63ea,
-    type: 2}
-  level: 1
-  damage: 100
-  attackSpeed: 8
-  hasBurstAttack: 0
-  burstCount: 0
-  timeBetweenBursts: 0
-  hasAbility: 0
-  passiveAttacking: 1
-  unitName: Caustic Man
-  baseCost: 25
-  unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
-  description: Now fires in a three round burst and poison damage is stacked on the
-    target causing massive damage over time!
-  multiplier: 1.08
-  upgradeBaseCost: 1000
-  damageIncrement: 1
-  unitAI: 0
-  originalUnit: {fileID: 114331048898320944, guid: d3272bc5a36b7ce47ac1afa22e54f4d0,
-    type: 2}
 --- !u!114 &114414819700081554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,20 +243,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114914481329552806
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1376046912700018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a3ac092f1a1ea42af77fde49667089, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unit: {fileID: 114366110831070078}
-  castBar: {fileID: 1314919818060732}
-  castProgress: {fileID: 114247031467058378}
 --- !u!212 &212580888900123992
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -73,9 +73,7 @@ GameObject:
   - component: {fileID: 4179905784293100}
   - component: {fileID: 212255544977457566}
   - component: {fileID: 61299020343335836}
-  - component: {fileID: 114628336497400878}
-  - component: {fileID: 114440606444629590}
-  - component: {fileID: 61925309372273132}
+  - component: {fileID: 114645465182900740}
   m_Layer: 8
   m_Name: ExplosionWizard
   m_TagString: Untagged
@@ -122,45 +120,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!61 &61925309372273132
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999079065853394}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.21, y: 0.44}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
-  m_EdgeRadius: 0
---- !u!114 &114440606444629590
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1999079065853394}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92a3ac092f1a1ea42af77fde49667089, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unit: {fileID: 114628336497400878}
-  castBar: {fileID: 1529580676785846}
-  castProgress: {fileID: 114763094946158580}
 --- !u!114 &114503735396297774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -204,7 +163,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114628336497400878
+--- !u!114 &114645465182900740
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -212,7 +171,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999079065853394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
+  m_Script: {fileID: 11500000, guid: ef66b81445e08734c9adf1cab6a425b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 1278352684841026, guid: d27e57b246d9f4c4c82ccbc12e2e0013,
@@ -223,8 +182,6 @@ MonoBehaviour:
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0
-  hasAbility: 1
-  passiveAttacking: 0
   unitName: Explosion Wizard
   baseCost: 5000
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
@@ -234,6 +191,8 @@ MonoBehaviour:
   upgradeBaseCost: 100
   damageIncrement: 1
   unitAI: 0
+  castBar: {fileID: 1529580676785846}
+  castProgress: {fileID: 114763094946158580}
   firstChoice: {fileID: 0}
   secondChoice: {fileID: 0}
   levelToAwaken: 25

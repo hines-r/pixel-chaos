@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AwokenUnit : Unit, IAwoken
+public class AwokenCasterUnit : CasterUnit, IAwoken
 {
     [Header("Standard Version of Unit")]
     public Unit originalUnit;
@@ -12,8 +12,6 @@ public class AwokenUnit : Unit, IAwoken
     protected override void Start()
     {
         base.Start();
-        unitManager = UnitManager.instance;
-        CloneOriginal(); // Carries over the stats of the unawakened unit
     }
 
     protected override void Update()
