@@ -9,98 +9,74 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1919772747253142}
+  m_RootGameObject: {fileID: 1082445131888320}
   m_IsPrefabParent: 1
---- !u!1 &1919772747253142
+--- !u!1 &1082445131888320
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4333702754386236}
-  - component: {fileID: 212868474667681648}
-  - component: {fileID: 61587302746487226}
-  - component: {fileID: 114965339619425824}
-  m_Layer: 10
-  m_Name: Dart
+  - component: {fileID: 4111223168653912}
+  - component: {fileID: 212690202186490678}
+  - component: {fileID: 114405390455556836}
+  m_Layer: 8
+  m_Name: DartBlowerCaustic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4333702754386236
+--- !u!4 &4111223168653912
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919772747253142}
+  m_GameObject: {fileID: 1082445131888320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4117868, y: 0.043317698, z: 1}
+  m_LocalPosition: {x: -0.2997377, y: 0.3764008, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61587302746487226
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919772747253142}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &114965339619425824
+--- !u!114 &114405390455556836
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919772747253142}
+  m_GameObject: {fileID: 1082445131888320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f0f567311105f44821e557146c4491, type: 3}
+  m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHostile: 0
-  penetrationCount: 1
-  slowAmount: 0
-  slowDuration: 0
-  hasStun: 0
-  stunDuration: 0
-  hasDot: 1
-  isStinging: 0
-  isStacking: 0
-  damageDuration: 3
-  isExplosive: 0
-  splashRadius: 0
-  impactEffect: {fileID: 1097002388820954, guid: 6a7eb3c73f437d64083b282c4d3cb910,
+  attackPrefab: {fileID: 1414250461569794, guid: 360a1ccfaa5157a4cb69b3fe0c41d5d4,
     type: 2}
-  isChaining: 0
-  chainingRadius: 0
-  speed: 20
---- !u!212 &212868474667681648
+  level: 1
+  damage: 50
+  attackSpeed: 0.75
+  hasBurstAttack: 1
+  burstCount: 3
+  timeBetweenBursts: 0.1
+  unitName: Caustic Man
+  baseCost: 25
+  unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
+  description: Now fires in a three round burst and poison damage is stacked on the
+    target causing massive damage over time!
+  multiplier: 1.08
+  upgradeBaseCost: 1000
+  damageIncrement: 1
+  unitAI: 2
+  originalUnit: {fileID: 114331048898320944, guid: d3272bc5a36b7ce47ac1afa22e54f4d0,
+    type: 2}
+--- !u!212 &212690202186490678
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1919772747253142}
+  m_GameObject: {fileID: 1082445131888320}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -129,9 +105,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 3ce2c425934b90242b44bb9815ca2ea5, type: 3}
-  m_Color: {r: 0.37225884, g: 0.6698113, b: 0.2938323, a: 1}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
+  m_Color: {r: 0.074971914, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

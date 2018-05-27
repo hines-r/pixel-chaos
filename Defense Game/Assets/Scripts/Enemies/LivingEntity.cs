@@ -44,11 +44,19 @@ public class LivingEntity : MonoBehaviour, IDamageable
         }
     }
 
-    public void ApplyDoT(float damage, float duration)
+    public void ApplyDoT(float damage, float duration, bool isStacking)
     {
         isDamagedOverTime = true;
         dotDuration = duration;
-        dotDamage = damage;
+
+        if (isStacking)
+        {
+            dotDamage += damage;
+        }
+        else
+        {
+            dotDamage = damage;
+        }
     }
 
     protected virtual void Die()

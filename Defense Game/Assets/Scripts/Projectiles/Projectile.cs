@@ -19,6 +19,7 @@ public class Projectile : Attack
     [Header("DOT")]
     public bool hasDot;
     public bool isStinging; // Instantly applies half the damage if projectile has a DoT
+    public bool isStacking; // Allows DoT to stack on target
     public float damageDuration;
 
     [Header("Explosive")]
@@ -78,7 +79,7 @@ public class Projectile : Attack
                         enemy.TakeDamage(Damage / 2);
                     }
 
-                    enemy.ApplyDoT(Damage, damageDuration);
+                    enemy.ApplyDoT(Damage, damageDuration, isStacking);
                 }
                 else
                 {
@@ -105,7 +106,7 @@ public class Projectile : Attack
                     enemyHit.TakeDamage(Damage / 2);
                 }
 
-                enemyHit.ApplyDoT(Damage, damageDuration);
+                enemyHit.ApplyDoT(Damage, damageDuration, isStacking);
             }
             else
             {
