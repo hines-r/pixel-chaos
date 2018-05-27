@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4468385903478994}
   - component: {fileID: 212946941563349646}
   - component: {fileID: 114142070583743010}
+  - component: {fileID: 61703120950256070}
   m_Layer: 8
   m_Name: StandardArcherSpeed
   m_TagString: Untagged
@@ -41,6 +42,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61703120950256070
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1464342424411948}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.21, y: 0.44}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!114 &114142070583743010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -57,6 +83,11 @@ MonoBehaviour:
   level: 1
   damage: 35
   attackSpeed: 0.25
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  hasAbility: 0
+  passiveAttacking: 1
   unitName: 
   baseCost: 20
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}

@@ -19,7 +19,6 @@ public class Lightning : Attack
         float yOffset = 1f;
         float xOffset = particles.shape.radius / 3;
 
-        print(xOffset);
         transform.position = new Vector3(Target.transform.position.x + xOffset, screenHalfSizeWorldUnits.y + yOffset);
 
         Destroy(gameObject, particleTime);

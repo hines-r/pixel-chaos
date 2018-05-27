@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHostile: 0
-  particles: {fileID: 0}
+  particles: {fileID: 198936535486405690}
   hasStun: 0
   stunDuration: 0
 --- !u!198 &198222104459646124

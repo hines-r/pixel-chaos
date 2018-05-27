@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4485355716599030}
   - component: {fileID: 212349762972470748}
   - component: {fileID: 114122645629288302}
+  - component: {fileID: 61872144640783384}
   m_Layer: 8
   m_Name: StandardArcherExplosive
   m_TagString: Untagged
@@ -35,12 +36,37 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1789827022992872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.06, y: -1.41, z: 0}
+  m_LocalPosition: {x: -6.798032, y: -1.5167425, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61872144640783384
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1789827022992872}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.21, y: 0.44}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!114 &114122645629288302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,10 +78,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 0}
+  attackPrefab: {fileID: 1604102420209028, guid: db1e8bf4e0ff46e46b4864b3e35cd26c,
+    type: 2}
   level: 1
-  damage: 35
+  damage: 75
   attackSpeed: 0.25
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  hasAbility: 0
+  passiveAttacking: 1
   unitName: Explosive Archer
   baseCost: 20
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}

@@ -9,6 +9,8 @@ public class Caster : MonoBehaviour
     public GameObject castBar;
     public Image castProgress;
 
+    internal bool isUnitReady;
+
     void Update()
     {
         if (ProceduralSpawner.CurrentState == ProceduralSpawner.State.Spawning)

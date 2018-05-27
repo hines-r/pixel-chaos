@@ -13900,7 +13900,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1414789138
@@ -13986,6 +13986,9 @@ MonoBehaviour:
   - enemy: {fileID: 1352309320274128, guid: 88925543fed95574cb9a6da058ea32a9, type: 2}
     waveStart: 15
     weight: 10
+  - enemy: {fileID: 1745366907785300, guid: d9b35b8aae794954a8947979becfc5ac, type: 2}
+    waveStart: 20
+    weight: 20
   yMinSpawnPos: -5
   yMaxSpawnPos: 0
   xSpawnPos: 10
@@ -21053,21 +21056,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4991869417110558, guid: 8229916203bb32a43841f5a9ce8e1df7, type: 2}
       propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
-        type: 2}
-      propertyPath: unitUI
-      value: 
-      objectReference: {fileID: 1159458241}
-    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
-        type: 2}
-      propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
