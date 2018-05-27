@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Animator))]
 public class Node : MonoBehaviour, IPointerClickHandler
 {
     public Color selectedColor;
@@ -13,6 +14,7 @@ public class Node : MonoBehaviour, IPointerClickHandler
     internal Unit unit;
 
     private SpriteRenderer rend;
+    private Animator anim;
 
     private BuildManager buildManager;
     private UnitManager unitManager;
@@ -21,6 +23,8 @@ public class Node : MonoBehaviour, IPointerClickHandler
     {
         rend = GetComponent<SpriteRenderer>();
         startColor = rend.color;
+
+        anim = GetComponent<Animator>();
 
         buildManager = BuildManager.instance;
         unitManager = UnitManager.instance;
@@ -62,6 +66,11 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
         unit.currentNode = this;
         unitManager.UnlockUnit(unit);
+    }
+
+    public void ToggleSeleted()
+    {
+        anim.SetBool("isSelected", !anim.GetBool("isSelected"));
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -33,10 +33,11 @@ public class BuildManager : MonoBehaviour
 
         if (selectedNode != null)
         {
-            selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.startColor;
+            selectedNode.ToggleSeleted();
         }
 
         selectedNode = node;
+        selectedNode.ToggleSeleted();
         selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.selectedColor;
         unitToPlace = null;
         nodeUI.SetTarget(node);
@@ -46,7 +47,7 @@ public class BuildManager : MonoBehaviour
     {
         if (selectedNode != null)
         {
-            selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.startColor;
+            selectedNode.ToggleSeleted();
             selectedNode = null;
         }
 

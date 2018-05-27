@@ -21063,6 +21063,26 @@ Prefab:
       propertyPath: nodeUI
       value: 
       objectReference: {fileID: 515690561}
+    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212799885758018750, guid: 8229916203bb32a43841f5a9ce8e1df7,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 0.39215687
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8229916203bb32a43841f5a9ce8e1df7, type: 2}
   m_IsPrefabParent: 0
