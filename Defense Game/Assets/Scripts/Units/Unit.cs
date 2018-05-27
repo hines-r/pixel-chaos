@@ -185,4 +185,9 @@ public class Unit : TargetingEntity, IUpgradeable
     {
         return nextAttackTime;
     }
+
+    public GameObject GetTarget()
+    {
+        return target;
+    }
 }

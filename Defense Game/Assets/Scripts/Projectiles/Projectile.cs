@@ -61,7 +61,29 @@ public class Projectile : Attack
 
             if (enemy != null)
             {
-                enemy.TakeDamage(Damage);
+                if (slowAmount > 0)
+                {
+                    enemy.Slow(slowAmount, slowDuration);
+                }
+
+                if (hasStun)
+                {
+                    enemy.Stun(stunDuration);
+                }
+
+                if (hasDot)
+                {
+                    if (isStinging)
+                    {
+                        enemy.TakeDamage(Damage / 2);
+                    }
+
+                    enemy.ApplyDoT(Damage, damageDuration);
+                }
+                else
+                {
+                    enemy.TakeDamage(Damage);
+                }
             }
         }
 

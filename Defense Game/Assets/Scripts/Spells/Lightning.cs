@@ -10,7 +10,6 @@ public class Lightning : Attack
     public bool hasStun;
     public float stunDuration;
 
-    
     private float particleTime = 5f;
 
     void Start()

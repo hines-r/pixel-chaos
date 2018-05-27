@@ -7,7 +7,6 @@ public class LinearProjectile : Projectile
     [Header("Chain")]
     public bool isChaining;
     public float chainingRadius; // Distance in a circle the projectile can chain to
-    private bool trigger;
 
     [Header("Properties")]
     public float speed = 25f;
