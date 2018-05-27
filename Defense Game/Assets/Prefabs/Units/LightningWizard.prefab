@@ -39,7 +39,8 @@ GameObject:
   - component: {fileID: 4154192935205568}
   - component: {fileID: 212444170745706214}
   - component: {fileID: 61777796235473080}
-  - component: {fileID: 114287943801785082}
+  - component: {fileID: 114307714501802682}
+  - component: {fileID: 114966783875815272}
   m_Layer: 8
   m_Name: LightningWizard
   m_TagString: Untagged
@@ -120,7 +121,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
---- !u!114 &114287943801785082
+--- !u!114 &114307714501802682
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -128,7 +129,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1470906498378156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef66b81445e08734c9adf1cab6a425b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 1143513546038460, guid: ae6d9d8993fb90a4fb32a2d34efb7ace,
@@ -136,6 +137,8 @@ MonoBehaviour:
   level: 1
   damage: 100
   attackSpeed: 3
+  hasAbility: 1
+  isPassiveCaster: 0
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0
@@ -148,10 +151,10 @@ MonoBehaviour:
   upgradeBaseCost: 100
   damageIncrement: 1
   unitAI: 0
-  castBar: {fileID: 1338363361085768}
-  castProgress: {fileID: 114755267674765746}
-  firstChoice: {fileID: 0}
-  secondChoice: {fileID: 0}
+  firstChoice: {fileID: 114556291915673462, guid: 9f7bff785e3e57f45a0e2507d84559c7,
+    type: 2}
+  secondChoice: {fileID: 114723756017892456, guid: e985d7563ad4e314383b372621e7cc23,
+    type: 2}
   levelToAwaken: 25
 --- !u!114 &114755267674765746
 MonoBehaviour:
@@ -244,6 +247,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114966783875815272
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1470906498378156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a01da3e1b0874594f30b80c6f6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castArea: {fileID: 1338363361085768}
+  castProgress: {fileID: 114755267674765746}
 --- !u!212 &212444170745706214
 SpriteRenderer:
   m_ObjectHideFlags: 1

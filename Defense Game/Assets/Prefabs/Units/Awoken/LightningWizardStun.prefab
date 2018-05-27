@@ -21,7 +21,8 @@ GameObject:
   - component: {fileID: 4425377128131512}
   - component: {fileID: 212897112922900128}
   - component: {fileID: 61950425886019196}
-  - component: {fileID: 114770632822563398}
+  - component: {fileID: 114723756017892456}
+  - component: {fileID: 114007675766351796}
   m_Layer: 8
   m_Name: LightningWizardStun
   m_TagString: Untagged
@@ -120,6 +121,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &114007675766351796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188763677345758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a01da3e1b0874594f30b80c6f6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castArea: {fileID: 1907480275142478}
+  castProgress: {fileID: 114819628700147854}
 --- !u!114 &114264638493465304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,7 +161,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114770632822563398
+--- !u!114 &114723756017892456
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -155,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1188763677345758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ba8d61ebda1ed48975b856cb4d5446, type: 3}
+  m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 1896709312740728, guid: 6b835e6ad3168194b91bae379382d711,
@@ -163,20 +177,20 @@ MonoBehaviour:
   level: 1
   damage: 25
   attackSpeed: 5
+  hasAbility: 1
+  isPassiveCaster: 0
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0
   unitName: Stun Man
-  baseCost: 1000
+  baseCost: 25
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
   description: Does less damage but lightning storms now stun enemies.
   multiplier: 1.08
   upgradeBaseCost: 1000
   damageIncrement: 1
   unitAI: 0
-  castBar: {fileID: 1907480275142478}
-  castProgress: {fileID: 114819628700147854}
-  originalUnit: {fileID: 114287943801785082, guid: 0f6c2b1727e117c46ba0a8c1c3a62b50,
+  originalUnit: {fileID: 114307714501802682, guid: 0f6c2b1727e117c46ba0a8c1c3a62b50,
     type: 2}
 --- !u!114 &114797237420474472
 MonoBehaviour:

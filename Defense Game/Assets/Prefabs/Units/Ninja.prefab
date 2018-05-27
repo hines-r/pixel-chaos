@@ -57,6 +57,8 @@ MonoBehaviour:
   level: 1
   damage: 40
   attackSpeed: 1
+  hasAbility: 0
+  isPassiveCaster: 0
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0
@@ -69,7 +71,8 @@ MonoBehaviour:
   upgradeBaseCost: 100
   damageIncrement: 1
   unitAI: 0
-  firstChoice: {fileID: 0}
+  firstChoice: {fileID: 114585891277954422, guid: 50a1cb1c47098a743b37d124f828a25c,
+    type: 2}
   secondChoice: {fileID: 0}
   levelToAwaken: 25
 --- !u!212 &212297796681069836

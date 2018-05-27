@@ -57,6 +57,8 @@ MonoBehaviour:
   level: 1
   damage: 35
   attackSpeed: 0.5
+  hasAbility: 0
+  isPassiveCaster: 0
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0
@@ -67,10 +69,12 @@ MonoBehaviour:
     devastation on the battlefield with a flurry of arrows.
   multiplier: 1.08
   upgradeBaseCost: 100
-  damageIncrement: 25
+  damageIncrement: 1
   unitAI: 0
-  firstChoice: {fileID: 0}
-  secondChoice: {fileID: 0}
+  firstChoice: {fileID: 114122645629288302, guid: 4f86cc6c5a9b3cb49baf45c164fecfe9,
+    type: 2}
+  secondChoice: {fileID: 114142070583743010, guid: b61766dfe999ac14c9b169c73f85e911,
+    type: 2}
   levelToAwaken: 25
 --- !u!212 &212635637867990940
 SpriteRenderer:

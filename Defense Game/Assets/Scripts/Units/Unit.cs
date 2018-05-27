@@ -10,11 +10,15 @@ public class Unit : TargetingEntity, IUpgradeable
     public float damage;
     public float attackSpeed;
 
+    [Header("Unit Ability")]
+    public bool hasAbility;
+    public bool isPassiveCaster;
+
     [Header("Burst Type")]
     public bool hasBurstAttack;
     public int burstCount;
     public float timeBetweenBursts;
-    protected float nextAttackTime;
+    private float nextAttackTime;
 
     [Header("Unit Info")]
     public string unitName;
@@ -64,7 +68,10 @@ public class Unit : TargetingEntity, IUpgradeable
 
         if (nextAttackTime > attackSpeed)
         {
-            ResetAttackTime();
+            if (hasAbility && !isPassiveCaster)
+            {
+                return;
+            }
 
             if (hasBurstAttack)
             {
@@ -74,12 +81,14 @@ public class Unit : TargetingEntity, IUpgradeable
             {
                 Attack();
             }
+
+            ResetAttackTime();
         }
 
         nextAttackTime += Time.deltaTime;
     }
 
-    protected void ResetAttackTime()
+    public void ResetAttackTime()
     {
         nextAttackTime = 0;
     }
@@ -140,7 +149,7 @@ public class Unit : TargetingEntity, IUpgradeable
         return null;
     }
 
-    protected void Attack()
+    public void Attack()
     {
         if (IsTargetAvailable())
         {
@@ -156,7 +165,7 @@ public class Unit : TargetingEntity, IUpgradeable
         }
     }
 
-    protected IEnumerator BurstAttack()
+    public IEnumerator BurstAttack()
     {
         for(int i = 0; i < burstCount; i++)
         {
@@ -179,5 +188,10 @@ public class Unit : TargetingEntity, IUpgradeable
     {
         // Disables or enables unit based on current state
         gameObject.SetActive(!gameObject.activeSelf);
+    }
+
+    public float GetNextAttackTime()
+    {
+        return nextAttackTime;
     }
 }

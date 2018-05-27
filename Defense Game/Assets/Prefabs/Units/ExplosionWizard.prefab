@@ -73,7 +73,8 @@ GameObject:
   - component: {fileID: 4179905784293100}
   - component: {fileID: 212255544977457566}
   - component: {fileID: 61299020343335836}
-  - component: {fileID: 114645465182900740}
+  - component: {fileID: 114735539703478828}
+  - component: {fileID: 114756740127079312}
   m_Layer: 8
   m_Name: ExplosionWizard
   m_TagString: Untagged
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114645465182900740
+--- !u!114 &114735539703478828
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -171,7 +172,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999079065853394}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef66b81445e08734c9adf1cab6a425b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 1278352684841026, guid: d27e57b246d9f4c4c82ccbc12e2e0013,
@@ -179,6 +180,8 @@ MonoBehaviour:
   level: 1
   damage: 175
   attackSpeed: 10
+  hasAbility: 1
+  isPassiveCaster: 0
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0
@@ -191,11 +194,22 @@ MonoBehaviour:
   upgradeBaseCost: 100
   damageIncrement: 1
   unitAI: 0
-  castBar: {fileID: 1529580676785846}
-  castProgress: {fileID: 114763094946158580}
   firstChoice: {fileID: 0}
   secondChoice: {fileID: 0}
-  levelToAwaken: 25
+  levelToAwaken: 50
+--- !u!114 &114756740127079312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1999079065853394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a01da3e1b0874594f30b80c6f6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castArea: {fileID: 1529580676785846}
+  castProgress: {fileID: 114763094946158580}
 --- !u!114 &114763094946158580
 MonoBehaviour:
   m_ObjectHideFlags: 1

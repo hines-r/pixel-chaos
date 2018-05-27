@@ -56,7 +56,9 @@ MonoBehaviour:
     type: 2}
   level: 1
   damage: 75
-  attackSpeed: 0.25
+  attackSpeed: 0.35
+  hasAbility: 0
+  isPassiveCaster: 0
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0

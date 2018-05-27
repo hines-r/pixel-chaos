@@ -16,7 +16,6 @@ public class Enemy : LivingEntity
     private float nextAttackTime;
 
     // Debuffs
-    private bool isSlowed;
     private float slowDuration;
 
     private bool isStunned;
@@ -83,7 +82,6 @@ public class Enemy : LivingEntity
         }
         else
         {
-            isSlowed = false;
             slowDebuff.SetActive(false);
             speed = startSpeed;
         }
@@ -167,7 +165,6 @@ public class Enemy : LivingEntity
 
     public void Slow(float percentage, float _slowDuration)
     {
-        isSlowed = true;
         speed = startSpeed * (1f - percentage);
         slowDuration = _slowDuration;
     }

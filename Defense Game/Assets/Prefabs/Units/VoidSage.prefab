@@ -55,7 +55,8 @@ GameObject:
   - component: {fileID: 4132286658456740}
   - component: {fileID: 212264493238021262}
   - component: {fileID: 61473224847102706}
-  - component: {fileID: 114141168138489288}
+  - component: {fileID: 114557802953551024}
+  - component: {fileID: 114883482702087454}
   m_Layer: 8
   m_Name: VoidSage
   m_TagString: Untagged
@@ -136,39 +137,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &114141168138489288
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1669037434909180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef66b81445e08734c9adf1cab6a425b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1286406467829774, guid: 01d0c06cb22e6c048a364e34111de6d3,
-    type: 2}
-  level: 1
-  damage: 10
-  attackSpeed: 6
-  hasBurstAttack: 0
-  burstCount: 0
-  timeBetweenBursts: 0
-  unitName: Void Sage
-  baseCost: 5000
-  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  description: The Void Sage conjures dimensional rifts capable of pulling enemies
-    towards the center.
-  multiplier: 1.08
-  upgradeBaseCost: 100
-  damageIncrement: 1
-  unitAI: 0
-  castBar: {fileID: 1787263387155996}
-  castProgress: {fileID: 114576299199821326}
-  firstChoice: {fileID: 0}
-  secondChoice: {fileID: 0}
-  levelToAwaken: 25
 --- !u!114 &114222362299639712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -190,6 +158,39 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114557802953551024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669037434909180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 1286406467829774, guid: 01d0c06cb22e6c048a364e34111de6d3,
+    type: 2}
+  level: 1
+  damage: 10
+  attackSpeed: 6
+  hasAbility: 1
+  isPassiveCaster: 0
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  unitName: Void Sage
+  baseCost: 5000
+  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
+  description: The Void Sage conjures dimensional rifts capable of pulling enemies
+    towards the center.
+  multiplier: 1.08
+  upgradeBaseCost: 100
+  damageIncrement: 1
+  unitAI: 0
+  firstChoice: {fileID: 0}
+  secondChoice: {fileID: 0}
+  levelToAwaken: 50
 --- !u!114 &114576299199821326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -244,6 +245,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114883482702087454
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1669037434909180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a01da3e1b0874594f30b80c6f6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castArea: {fileID: 1787263387155996}
+  castProgress: {fileID: 114576299199821326}
 --- !u!212 &212264493238021262
 SpriteRenderer:
   m_ObjectHideFlags: 1
