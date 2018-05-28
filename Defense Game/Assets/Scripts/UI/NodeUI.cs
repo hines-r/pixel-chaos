@@ -14,16 +14,16 @@ public class NodeUI : MonoBehaviour
     public AIPanel aiPanelExtended;
 
     [Header("Available Units")]
-    public Unit rockThrower;
-    public Unit spearThrower;
-    public Unit standardArcher;
-    public Unit rocketMan;
-    public Unit ninja;
-    public Unit lightningWizard;
-    public Unit explosionWizard;
-    public Unit iceWizard;
-    public Unit dartBlower;
-    public Unit voidSage;
+    public UnitButton rockThrower;
+    public UnitButton spearThrower;
+    public UnitButton standardArcher;
+    public UnitButton ninja;
+    public UnitButton rocketMan;
+    public UnitButton lightningWizard;
+    public UnitButton iceWizard;
+    public UnitButton dartBlower;
+    public UnitButton explosionWizard;
+    public UnitButton voidSage;
 
     [Space]
 
@@ -42,6 +42,7 @@ public class NodeUI : MonoBehaviour
     public GameObject awakenBtn;
 
     public GameObject notEnoughGoldDialog;
+    public GameObject notEnoughGemsDialog;
 
     internal Unit selectedUnit;
     private Unit currentlyPlacedUnit;
@@ -84,7 +85,7 @@ public class NodeUI : MonoBehaviour
                 }
                 else
                 {
-                    StartCoroutine(DisplayNotEnoughGoldDialog());
+                    StartCoroutine(DisplayDialog(notEnoughGoldDialog));
                 }
             }
         }
@@ -113,7 +114,7 @@ public class NodeUI : MonoBehaviour
         {
             // Compares the selected unit with units within the unlocked units array for a match
             // If a match is found, sets the values within the unit panel equal to the unlocked unit instead
-            // This allows the panel to display the units upgrades and AI properly
+            // This allows the panel to display the units upgrades and AI properly          
             Unit unlockedUnit = unitManager.FindUnlockedUnit(selectedUnit);
 
             if (unlockedUnit != null)
@@ -128,7 +129,16 @@ public class NodeUI : MonoBehaviour
                 purchaseBtn.SetActive(false);
                 equipUpgradeBtnGroup.SetActive(true);
 
-                awakenBtn.SetActive(true);
+                AwokenUnit awoken = unlockedUnit.GetComponent<AwokenUnit>();
+                
+                if (awoken != null)
+                {
+                    awakenBtn.SetActive(false);
+                }
+                else
+                {
+                    awakenBtn.SetActive(true);
+                }
 
                 unitPanelUI.SetActive(true);
                 UpdatePanelButton();
@@ -139,8 +149,18 @@ public class NodeUI : MonoBehaviour
                 UpdateUnitPanelComponents(selectedUnit);
                 UpdateAIPanel();
 
-                // Displays the purchase button instead of the equip and upgrade buttons
-                purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
+                AwokenUnit awokenUnit = selectedUnit.GetComponent<AwokenUnit>();
+
+                if (awokenUnit != null)
+                {
+                    purchaseBtnTxt.text = "Purchase\n" + awokenUnit.baseCost + " Gems";
+                }
+                else
+                {
+                    purchaseBtnTxt.text = "Purchase\n" + selectedUnit.baseCost + "g";
+                }
+
+                // Displays the purchase button instead of the equip and upgrade buttons             
                 purchaseBtn.SetActive(true);
                 equipUpgradeBtnGroup.SetActive(false);
 
@@ -230,12 +250,12 @@ public class NodeUI : MonoBehaviour
         anim.SetBool("Slide", true);
     }
 
-    public void RemoveUnit()
+    public void RemoveUnit(Unit unitToRemove)
     {
-        if (target.unit != null)
+        if (unitToRemove != null)
         {
-            target.unit.gameObject.SetActive(false);
-            target.unit = null;
+            unitToRemove.gameObject.SetActive(false);
+            unitToRemove = null;
             equipBtnTxt.text = "Equip";
         }
         else
@@ -245,62 +265,62 @@ public class NodeUI : MonoBehaviour
     }
 
     public void SelectRockThrower()
-    {
-        buildManager.SelectUnitToPlace(rockThrower);
+    {  
+        buildManager.SelectUnitToPlace(rockThrower.unit);
         UpdateUnitPanel();
     }
 
     public void SelectSpearThrower()
     {
-        buildManager.SelectUnitToPlace(spearThrower);
+        buildManager.SelectUnitToPlace(spearThrower.unit);
         UpdateUnitPanel();
     }
 
     public void SelectStandardArcher()
     {
-        buildManager.SelectUnitToPlace(standardArcher);
+        buildManager.SelectUnitToPlace(standardArcher.unit);
         UpdateUnitPanel();
     }
 
     public void SelectRocketMan()
     {
-        buildManager.SelectUnitToPlace(rocketMan);
+        buildManager.SelectUnitToPlace(rocketMan.unit);
         UpdateUnitPanel();
     }
 
     public void SelectNinja()
     {
-        buildManager.SelectUnitToPlace(ninja);
+        buildManager.SelectUnitToPlace(ninja.unit);
         UpdateUnitPanel();
     }
 
     public void SelectLightningWizard()
     {
-        buildManager.SelectUnitToPlace(lightningWizard);
+        buildManager.SelectUnitToPlace(lightningWizard.unit);
         UpdateUnitPanel();
     }
 
     public void SelectExplosionWizard()
     {
-        buildManager.SelectUnitToPlace(explosionWizard);
+        buildManager.SelectUnitToPlace(explosionWizard.unit);
         UpdateUnitPanel();
     }
 
     public void SelectIceWizard()
     {
-        buildManager.SelectUnitToPlace(iceWizard);
+        buildManager.SelectUnitToPlace(iceWizard.unit);
         UpdateUnitPanel();
     }
 
     public void SelectDartBlower()
     {
-        buildManager.SelectUnitToPlace(dartBlower);
+        buildManager.SelectUnitToPlace(dartBlower.unit);
         UpdateUnitPanel();
     }
 
     public void SelectVoidSage()
     {
-        buildManager.SelectUnitToPlace(voidSage);
+        buildManager.SelectUnitToPlace(voidSage.unit);
         UpdateUnitPanel();
     }
 
@@ -312,7 +332,7 @@ public class NodeUI : MonoBehaviour
 
             if (selectedUnit.unitName == currentlyPlacedUnit.unitName)
             {
-                RemoveUnit();
+                RemoveUnit(target.unit);
                 return;
             }
             else
@@ -329,53 +349,102 @@ public class NodeUI : MonoBehaviour
     public void PurchaseUnit()
     {
         Unit unitToPurchase = buildManager.GetUnitToPlace();
+        AwokenUnit awokenUnit = unitToPurchase.GetComponent<AwokenUnit>();
 
-        // First checks if the player has enough gold and if so, subtracts it from player gold count
+        // First checks if the unit to purchase is an awoken unit to utilize gems
+        if (awokenUnit != null)
+        {
+            if (PlayerStats.Gems >= awokenUnit.baseCost)
+            {
+                PlayerStats.Gems -= awokenUnit.baseCost;
+
+                UnitButton button = FindUnitButton(awokenUnit.originalUnit);
+
+                if (button != null)
+                {
+                    button.UpdateButton(awokenUnit);
+
+                    Unit standardVersion = unitManager.FindUnlockedUnit(awokenUnit.originalUnit);
+
+                    if (standardVersion != null)
+                    {
+                        // Removes standard unit from any current node if purchasing
+                        // the awoken version from a different selected node
+                        standardVersion.currentNode.unit = null;
+                        Destroy(standardVersion.gameObject);
+                    }
+
+                    PlaceRemoveButton();
+                    return;
+                }
+
+                foreach(AwokenUnit sibling in unitManager.FindUnlockedSiblings(awokenUnit))
+                {
+                    UnitButton awokenUnitButton = FindUnitButton(sibling);
+
+                    if (awokenUnitButton != null)
+                    {
+                        awokenUnitButton.UpdateButton(awokenUnit);
+                        sibling.currentNode.unit = null;
+                        sibling.gameObject.SetActive(false);
+                    }
+                }
+            }
+        }
+
+        // If not awoken, the unit is standard and requires gold
         if (PlayerStats.Gold >= unitToPurchase.baseCost)
         {
             PlayerStats.Gold -= unitToPurchase.baseCost;
 
-            // Checks each unit button and unlocks it according to the unit purchased
-            foreach (UnitButton button in buttons)
+            UnitButton button = FindUnitButton(unitToPurchase);
+
+            if (button != null)
             {
-                if (!button.isUnlocked)
-                {
-                    if (button.unit.unitName == unitToPurchase.unitName)
-                    {
-                        button.UnlockButton();
-                        break;
-                    }
-                }
+                button.UnlockButton();
             }
 
             PlaceRemoveButton();
         }
         else
         {
-            StartCoroutine(DisplayNotEnoughGoldDialog());
+            StartCoroutine(DisplayDialog(notEnoughGoldDialog));
         }
     }
 
-    // Displays the not enough gold dialog by first disabling it and then
+    UnitButton FindUnitButton(Unit unitToSearch)
+    {
+        foreach (UnitButton button in buttons)
+        {
+            if (button.unit.unitName == unitToSearch.unitName)
+            {
+                return button;
+            }
+        }
+
+        return null;
+    }
+
+    // Displays a dialog by first disabling it and then
     // setting it active again so the animation resets
-    IEnumerator DisplayNotEnoughGoldDialog()
+    IEnumerator DisplayDialog(GameObject dialog)
     {
         float timeToWait = 5f;
 
-        notEnoughGoldDialog.SetActive(false);
-        notEnoughGoldDialog.SetActive(true);
+        dialog.SetActive(false);
+        dialog.SetActive(true);
 
         yield return new WaitForSeconds(timeToWait);
 
         // After waiting a bit, check the alpha of the not enough gold dialog
         // If it is 0 (not visible), set it as unactive
-        CanvasGroup canvasGroup = notEnoughGoldDialog.GetComponent<CanvasGroup>();
+        CanvasGroup canvasGroup = dialog.GetComponent<CanvasGroup>();
 
         if (canvasGroup != null)
         {
             if (canvasGroup.alpha <= 0)
             {
-                notEnoughGoldDialog.SetActive(false);
+                dialog.SetActive(false);
             }
         }
     }

@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(BoxCollider2D), typeof(Animator))]
 public class Node : MonoBehaviour, IPointerClickHandler
 {
-    public Color selectedColor;
-    public Color startColor;
-
-    public GameObject nodeUI;
+    public NodeUI ui;
 
     internal Unit unit;
 
-    private SpriteRenderer rend;
+    private BoxCollider2D bc2d;
     private Animator anim;
 
     private BuildManager buildManager;
@@ -21,43 +18,49 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        rend = GetComponent<SpriteRenderer>();
-        startColor = rend.color;
-
+        bc2d = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
 
         buildManager = BuildManager.instance;
         unitManager = UnitManager.instance;
     }
 
+    void Update()
+    {
+        if (ProceduralSpawner.CurrentState != ProceduralSpawner.State.Waiting)
+        {
+            bc2d.enabled = false;
+            if (ui.unitSelectionUI.activeSelf || ui.unitPanelUI.activeSelf)
+            {
+                ui.HideSelectionPanel();
+                ui.HideUnitPanel();
+            }
+        }
+        else
+        {
+            bc2d.enabled = true;
+        }
+    }
+
     public void PlaceUnit(Unit unitToPlace)
     {
-        // Compares the names of the blueprint unit with any names within the unlocked units array
-        // If there are any matches, place the unit within the unlocked unit array instead of
-        // instantiating a new unit
-        foreach (Unit unlockedUnit in unitManager.unlockedUnits)
+        Unit unlockedUnit = unitManager.FindUnlockedUnit(unitToPlace);
+
+        if(unlockedUnit != null)
         {
-            if (unlockedUnit != null)
+            unlockedUnit.gameObject.SetActive(true);
+            unlockedUnit.transform.position = transform.position;
+            unlockedUnit.currentNode.unit = null;
+            unlockedUnit.currentNode = this;
+
+            if (unit != null)
             {
-                if (unitToPlace != null)
-                {
-                    if (unitToPlace.unitName == unlockedUnit.unitName)
-                    {
-                        unlockedUnit.gameObject.SetActive(true);
-                        unlockedUnit.transform.position = transform.position;
-                        unlockedUnit.currentNode.unit = null;
-                        unlockedUnit.currentNode = this;
-
-                        if (unit != null)
-                        {
-                            unit.gameObject.SetActive(false);
-                        }
-
-                        unit = unlockedUnit;
-                        return;
-                    }
-                }
+                unit.gameObject.SetActive(false);
             }
+
+            unit = unlockedUnit;
+
+            return;
         }
 
         Unit _unit = Instantiate(unitToPlace, transform.position, Quaternion.identity);
@@ -75,10 +78,7 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        NodeUI ui = nodeUI.GetComponent<NodeUI>();
-
         ui.ShowSelectionPanel();
-
         buildManager.SelectNode(this);
     }
 }

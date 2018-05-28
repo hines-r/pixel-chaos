@@ -11,8 +11,7 @@ public class AwakenPanel : MonoBehaviour
     public Text unitName;
     public Text levelReqTxt;
 
-    public PathButton firstPath;
-    public PathButton secondPath;
+    public PathButton[] pathButtons;
 
     private StandardUnit standardSelection;
     private AwokenUnit awokenSelection;
@@ -28,37 +27,48 @@ public class AwakenPanel : MonoBehaviour
     {
         standardSelection = nodeUI.selectedStoredUnit.GetComponent<StandardUnit>();
 
-        if (standardSelection != null)
+        if (standardSelection == null)
         {
-            unitName.text = standardSelection.unitName;
-            levelReqTxt.text = "Level " + standardSelection.levelToAwaken;
-
-            if (standardSelection.firstChoice != null)
-            {
-                firstPath.nameText.text = standardSelection.firstChoice.unitName;
-                firstPath.awokenSprite.sprite = standardSelection.firstChoice.unitSprite;
-            }
-            else
-            {
-                firstPath.nameText.text = "Coming Soon!";
-                firstPath.awokenSprite.sprite = standardSelection.unitSprite;
-            }
-
-            if (standardSelection.secondChoice != null)
-            {
-                secondPath.nameText.text = standardSelection.secondChoice.unitName;
-                secondPath.awokenSprite.sprite = standardSelection.secondChoice.unitSprite;
-            }
-            else
-            {
-                secondPath.nameText.text = "Coming Soon!";
-                secondPath.awokenSprite.sprite = standardSelection.unitSprite;
-            }
-            
-            return;
+            standardSelection = nodeUI.selectedStoredUnit.GetComponent<AwokenUnit>().originalUnit;
         }
 
-        Debug.Log("Standard unit type is null");
+        for (int i = 0; i < pathButtons.Length; i++)
+        {
+            int index = i; // Needed so the listener doesn't receive the last element in the loop
+            pathButtons[i].button.onClick.AddListener(() => OnButtonClick(index));
+
+            if (standardSelection.awokenUnits.Length > 0)
+            {
+                if (standardSelection.awokenUnits[i] != null)
+                {
+                    pathButtons[i].Unit = standardSelection.awokenUnits[i];
+                    pathButtons[i].nameText.text = standardSelection.awokenUnits[i].unitName;
+                    pathButtons[i].awokenSprite.sprite = standardSelection.awokenUnits[i].unitSprite;
+                }
+                else
+                {
+                    pathButtons[i].Unit = null;
+                    pathButtons[i].nameText.text = "Coming Soon!";
+                    pathButtons[i].awokenSprite.sprite = standardSelection.unitSprite;
+                }
+            }
+        }
+    }
+
+    public void OnButtonClick(int index)
+    {
+        awokenSelection = pathButtons[index].Unit;
+
+        if (awokenSelection != null)
+        {
+            buildManager.SelectUnitToPlace(awokenSelection);
+            nodeUI.UpdateUnitPanel();
+            HideAwakenPanel();
+        }
+        else
+        {
+            StartCoroutine(DisplayDialog());
+        }
     }
 
     public void ShowAwakenPanel()
@@ -72,44 +82,6 @@ public class AwakenPanel : MonoBehaviour
     {
         unitPanel.SetActive(true);
         gameObject.SetActive(false);
-    }
-
-    public void SelectOptionOne()
-    {
-        if (standardSelection != null)
-        {
-            awokenSelection = standardSelection.firstChoice;
-
-            if (awokenSelection != null)
-            {
-                buildManager.SelectUnitToPlace(awokenSelection);
-                nodeUI.UpdateUnitPanel();
-                HideAwakenPanel();
-            }
-            else
-            {
-                StartCoroutine(DisplayDialog());
-            }
-        }
-    }
-
-    public void SelectOptionTwo()
-    {
-        if (standardSelection != null)
-        {
-            awokenSelection = standardSelection.secondChoice;
-
-            if (awokenSelection != null)
-            {
-                buildManager.SelectUnitToPlace(awokenSelection);
-                nodeUI.UpdateUnitPanel();
-                HideAwakenPanel();
-            }
-            else
-            {
-                StartCoroutine(DisplayDialog());
-            }
-        }
     }
 
     IEnumerator DisplayDialog()
@@ -135,7 +107,10 @@ public class AwakenPanel : MonoBehaviour
     [System.Serializable]
     public struct PathButton
     {
+        public Button button;
         public Text nameText;
         public Image awokenSprite;
+
+        public AwokenUnit Unit { get; set; }
     }
 }

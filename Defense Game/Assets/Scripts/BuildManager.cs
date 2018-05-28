@@ -38,7 +38,6 @@ public class BuildManager : MonoBehaviour
 
         selectedNode = node;
         selectedNode.ToggleSeleted();
-        selectedNode.GetComponent<SpriteRenderer>().color = selectedNode.selectedColor;
         unitToPlace = null;
         nodeUI.SetTarget(node);
     }

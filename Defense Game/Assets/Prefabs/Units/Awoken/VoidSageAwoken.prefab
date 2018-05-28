@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4677503786829062}
   - component: {fileID: 212467660522118712}
   - component: {fileID: 61226100688573438}
+  - component: {fileID: 114030797066476988}
+  - component: {fileID: 114621006727714904}
   m_Layer: 8
   m_Name: VoidSageAwoken
   m_TagString: Untagged
@@ -119,6 +121,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &114030797066476988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054399101291970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 0}
+  level: 1
+  damage: 0
+  attackSpeed: 0
+  hasAbility: 0
+  isPassiveCaster: 0
+  hasBurstAttack: 0
+  burstCount: 0
+  timeBetweenBursts: 0
+  unitName: 
+  baseCost: 0
+  unitSprite: {fileID: 0}
+  description: 
+  multiplier: 1.08
+  upgradeBaseCost: 0
+  damageIncrement: 0
+  unitAI: 0
+  originalUnit: {fileID: 0}
 --- !u!114 &114169452962601944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,6 +241,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114621006727714904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054399101291970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 327a01da3e1b0874594f30b80c6f6c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castArea: {fileID: 0}
+  castProgress: {fileID: 0}
 --- !u!212 &212467660522118712
 SpriteRenderer:
   m_ObjectHideFlags: 1

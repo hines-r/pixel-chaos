@@ -188,8 +188,9 @@ MonoBehaviour:
   upgradeBaseCost: 100
   damageIncrement: 1
   unitAI: 0
-  firstChoice: {fileID: 0}
-  secondChoice: {fileID: 0}
+  awokenUnits:
+  - {fileID: 0}
+  - {fileID: 0}
   levelToAwaken: 50
 --- !u!114 &114576299199821326
 MonoBehaviour:

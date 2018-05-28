@@ -71,9 +71,9 @@ MonoBehaviour:
   upgradeBaseCost: 100
   damageIncrement: 1
   unitAI: 0
-  firstChoice: {fileID: 114585891277954422, guid: 50a1cb1c47098a743b37d124f828a25c,
-    type: 2}
-  secondChoice: {fileID: 0}
+  awokenUnits:
+  - {fileID: 114585891277954422, guid: 50a1cb1c47098a743b37d124f828a25c, type: 2}
+  - {fileID: 0}
   levelToAwaken: 25
 --- !u!212 &212297796681069836
 SpriteRenderer:

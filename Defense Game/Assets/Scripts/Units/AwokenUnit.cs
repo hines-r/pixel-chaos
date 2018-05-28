@@ -5,7 +5,7 @@ using UnityEngine;
 public class AwokenUnit : Unit, IAwoken
 {
     [Header("Standard Version of Unit")]
-    public Unit originalUnit;
+    public StandardUnit originalUnit;
 
     private UnitManager unitManager;
 

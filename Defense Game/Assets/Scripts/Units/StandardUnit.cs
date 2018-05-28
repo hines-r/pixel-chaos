@@ -5,10 +5,8 @@ using UnityEngine;
 public class StandardUnit : Unit
 {
     [Header("Awoken Unit Upgrades")]
-    public AwokenUnit firstChoice;
-    public AwokenUnit secondChoice;
+    public AwokenUnit[] awokenUnits;
     public int levelToAwaken;
-    internal bool isAwoken;
 
     protected override void Start()
     {
