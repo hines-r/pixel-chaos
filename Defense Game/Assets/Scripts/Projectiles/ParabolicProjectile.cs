@@ -8,6 +8,7 @@ public class ParabolicProjectile : Projectile
     [Header("Properties")]
     public float throwHeight = 5;
     public bool isCrushing; // The projectile will hit the ground further below its target
+    public bool isScatter; // Randomizes launch velocity
     private float yOffset = 1f;
 
     private Rigidbody2D rb;
@@ -27,7 +28,14 @@ public class ParabolicProjectile : Projectile
     {
         if (Target != null)
         {
-            rb.velocity = CalculateLaunchVelocity(Target);
+            if (isScatter)
+            {
+                rb.velocity = CalculateLaunchVelocity(Target) * Random.Range(0.95f, 1.05f);
+            }
+            else
+            {
+                rb.velocity = CalculateLaunchVelocity(Target);
+            }
         }
     }
 

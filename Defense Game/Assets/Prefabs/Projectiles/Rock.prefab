@@ -93,15 +93,18 @@ MonoBehaviour:
   penetrationCount: 1
   slowAmount: 0
   slowDuration: 0
+  hasStun: 0
+  stunDuration: 0
   hasDot: 0
+  isStinging: 0
+  isStacking: 0
   damageDuration: 0
   isExplosive: 0
   splashRadius: 0
   impactEffect: {fileID: 1268375018677118, guid: b5e2a5c31535bb344b98be1845be1f2c,
     type: 2}
   throwHeight: 2
-  splitObject: {fileID: 0}
-  isSplitting: 1
+  isCrushing: 0
 --- !u!212 &212735907244055780
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -138,7 +141,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: cee757492b70dff45a0072aa61f22c51, type: 3}
-  m_Color: {r: 0.53676474, g: 0.53676474, b: 0.53676474, a: 1}
+  m_Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
