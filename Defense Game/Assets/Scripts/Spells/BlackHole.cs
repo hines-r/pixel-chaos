@@ -9,6 +9,11 @@ public class BlackHole : Attack
     public float duration;
     public float damageTickTime; // How often to damage enemies within the radius
 
+    [Header("Special")]
+    public GameObject explosionEffect;
+    public bool isExplosive;
+    public bool isShrinking;
+
     private bool isBeingDestroyed;
 
     private PointEffector2D pe2d;
@@ -30,11 +35,14 @@ public class BlackHole : Attack
         Vector3 summonLocation = new Vector3(Target.transform.position.x + xOffset, Target.transform.position.y, 0);
         transform.position = summonLocation;
 
-        StartCoroutine(DamageEnemiesWithin());
+        if (!isExplosive)
+        {
+            StartCoroutine(DamageEnemiesWithin());
+        }
     }
 
     void Update()
-    {   
+    {
         if (isBeingDestroyed)
         {
             return;
@@ -42,7 +50,14 @@ public class BlackHole : Attack
 
         if (duration < 0)
         {
-            SelfDestruct();
+            if (isExplosive)
+            {
+                StartCoroutine(Explode());
+            }
+            else
+            {
+                SelfDestruct();
+            }
         }
 
         duration -= Time.deltaTime;
@@ -55,7 +70,6 @@ public class BlackHole : Attack
         pe2d.enabled = false; // Disables the black hole effect while it is being destroyed
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), c2d.radius);
-
         foreach (Collider2D nearbyObject in colliders)
         {
             Enemy enemy = nearbyObject.GetComponent<Enemy>();
@@ -67,6 +81,39 @@ public class BlackHole : Attack
         }
 
         StartCoroutine(PlayDeathAnimation());
+    }
+
+    IEnumerator Explode()
+    {
+        if (!isBeingDestroyed)
+        {
+            isBeingDestroyed = true;
+
+            float timeTillExplosion = 1.25f;
+            float timeTillDestroyed = 3f;
+
+            pe2d.forceMagnitude *= 2; // Increases the amount of force when exploding
+
+            anim.SetTrigger("Explode");
+
+            GameObject effect = Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            Destroy(effect, timeTillDestroyed);
+
+            yield return new WaitForSeconds(timeTillExplosion);
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), c2d.radius);
+            foreach (Collider2D nearbyObject in colliders)
+            {
+                Enemy enemy = nearbyObject.GetComponent<Enemy>();
+
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(Damage);
+                }
+            }
+
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator PlayDeathAnimation()
@@ -87,7 +134,6 @@ public class BlackHole : Attack
             yield return new WaitForSeconds(damageTickTime);
 
             Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), c2d.radius);
-
             foreach (Collider2D nearbyObject in colliders)
             {
                 Enemy enemy = nearbyObject.GetComponent<Enemy>();

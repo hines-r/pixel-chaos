@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1001047091136494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0898833, y: -2.693338, z: 0}
+  m_LocalPosition: {x: -1.35, y: -2.693338, z: 0}
   m_LocalScale: {x: 0.3225149, y: 0.3225149, z: 0.3225149}
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,12 +76,13 @@ MonoBehaviour:
   stunDuration: 0
   hasDot: 0
   isStinging: 0
+  isStacking: 0
   damageDuration: 0
   isExplosive: 0
   splashRadius: 0
   impactEffect: {fileID: 0}
   isChaining: 1
-  chainingRadius: 4
+  chainingRadius: 6.5
   speed: 15
 --- !u!212 &212676801324475726
 SpriteRenderer:

@@ -101,6 +101,10 @@ public class Enemy : LivingEntity
         {
             rb.velocity = Vector2.zero; // Sets velocity to 0 after exiting a black hole
         }
+        else if(rb.velocity.x > 0 || rb.velocity.y > 0)
+        {
+            isUnderForces  = true;
+        }
 
         if (Time.time > nextAttackTime && currentState == State.Attacking)
         {

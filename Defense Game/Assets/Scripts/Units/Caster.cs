@@ -40,11 +40,20 @@ public class Caster : MonoBehaviour, IPointerClickHandler
         if (unit.GetNextAttackTime() > unit.attackSpeed)
         {
             isAbilityReady = true;
-            unit.currentNode.EnableUnitReadyAnimation();
+
+            if (unit.currentNode != null)
+            {
+                unit.currentNode.EnableUnitReadyAnimation();
+            }
+
             return;
         }
 
-        unit.currentNode.DisableUnitReadyAnimation();
+        if (unit.currentNode != null)
+        {
+            unit.currentNode.DisableUnitReadyAnimation();
+        }
+
         castProgress.fillAmount = unit.GetNextAttackTime() / unit.attackSpeed;
     }
 
