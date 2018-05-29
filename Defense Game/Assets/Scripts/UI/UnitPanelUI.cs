@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Animator))]
 public class UnitPanelUI : MonoBehaviour
 {
     [Header("Panel Info")]
@@ -33,6 +34,8 @@ public class UnitPanelUI : MonoBehaviour
     private Unit selectedUnit;
     private Node selectedNode;
 
+    private Animator anim;
+
     private BuildManager buildManager;
     private UnitManager unitManager;
 
@@ -40,6 +43,7 @@ public class UnitPanelUI : MonoBehaviour
     {
         buildManager = BuildManager.instance;
         unitManager = UnitManager.instance;
+        anim = GetComponent<Animator>();
     }
 
     void OnEnable()
@@ -185,6 +189,13 @@ public class UnitPanelUI : MonoBehaviour
     public void ShowUnitPanel()
     {
         gameObject.SetActive(true);
+        anim.Play("UnitPanelEntry");
+    }
+
+    public void ShowUnitPanelReentry()
+    {
+        gameObject.SetActive(true);
+        anim.Play("UnitPanelRe-entry");
     }
 
     public void HideUnitPanel()

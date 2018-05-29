@@ -88,7 +88,7 @@ public class AwakenPanelUI : MonoBehaviour
 
     public void HideAwakenPanel()
     {
-        unitPanelUI.ShowUnitPanel();
+        unitPanelUI.ShowUnitPanelReentry();
         gameObject.SetActive(false);
     }
 
