@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,9 +7,10 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(BoxCollider2D), typeof(Animator))]
 public class Node : MonoBehaviour, IPointerClickHandler
 {
-    public NodeUI ui;
+    public UnitSelectionUI selectionUI;
 
-    internal Unit unit;
+    private Unit unit;
+    private bool isUnitOnNode;
 
     private BoxCollider2D bc2d;
     private Animator anim;
@@ -30,10 +32,9 @@ public class Node : MonoBehaviour, IPointerClickHandler
         if (ProceduralSpawner.CurrentState != ProceduralSpawner.State.Waiting)
         {
             bc2d.enabled = false;
-            if (ui.unitSelectionUI.activeSelf || ui.unitPanelUI.activeSelf)
+            if (selectionUI.gameObject.activeSelf || selectionUI.gameObject.activeSelf)
             {
-                ui.HideSelectionPanel();
-                ui.HideUnitPanel();
+                selectionUI.HideSelectionPanel();
             }
         }
         else
@@ -44,31 +45,66 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     public void PlaceUnit(Unit unitToPlace)
     {
-        Unit unlockedUnit = unitManager.FindUnlockedUnit(unitToPlace);
-
-        if(unlockedUnit != null)
+        if (unit != null)
         {
-            unlockedUnit.gameObject.SetActive(true);
-            unlockedUnit.transform.position = transform.position;
-            unlockedUnit.currentNode.unit = null;
-            unlockedUnit.currentNode = this;
+            RemoveUnit(unit);
+        }
 
-            if (unit != null)
+        if (unitManager.unlockedUnits.ContainsKey(unitToPlace.unitName))
+        {
+            unitToPlace.gameObject.SetActive(true);
+            unitToPlace.transform.position = transform.position;
+
+            if (unitToPlace.currentNode != null)
             {
-                unit.gameObject.SetActive(false);
+                unitToPlace.currentNode.unit = null;
+                unitToPlace.currentNode.isUnitOnNode = false;
             }
 
-            unit = unlockedUnit;
-
+            unitToPlace.currentNode = this;
+            unit = unitToPlace;
+            isUnitOnNode = true;
             return;
         }
 
-        Unit _unit = Instantiate(unitToPlace, transform.position, Quaternion.identity);
-        _unit.transform.parent = unitManager.transform;
-        unit = _unit;
+        if (unitManager.IsUnitAwoken(unitToPlace))
+        {
+            AwokenUnit awokenUnit = unitToPlace.gameObject.GetComponent<AwokenUnit>();
 
-        unit.currentNode = this;
-        unitManager.UnlockUnit(unit);
+            if (unitManager.unlockedUnits.ContainsKey(awokenUnit.originalUnit.unitName))
+            {
+                Unit unitToRemove = unitManager.unlockedUnits[awokenUnit.originalUnit.unitName];
+                RemoveUnit(unitToRemove);
+            }
+        }
+
+        Unit newUnit = Instantiate(unitToPlace, transform.position, Quaternion.identity);
+        newUnit.transform.parent = unitManager.transform;
+        newUnit.currentNode = this;
+
+        unitManager.UnlockUnit(newUnit);
+
+        unit = newUnit;
+        isUnitOnNode = true;
+    }
+
+    public void RemoveUnit(Unit unitToRemove)
+    {
+        unitToRemove.currentNode = null;
+        unitToRemove.gameObject.SetActive(false);
+
+        unit = null;
+        isUnitOnNode = false;
+    }
+
+    public bool IsUnitOnNode()
+    {
+        return isUnitOnNode;
+    }
+
+    public Unit GetUnitOnNode()
+    {
+        return unit;
     }
 
     public void ToggleSeleted()
@@ -78,7 +114,7 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        ui.ShowSelectionPanel();
+        selectionUI.ShowSelectionPanel();
         buildManager.SelectNode(this);
     }
 }

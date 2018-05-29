@@ -301,10 +301,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b990fd0601ba0648836e223055c2fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 114121999322424408, guid: 2301609b9bbbf5243b981d488a1e4149, type: 2}
+  unit: {fileID: 114115213842917766, guid: 2301609b9bbbf5243b981d488a1e4149, type: 2}
   unitImg: {fileID: 114931570628101240}
   unitName: {fileID: 114851762220207468}
   priceTxt: {fileID: 114104526017177446}
+  button: {fileID: 114771736183212382}
   lockedArea: {fileID: 1765014276500674}
   buttonLevelText: {fileID: 114999801031869976}
 --- !u!114 &114598581629213148

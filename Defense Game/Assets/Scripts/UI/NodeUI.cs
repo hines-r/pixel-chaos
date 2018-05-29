@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class NodeUI : MonoBehaviour
 {
+    /*
     public GameObject unitSelectionUI;
     public GameObject unitPanelUI;
     public ScrollRect scrollRect;
@@ -507,4 +508,5 @@ public class NodeUI : MonoBehaviour
             Toggles[id].isOn = true;
         }
     }
+    */
 }

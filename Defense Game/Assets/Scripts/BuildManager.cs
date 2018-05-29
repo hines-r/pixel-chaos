@@ -19,10 +19,15 @@ public class BuildManager : MonoBehaviour
     }
     #endregion
 
-    public NodeUI nodeUI;
+    private UnitManager unitManager;
 
     private Node selectedNode;
     private Unit unitToPlace;
+
+    void Start()
+    {
+        unitManager = UnitManager.instance;
+    }
 
     public void SelectNode(Node node)
     {
@@ -39,7 +44,6 @@ public class BuildManager : MonoBehaviour
         selectedNode = node;
         selectedNode.ToggleSeleted();
         unitToPlace = null;
-        nodeUI.SetTarget(node);
     }
 
     public void DeselectNode()
@@ -49,17 +53,28 @@ public class BuildManager : MonoBehaviour
             selectedNode.ToggleSeleted();
             selectedNode = null;
         }
-
-        nodeUI.HideSelectionPanel();
     }
 
     public void SelectUnitToPlace(Unit unit)
     {
+        // Checks if the unit is unlocked first
+        if (unitManager.unlockedUnits.ContainsKey(unit.unitName))
+        {
+            Unit unitUnlocked = unitManager.unlockedUnits[unit.unitName];
+            unitToPlace = unitUnlocked;
+            return;
+        }
+
         unitToPlace = unit;
     }
 
     public Unit GetUnitToPlace()
     {
         return unitToPlace;
+    }
+
+    public Node GetSelectedNode()
+    {
+        return selectedNode;
     }
 }

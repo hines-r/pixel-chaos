@@ -7,12 +7,12 @@ public class AwokenUnit : Unit, IAwoken
     [Header("Standard Version of Unit")]
     public StandardUnit originalUnit;
 
-    private UnitManager unitManager;
+    //private UnitManager unitManager;
 
     protected override void Start()
     {
         base.Start();
-        unitManager = UnitManager.instance;
+        //unitManager = UnitManager.instance;
         CloneOriginal(); // Carries over the stats of the unawakened unit
     }
 
@@ -23,22 +23,6 @@ public class AwokenUnit : Unit, IAwoken
 
     public void CloneOriginal()
     {
-        Unit unitToClone = unitManager.FindUnlockedUnit(originalUnit);
-
-        if (unitToClone != null)
-        {
-            upgradeCost = unitToClone.upgradeCost;
-        }
-
-        if (damage > originalUnit.damage)
-        {
-            float difference = damage - originalUnit.damage;
-            damage += difference;
-        }
-
-        for (int i = 1; i < level; i++)
-        {
-            damage += originalUnit.damageIncrement;
-        }
+        //Unit unitToClone = unitManager.FindUnlockedUnit(originalUnit);
     }
 }

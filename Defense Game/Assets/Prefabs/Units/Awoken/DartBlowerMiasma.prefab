@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1379264186498826, guid: f1c36e44520729641bdfaaeeebcf63ea,
+  attackPrefab: {fileID: 114436709032658310, guid: f1c36e44520729641bdfaaeeebcf63ea,
     type: 2}
   level: 1
   damage: 100

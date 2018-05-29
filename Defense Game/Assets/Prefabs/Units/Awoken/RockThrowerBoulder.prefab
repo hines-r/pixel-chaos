@@ -52,11 +52,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 1927569515719110, guid: 7113caafcd999834a803d085a58424d9,
+  attackPrefab: {fileID: 114550109620639348, guid: 7113caafcd999834a803d085a58424d9,
     type: 2}
   level: 1
   damage: 300
   attackSpeed: 5
+  hasAbility: 0
+  isPassiveCaster: 0
   hasBurstAttack: 0
   burstCount: 0
   timeBetweenBursts: 0

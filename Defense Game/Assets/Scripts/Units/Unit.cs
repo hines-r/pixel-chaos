@@ -5,7 +5,7 @@ using UnityEngine;
 public class Unit : TargetingEntity, IUpgradeable
 {
     [Header("Unit Attributes")]
-    public GameObject attackPrefab;
+    public Attack attackPrefab;
     public int level = 1;
     public float damage;
     public float attackSpeed;
@@ -153,8 +153,7 @@ public class Unit : TargetingEntity, IUpgradeable
     {
         if (IsTargetAvailable())
         {
-            GameObject obj = Instantiate(attackPrefab, transform.position, Quaternion.identity);
-            Attack unitAttack = obj.GetComponent<Attack>();
+            Attack unitAttack = Instantiate(attackPrefab, transform.position, Quaternion.identity);
 
             if (unitAttack != null)
             {

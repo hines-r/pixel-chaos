@@ -44,6 +44,16 @@ public class UnitManager : MonoBehaviour
         return null;
     }
 
+    public bool IsUnitAwoken(Unit unit)
+    {
+        if (unit.GetComponent<AwokenUnit>() != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public List<AwokenUnit> FindUnlockedSiblings(AwokenUnit unitToSearch)
     {
         List<AwokenUnit> siblings = new List<AwokenUnit>();
@@ -66,7 +76,6 @@ public class UnitManager : MonoBehaviour
     {
         foreach (AwokenUnit unit in FindUnlockedSiblings(unitToFindSiblings))
         {
-            unit.currentNode.unit = null;
             unit.gameObject.SetActive(false);
         }
     }
