@@ -63,6 +63,9 @@ public class AwakenPanelUI : MonoBehaviour
                 }
             }
         }
+
+        unitName.text = selectedUnit.unitName;
+        levelReqTxt.text = "Level: " + standardUnit.levelToAwaken;
     }
 
     public void OnButtonClick(int index)
