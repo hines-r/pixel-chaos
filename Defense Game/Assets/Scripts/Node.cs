@@ -12,6 +12,8 @@ public class Node : MonoBehaviour, IPointerClickHandler
     private Unit unit;
     private bool isUnitOnNode;
 
+    private bool isActionPerformed;
+
     private BoxCollider2D bc2d;
     private Animator anim;
 
@@ -35,6 +37,7 @@ public class Node : MonoBehaviour, IPointerClickHandler
             if (selectionUI.gameObject.activeSelf || selectionUI.gameObject.activeSelf)
             {
                 selectionUI.HideSelectionPanel();
+                DisableUnitReadyAnimation();
             }
         }
         else
@@ -110,6 +113,16 @@ public class Node : MonoBehaviour, IPointerClickHandler
     public void ToggleSeleted()
     {
         anim.SetBool("isSelected", !anim.GetBool("isSelected"));
+    }
+
+    public void EnableUnitReadyAnimation()
+    {
+        anim.SetBool("isUnitReady", true);
+    }
+
+    public void DisableUnitReadyAnimation()
+    {
+        anim.SetBool("isUnitReady", false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
