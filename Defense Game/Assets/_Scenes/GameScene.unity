@@ -13184,17 +13184,17 @@ MonoBehaviour:
     waveStart: 1
     weight: 10
   - enemy: {fileID: 1092536892595852, guid: 7d59661d2181ee7428ac47196b119574, type: 2}
-    waveStart: 5
+    waveStart: 2
     weight: 5
   - enemy: {fileID: 1104636010616920, guid: 0ff8473fc4b74df4e9cc5e52429fd500, type: 2}
-    waveStart: 10
-    weight: 15
-  - enemy: {fileID: 1352309320274128, guid: 88925543fed95574cb9a6da058ea32a9, type: 2}
-    waveStart: 15
+    waveStart: 5
     weight: 10
+  - enemy: {fileID: 1352309320274128, guid: 88925543fed95574cb9a6da058ea32a9, type: 2}
+    waveStart: 10
+    weight: 8
   - enemy: {fileID: 1745366907785300, guid: d9b35b8aae794954a8947979becfc5ac, type: 2}
-    waveStart: 20
-    weight: 20
+    waveStart: 15
+    weight: 2
   yMinSpawnPos: -5
   yMaxSpawnPos: 0
   xSpawnPos: 10

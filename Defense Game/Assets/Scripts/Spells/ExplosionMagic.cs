@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class ExplosionMagic : Attack
 {
+    [Header("Properties")]
     public float splashRadius = 5f;
+    public bool isRandomized;
+    public float randomOffset;
 
-    private readonly float timeAlive = 5f;
+    private float timeAlive = 4f;
 
     void Start()
     {
-        transform.position = Target.transform.position;
+        if (isRandomized)
+        {
+            Vector3 randomizedPosition = new Vector3(Target.transform.position.x + Random.Range(-randomOffset, randomOffset),
+                Target.transform.position.y + Random.Range(-randomOffset, randomOffset), Target.transform.position.z);
+
+            transform.position = randomizedPosition;
+
+            timeAlive /= 3;
+        }
+        else
+        {
+            transform.position = Target.transform.position;
+        }
+
         Explode();
     }
 

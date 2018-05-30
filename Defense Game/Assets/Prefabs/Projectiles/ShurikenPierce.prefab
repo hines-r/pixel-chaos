@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58074822788495322}
   - component: {fileID: 114104455828167572}
   m_Layer: 10
-  m_Name: PiercingShuriken
+  m_Name: ShurikenPierce
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,12 +72,17 @@ MonoBehaviour:
   penetrationCount: 5
   slowAmount: 0
   slowDuration: 0
+  hasStun: 0
+  stunDuration: 0
   hasDot: 0
   isStinging: 0
+  isStacking: 0
   damageDuration: 0
   isExplosive: 0
   splashRadius: 0
   impactEffect: {fileID: 0}
+  isChaining: 0
+  chainingRadius: 0
   speed: 15
 --- !u!212 &212813429412325962
 SpriteRenderer:

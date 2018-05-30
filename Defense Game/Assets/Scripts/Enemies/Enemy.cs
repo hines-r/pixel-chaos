@@ -21,6 +21,9 @@ public class Enemy : LivingEntity
     private bool isStunned;
     private float stunDuration;
 
+    internal bool isLivingBomb;
+    private float bombDetonationTime;
+
     // Attack animation
     private readonly float minLungeDistance = 0.5f;
     private readonly float maxLungeDistance = 1.5f;
@@ -40,10 +43,13 @@ public class Enemy : LivingEntity
     public GameObject poisonDebuff;
     public GameObject slowDebuff;
     public GameObject stunnedDebuff;
+    public GameObject bombDebuff;
 
     internal bool isUnderForces;
 
     private Rigidbody2D rb;
+
+    private Color startColor;
 
     public enum State { Moving, Attacking, UnderForces }
     internal State currentState;
@@ -51,7 +57,9 @@ public class Enemy : LivingEntity
     protected override void Start()
     {
         base.Start();
+
         rb = GetComponent<Rigidbody2D>();
+
         speed = startSpeed;
         currentState = State.Moving;
 
@@ -95,6 +103,17 @@ public class Enemy : LivingEntity
         {
             isStunned = false;
             stunnedDebuff.SetActive(false);
+        }
+
+        if (bombDetonationTime > 0)
+        {
+            bombDebuff.SetActive(true);
+            bombDetonationTime -= Time.deltaTime;
+        }
+        else
+        {
+            isLivingBomb = false;
+            bombDebuff.SetActive(false);
         }
 
         if (!isUnderForces)
@@ -177,6 +196,15 @@ public class Enemy : LivingEntity
     {
         isStunned = true;
         stunDuration = _stunDuration;
+    }
+
+    public void ApplyBomb(float _bombDetonationTime)
+    {
+        if (!isLivingBomb)
+        {
+            isLivingBomb = true;
+            bombDetonationTime = _bombDetonationTime;
+        }
     }
 
     public float GetVelocity()

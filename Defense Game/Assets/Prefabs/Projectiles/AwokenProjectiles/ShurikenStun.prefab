@@ -9,45 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1001047091136494}
+  m_RootGameObject: {fileID: 1260325717422382}
   m_IsPrefabParent: 1
---- !u!1 &1001047091136494
+--- !u!1 &1260325717422382
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4415371840301896}
-  - component: {fileID: 212676801324475726}
-  - component: {fileID: 58233231510341336}
-  - component: {fileID: 114561168058688996}
+  - component: {fileID: 4498690168631036}
+  - component: {fileID: 212091312512294158}
+  - component: {fileID: 58108204421284614}
+  - component: {fileID: 114073025730912238}
   m_Layer: 10
-  m_Name: ChainingShuriken
+  m_Name: ShurikenStun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4415371840301896
+--- !u!4 &4498690168631036
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001047091136494}
+  m_GameObject: {fileID: 1260325717422382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.35, y: -2.693338, z: 0}
+  m_LocalPosition: {x: -0.0898833, y: -2.693338, z: 0}
   m_LocalScale: {x: 0.3225149, y: 0.3225149, z: 0.3225149}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58233231510341336
+--- !u!58 &58108204421284614
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001047091136494}
+  m_GameObject: {fileID: 1260325717422382}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -57,23 +57,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114561168058688996
+--- !u!114 &114073025730912238
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001047091136494}
+  m_GameObject: {fileID: 1260325717422382}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a1f0f567311105f44821e557146c4491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isHostile: 0
-  penetrationCount: 3
+  penetrationCount: 1
   slowAmount: 0
   slowDuration: 0
-  hasStun: 0
-  stunDuration: 0
+  hasStun: 1
+  stunDuration: 0.5
   hasDot: 0
   isStinging: 0
   isStacking: 0
@@ -81,15 +81,15 @@ MonoBehaviour:
   isExplosive: 0
   splashRadius: 0
   impactEffect: {fileID: 0}
-  isChaining: 1
-  chainingRadius: 6.5
+  isChaining: 0
+  chainingRadius: 0
   speed: 15
---- !u!212 &212676801324475726
+--- !u!212 &212091312512294158
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001047091136494}
+  m_GameObject: {fileID: 1260325717422382}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

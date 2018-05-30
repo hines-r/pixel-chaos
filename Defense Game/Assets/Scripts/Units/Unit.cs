@@ -167,7 +167,7 @@ public class Unit : TargetingEntity, IUpgradeable
     public IEnumerator BurstAttack()
     {
         for(int i = 0; i < burstCount; i++)
-        {
+        {        
             Attack();
             yield return new WaitForSeconds(timeBetweenBursts);
         }

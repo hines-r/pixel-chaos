@@ -63,7 +63,7 @@ public class Caster : MonoBehaviour, IPointerClickHandler
         {
             if (unit.hasBurstAttack)
             {
-                unit.BurstAttack();
+                StartCoroutine(unit.BurstAttack());
             }
             else
             {
