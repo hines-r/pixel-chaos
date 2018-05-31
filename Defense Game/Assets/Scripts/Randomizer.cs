@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class Randomizer
 {
+    private const float MaxTimePerWave = 30f; // Max of 30 seconds of spawn time per wave
+
     public static float GetSpawnInterval(float waveIndex)
     {
-        waveIndex /= .8f;
-        return 1f / (Mathf.Pow(waveIndex, 1.2f) + 2f + Mathf.Sin(waveIndex)) * 8f;
+        waveIndex *= 0.075f;
+        return 1f / (Mathf.Pow(waveIndex, 1.1f) + 5f + Mathf.Sin(waveIndex)) * 5f;
     }
 
     public static int GetEnemyCount(float waveIndex)
     {
         waveIndex /= 0.6f;
-        return (int)(Mathf.Pow(waveIndex, 1.4f) + 5f + Mathf.Sin(waveIndex));
+
+        float count = (Mathf.Pow(waveIndex, 1.4f) + 5f + Mathf.Sin(waveIndex));
+
+        // Adjusts the number of enemies so the time of spawning never exceeds the max time
+        if ((count * GetSpawnInterval(waveIndex)) > MaxTimePerWave)
+        {
+            count = MaxTimePerWave / GetSpawnInterval(waveIndex);
+        }
+
+        return (int)count;
     }
 
     public static int GetEndWaveGold(int waveIndex)
