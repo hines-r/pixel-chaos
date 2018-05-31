@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(PlayerStats))]
 public class PlayerInfoUI : MonoBehaviour
 {
+    public PlayerStats player;
+
     public Image levelBarImg;
     public Text levelText;
 
@@ -14,13 +15,6 @@ public class PlayerInfoUI : MonoBehaviour
 
     public Text goldText;
     public Text gemsText;
-
-    private PlayerStats player;
-
-    void Start()
-    {
-        player = GetComponent<PlayerStats>();
-    }
 
     void Update()
     {
