@@ -2,24 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Randomizer
+public class Randomizer : MonoBehaviour
 {
+    public PlayerInfoUI playerInfoUI;
+
     private const float MaxTimePerWave = 30f; // Max of 30 seconds of spawn time per wave
 
-    public static float GetSpawnInterval(float waveIndex)
+    private float totalSpawnTime;
+
+    public float GetSpawnInterval(float waveIndex)
     {
         waveIndex *= 0.075f;
         return 1f / (Mathf.Pow(waveIndex, 1.1f) + 5f + Mathf.Sin(waveIndex)) * 5f;
     }
 
-    public static int GetEnemyCount(float waveIndex)
+    public int GetEnemyCount(float waveIndex)
     {
         waveIndex /= 0.6f;
 
         float count = (Mathf.Pow(waveIndex, 1.4f) + 5f + Mathf.Sin(waveIndex));
 
+        totalSpawnTime = count * GetSpawnInterval(waveIndex);
+        playerInfoUI.SetTime(totalSpawnTime);
+
         // Adjusts the number of enemies so the time of spawning never exceeds the max time
-        if ((count * GetSpawnInterval(waveIndex)) > MaxTimePerWave)
+        if (totalSpawnTime > MaxTimePerWave)
         {
             count = MaxTimePerWave / GetSpawnInterval(waveIndex);
         }
@@ -27,12 +34,12 @@ public class Randomizer
         return (int)count;
     }
 
-    public static int GetEndWaveGold(int waveIndex)
+    public int GetEndWaveGold(int waveIndex)
     {
         return (int)Mathf.Pow(GetEnemyCount(waveIndex), 1.5f);
     }
 
-    public static int GetWeightedIndex(List<EnemyType> types)
+    public int GetWeightedIndex(List<EnemyType> types)
     {
         float totalSpawnWeight = 0f;
 
@@ -53,5 +60,10 @@ public class Randomizer
         }
 
         return index;
+    }
+
+    public float GetTotalSpawnTime()
+    {
+        return totalSpawnTime;
     }
 }

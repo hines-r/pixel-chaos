@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Randomizer))]
 public class ProceduralSpawner : MonoBehaviour
 {
     public static int WaveIndex;
@@ -12,7 +13,6 @@ public class ProceduralSpawner : MonoBehaviour
     [Header("UI Components")]
     public Text enemiesAliveText;
     public Text countdownText;
-    public Text waveNumberText;
     public Button battleBtn;
     public PlayerStats player;
 
@@ -29,8 +29,10 @@ public class ProceduralSpawner : MonoBehaviour
     [Header("Testing")]
     public int startWave = 0;
 
-    private float startCountdownTime = 5f;
+    private readonly float startCountdownTime = 5f;
     private float countdown;
+
+    private Randomizer randomizer;
 
     public enum State
     {
@@ -42,8 +44,8 @@ public class ProceduralSpawner : MonoBehaviour
     void Start()
     {
         CurrentState = State.Waiting;
+        randomizer = GetComponent<Randomizer>();
         WaveIndex = startWave;
-        waveNumberText.text = "Current Wave: " + (WaveIndex + 1);
     }
 
     void Update()
@@ -80,16 +82,15 @@ public class ProceduralSpawner : MonoBehaviour
 
         ToggleBattleBtn();
 
-        Debug.Log("End of wave gold: " + Randomizer.GetEndWaveGold(WaveIndex));
+        Debug.Log("End of wave gold: " + randomizer.GetEndWaveGold(WaveIndex));
 
-        PlayerStats.Gold += Randomizer.GetEndWaveGold(WaveIndex);
+        PlayerStats.Gold += randomizer.GetEndWaveGold(WaveIndex);
         PlayerStats.Gems++; // Gives the player a gem after each wave
         PlayerStats.Health = player.startingHealth;
     }
 
     public void BattleButtonClick()
     {
-        waveNumberText.text = "Current Wave: " + (WaveIndex + 1);
         countdownText.gameObject.SetActive(true);
 
         ToggleBattleBtn();
@@ -132,10 +133,10 @@ public class ProceduralSpawner : MonoBehaviour
     {
         CurrentState = State.Spawning;
 
-        int enemyCount = Randomizer.GetEnemyCount(WaveIndex);
+        int enemyCount = randomizer.GetEnemyCount(WaveIndex);
         EnemiesAlive = enemyCount;
 
-        float spawnInterval = Randomizer.GetSpawnInterval(WaveIndex);
+        float spawnInterval = randomizer.GetSpawnInterval(WaveIndex);
 
         Debug.Log("Spawning wave: " + WaveIndex + " | Count: " + enemyCount + " | Interval: " + spawnInterval);
 
@@ -152,7 +153,7 @@ public class ProceduralSpawner : MonoBehaviour
     void SpawnEnemy()
     {
         List<EnemyType> spawnableTypes = GetSpawnableTypes();
-        int index = Randomizer.GetWeightedIndex(spawnableTypes);
+        int index = randomizer.GetWeightedIndex(spawnableTypes);
 
         GameObject enemyToSpawn = spawnableTypes[index].enemy;
 
