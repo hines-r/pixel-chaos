@@ -34,6 +34,11 @@ public class UnitSelectionUI : MonoBehaviour
 
     void OnButtonClick(int index)
     {
+        if (Tutorial.instance.IsTutorial && Tutorial.instance.phase4.activeSelf)
+        {
+            return;
+        }
+
         buttonSelection = unitButtons[index];
         buildManager.SelectUnitToPlace(unitButtons[index].unit);
         unitPanelUI.ShowUnitPanel();
@@ -58,6 +63,15 @@ public class UnitSelectionUI : MonoBehaviour
 
     public void HideSelectionPanel()
     {
+        if (Tutorial.instance.IsTutorial && Tutorial.instance.phase2.activeSelf)
+        {
+            return;
+        }
+        else if (Tutorial.instance.IsTutorial)
+        {
+            Tutorial.instance.TriggerPhaseFive();
+        }
+
         anim.SetBool("Slide", false);
     }
 

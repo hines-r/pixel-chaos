@@ -142,10 +142,12 @@ public class UnitPanelUI : MonoBehaviour
             {
                 PlayerStats.Gold -= selectedUnit.baseCost;
 
-                selectedNode.PlaceUnit(selectedUnit);
-                selectionUI.UpdateButton(selectedUnit);
-                selectionUI.UnlockButton();
-                HideUnitPanel();
+                BuyUnit();
+
+                if (Tutorial.instance.IsTutorial)
+                {
+                    Tutorial.instance.TriggerPhaseFour();
+                }
             }
             else
             {
@@ -158,16 +160,21 @@ public class UnitPanelUI : MonoBehaviour
             {
                 PlayerStats.Gems -= selectedUnit.baseCost;
 
-                selectedNode.PlaceUnit(selectedUnit);
-                selectionUI.UpdateButton(selectedUnit);
-                selectionUI.UnlockButton();
-                HideUnitPanel();
+                BuyUnit();
             }
             else
             {
                 dialog.DisplayDialog("NOT ENOUGH GEMS!");
             }
         }
+    }
+
+    void BuyUnit()
+    {
+        selectedNode.PlaceUnit(selectedUnit);
+        selectionUI.UpdateButton(selectedUnit);
+        selectionUI.UnlockButton();
+        HideUnitPanel();
     }
 
     public void UpgradeButton()
@@ -188,6 +195,11 @@ public class UnitPanelUI : MonoBehaviour
 
     public void ShowUnitPanel()
     {
+        if (Tutorial.instance.IsTutorial)
+        {
+            Tutorial.instance.TriggerPhaseThree();
+        }
+
         gameObject.SetActive(true);
         anim.Play("UnitPanelEntry");
     }
@@ -200,6 +212,11 @@ public class UnitPanelUI : MonoBehaviour
 
     public void HideUnitPanel()
     {
+        if (Tutorial.instance.IsTutorial)
+        {
+            Tutorial.instance.TriggerPhaseThree();
+        }
+
         gameObject.SetActive(false);
     }
 }

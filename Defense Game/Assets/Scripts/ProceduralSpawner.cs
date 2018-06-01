@@ -94,6 +94,11 @@ public class ProceduralSpawner : MonoBehaviour
 
     public void BattleButtonClick()
     {
+        if (Tutorial.instance.IsTutorial)
+        {
+            Tutorial.instance.EndTutorial();
+        }
+
         countdownText.gameObject.SetActive(true);
 
         ToggleBattleBtn();

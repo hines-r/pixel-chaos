@@ -12,8 +12,6 @@ public class Node : MonoBehaviour, IPointerClickHandler
     private Unit unit;
     private bool isUnitOnNode;
 
-    private bool isActionPerformed;
-
     private BoxCollider2D bc2d;
     private Animator anim;
 
@@ -127,6 +125,11 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (Tutorial.instance.IsTutorial)
+        {
+            Tutorial.instance.TriggerPhaseTwo();
+        }
+
         selectionUI.ShowSelectionPanel();
         buildManager.SelectNode(this);
     }

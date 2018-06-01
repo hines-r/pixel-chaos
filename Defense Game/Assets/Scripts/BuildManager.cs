@@ -48,6 +48,11 @@ public class BuildManager : MonoBehaviour
 
     public void DeselectNode()
     {
+        if (Tutorial.instance.IsTutorial && Tutorial.instance.phase2.activeSelf)
+        {
+            return;
+        }
+
         if (selectedNode != null)
         {
             selectedNode.ToggleSeleted();
