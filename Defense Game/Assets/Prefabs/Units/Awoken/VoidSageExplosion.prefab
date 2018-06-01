@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114030797066476988}
   - component: {fileID: 114621006727714904}
   m_Layer: 8
-  m_Name: VoidSageAwoken
+  m_Name: VoidSageExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4677503786829062
 Transform:
   m_ObjectHideFlags: 1
@@ -102,7 +102,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054399101291970}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -135,7 +135,7 @@ MonoBehaviour:
   attackPrefab: {fileID: 114562118171875086, guid: 815c848d821b00d40b3f112254b678fd,
     type: 2}
   level: 1
-  damage: 100
+  damage: 200
   attackSpeed: 6
   hasAbility: 1
   isPassiveCaster: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   burstCount: 0
   timeBetweenBursts: 0
   unitName: Unstable Sage
-  baseCost: 50
+  baseCost: 100
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
   description: The rift now explodes after it expires.
   multiplier: 1.08

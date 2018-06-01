@@ -12,7 +12,7 @@ public class BlackHole : Attack
     [Header("Special")]
     public GameObject explosionEffect;
     public bool isExplosive;
-    public bool isShrinking;
+    public float damageDampening = 5f; // Dampens the periodic damage taken (Damage / damageDampening)
 
     private bool isBeingDestroyed;
 
@@ -35,10 +35,7 @@ public class BlackHole : Attack
         Vector3 summonLocation = new Vector3(Target.transform.position.x + xOffset, Target.transform.position.y, 0);
         transform.position = summonLocation;
 
-        if (!isExplosive)
-        {
-            StartCoroutine(DamageEnemiesWithin());
-        }
+        StartCoroutine(DamageEnemiesWithin());
     }
 
     void Update()
@@ -140,7 +137,14 @@ public class BlackHole : Attack
 
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(Damage);
+                    if (isExplosive)
+                    {
+                        enemy.TakeDamage(Damage / 5);
+                    }
+                    else
+                    {
+                        enemy.TakeDamage(Damage);
+                    }
                 }
             }
         }
