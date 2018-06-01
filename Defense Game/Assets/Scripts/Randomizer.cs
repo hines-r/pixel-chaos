@@ -12,24 +12,24 @@ public class Randomizer : MonoBehaviour
 
     public float GetSpawnInterval(float waveIndex)
     {
-        waveIndex *= 0.075f;
+        waveIndex *= 0.15f;
         return 1f / (Mathf.Pow(waveIndex, 1.1f) + 5f + Mathf.Sin(waveIndex)) * 5f;
     }
 
     public int GetEnemyCount(float waveIndex)
     {
-        waveIndex /= 0.6f;
-
         float count = (Mathf.Pow(waveIndex, 1.4f) + 5f + Mathf.Sin(waveIndex));
 
         totalSpawnTime = count * GetSpawnInterval(waveIndex);
-        playerInfoUI.SetTime(totalSpawnTime);
 
         // Adjusts the number of enemies so the time of spawning never exceeds the max time
         if (totalSpawnTime > MaxTimePerWave)
         {
             count = MaxTimePerWave / GetSpawnInterval(waveIndex);
+            totalSpawnTime = count * GetSpawnInterval(waveIndex);
         }
+    
+        playerInfoUI.SetTime(totalSpawnTime);
 
         return (int)count;
     }

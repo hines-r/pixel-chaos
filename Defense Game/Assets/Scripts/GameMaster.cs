@@ -10,6 +10,7 @@ public class GameMaster : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject gameWinUI;
 
+    public bool isImmortal; // Dev hacks
 
     void Start()
     {
@@ -29,7 +30,7 @@ public class GameMaster : MonoBehaviour
             WinGame();
         }
 
-        if (PlayerStats.Health <= 0)
+        if (PlayerStats.Health <= 0 && !isImmortal)
         {
             EndGame();
         }

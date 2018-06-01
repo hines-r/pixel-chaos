@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
 
     public static int Rounds;
 
-    private float multiplier = 1.18f;
+    private readonly float multiplier = 1.18f;
 
     void Start()
     {

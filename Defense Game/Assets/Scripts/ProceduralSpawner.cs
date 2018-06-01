@@ -147,7 +147,6 @@ public class ProceduralSpawner : MonoBehaviour
             SpawnEnemy();
             enemyCount--;
 
-            //yield return new WaitForSeconds(Random.Range(spawnInterval * .5f, spawnInterval * 2f));
             yield return new WaitForSeconds(spawnInterval); // Consistent spawn interval
         }
     }
