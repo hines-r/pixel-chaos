@@ -10,6 +10,8 @@ public class ProceduralSpawner : MonoBehaviour
     public static int EnemiesAlive;
     public static State CurrentState;
 
+    public GameObject waveCompletePanel;
+
     [Header("UI Components")]
     public Text enemiesAliveText;
     public Text countdownText;
@@ -38,7 +40,8 @@ public class ProceduralSpawner : MonoBehaviour
     {
         Waiting,
         Countdown,
-        Spawning
+        Spawning,
+        WaveComplete
     }
 
     void Start()
@@ -78,7 +81,7 @@ public class ProceduralSpawner : MonoBehaviour
 
     void WaveComplete()
     {
-        CurrentState = State.Waiting;
+        StartCoroutine(DisplayWaveCompletePanel());
 
         ToggleBattleBtn();
 
@@ -99,7 +102,6 @@ public class ProceduralSpawner : MonoBehaviour
         WaveIndex++;
         StartNextWave();
     }
-
 
     void ToggleBattleBtn()
     {
@@ -148,6 +150,28 @@ public class ProceduralSpawner : MonoBehaviour
             //yield return new WaitForSeconds(Random.Range(spawnInterval * .5f, spawnInterval * 2f));
             yield return new WaitForSeconds(spawnInterval); // Consistent spawn interval
         }
+    }
+
+    IEnumerator DisplayWaveCompletePanel()
+    {
+        float timeTillFade = 2f;
+        float timeTillDisable = .25f;
+
+        CurrentState = State.WaveComplete;
+
+        waveCompletePanel.SetActive(true);
+        yield return new WaitForSeconds(timeTillFade);
+
+        Animator anim = waveCompletePanel.GetComponent<Animator>();
+        if (anim != null)
+        {
+            anim.SetTrigger("PanelExit");
+        }
+
+        yield return new WaitForSeconds(timeTillDisable);
+        waveCompletePanel.SetActive(false);
+
+        CurrentState = State.Waiting;
     }
 
     void SpawnEnemy()

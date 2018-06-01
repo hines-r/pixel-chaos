@@ -21,7 +21,7 @@ public class PlayerInfoUI : MonoBehaviour
     public Text gemsText;
 
     private float currentTime;
-    private readonly float fillSpeed = 3f;
+    private readonly float fillSpeed = 4f;
 
     void Update()
     {
