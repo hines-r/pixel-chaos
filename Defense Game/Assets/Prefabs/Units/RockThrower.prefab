@@ -55,8 +55,8 @@ MonoBehaviour:
   attackPrefab: {fileID: 114472325182569320, guid: 4a354b54b81b01c4bbfbad587f41807d,
     type: 2}
   level: 1
-  damage: 50
-  attackSpeed: 1.5
+  damage: 55
+  attackSpeed: 1
   hasAbility: 0
   isPassiveCaster: 0
   hasBurstAttack: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   description: These guys hurl heavy rocks towards the enemy inflicting moderate damage!
   multiplier: 1.08
   upgradeBaseCost: 100
-  damageIncrement: 1
+  damageIncrement: 2
   unitAI: 0
   awokenUnits:
   - {fileID: 114842564608013708, guid: 60896286980de3d4593daaed1a71a70a, type: 2}

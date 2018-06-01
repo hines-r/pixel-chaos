@@ -6,7 +6,7 @@ public class EnemyScaler
 {
     public static float ScaleHealth(float baseHealth, int waveIndex)
     {
-        return baseHealth + Mathf.Pow(waveIndex, 1.5f);
+        return baseHealth + Mathf.Pow(waveIndex, 1.75f);
     }
 
     public static int ScaleExpValue(int baseExp, int waveIndex)

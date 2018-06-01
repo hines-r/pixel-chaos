@@ -56,7 +56,7 @@ MonoBehaviour:
     type: 2}
   level: 1
   damage: 55
-  attackSpeed: 2
+  attackSpeed: 1.75
   hasAbility: 0
   isPassiveCaster: 0
   hasBurstAttack: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
     down enemies! Each rocket causes an explosion that cleaves enemies in a radius.
   multiplier: 1.08
   upgradeBaseCost: 100
-  damageIncrement: 1
+  damageIncrement: 3
   unitAI: 0
   awokenUnits:
   - {fileID: 114703567966118440, guid: cd85e8bb51c19114ea2f29ddb9f639cf, type: 2}

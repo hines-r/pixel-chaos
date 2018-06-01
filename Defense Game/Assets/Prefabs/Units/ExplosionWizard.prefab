@@ -192,7 +192,7 @@ MonoBehaviour:
     a HUGE explosion to blast enemies away!
   multiplier: 1.08
   upgradeBaseCost: 100
-  damageIncrement: 1
+  damageIncrement: 5
   unitAI: 0
   awokenUnits:
   - {fileID: 114376927358395222, guid: caaea786525607e40972508b0d96f439, type: 2}

@@ -36,7 +36,7 @@ public class Randomizer : MonoBehaviour
 
     public int GetEndWaveGold(int waveIndex)
     {
-        return (int)Mathf.Pow(GetEnemyCount(waveIndex), 1.5f);
+        return (int)Mathf.Pow(GetEnemyCount(waveIndex), 1.7f) + 100;
     }
 
     public int GetWeightedIndex(List<EnemyType> types)

@@ -15,6 +15,7 @@ public class ProceduralSpawner : MonoBehaviour
     [Header("UI Components")]
     public Text enemiesAliveText;
     public Text countdownText;
+    public Text bonusGoldText;
     public Button battleBtn;
     public PlayerStats player;
 
@@ -81,13 +82,13 @@ public class ProceduralSpawner : MonoBehaviour
 
     void WaveComplete()
     {
-        StartCoroutine(DisplayWaveCompletePanel());
+        int endWaveGold = randomizer.GetEndWaveGold(WaveIndex);
+        bonusGoldText.text = "Bonus: " + endWaveGold + "g";
 
+        StartCoroutine(DisplayWaveCompletePanel());
         ToggleBattleBtn();
 
-        Debug.Log("End of wave gold: " + randomizer.GetEndWaveGold(WaveIndex));
-
-        PlayerStats.Gold += randomizer.GetEndWaveGold(WaveIndex);
+        PlayerStats.Gold += endWaveGold;
         PlayerStats.Gems++; // Gives the player a gem after each wave
         PlayerStats.Health = player.startingHealth;
     }

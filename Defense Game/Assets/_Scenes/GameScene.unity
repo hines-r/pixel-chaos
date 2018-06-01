@@ -2738,6 +2738,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405710844}
+--- !u!1 &406101731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 406101732}
+  - component: {fileID: 406101734}
+  - component: {fileID: 406101733}
+  m_Layer: 5
+  m_Name: BonusGoldText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &406101732
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406101731}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 985869280}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 302, y: 41.44}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &406101733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406101731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: c28ca30c095ed0645b2a92b7d631d119, type: 3}
+    m_FontSize: 16
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 298
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'Bonus: 100g'
+--- !u!222 &406101734
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406101731}
 --- !u!1 &422218981
 GameObject:
   m_ObjectHideFlags: 0
@@ -11866,13 +11940,14 @@ RectTransform:
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 2003636578}
+  - {fileID: 406101732}
   m_Father: {fileID: 1822433092}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 54.5}
+  m_SizeDelta: {x: 302.3, y: 74.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &985869282
 MonoBehaviour:
@@ -14730,6 +14805,7 @@ MonoBehaviour:
   waveCompletePanel: {fileID: 1822433091}
   enemiesAliveText: {fileID: 1397625987}
   countdownText: {fileID: 1347928584}
+  bonusGoldText: {fileID: 406101733}
   battleBtn: {fileID: 1068715759}
   player: {fileID: 1978738896}
   enemyTypes:
@@ -22618,9 +22694,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingLevel: 1
   startingExperiene: 0
-  experienceToNextLevel: 150
-  startingHealth: 150
-  startGold: 1000
+  experienceToNextLevel: 200
+  startingHealth: 100
+  startGold: 500
   startingGems: 0
 --- !u!114 &1978738897
 MonoBehaviour:
@@ -22690,11 +22766,11 @@ RectTransform:
   m_Father: {fileID: 985869280}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 302, y: 54.61}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2003636579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22715,7 +22791,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: c28ca30c095ed0645b2a92b7d631d119, type: 3}
+    m_Font: {fileID: 12800000, guid: cc4ff585b83d03d42bff47a80e55059b, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0

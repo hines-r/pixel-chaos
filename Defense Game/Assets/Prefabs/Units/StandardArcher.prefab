@@ -69,7 +69,7 @@ MonoBehaviour:
     devastation on the battlefield with a flurry of arrows.
   multiplier: 1.08
   upgradeBaseCost: 100
-  damageIncrement: 1
+  damageIncrement: 2
   unitAI: 0
   awokenUnits:
   - {fileID: 114122645629288302, guid: 4f86cc6c5a9b3cb49baf45c164fecfe9, type: 2}
