@@ -65,8 +65,8 @@ MonoBehaviour:
   unitName: Tactical Ninja
   baseCost: 20
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
-  description: His shurikens no longer pierce but he can now throw them faster and
-    they stun the enemy with stinging pain!
+  description: He can now throw shurikens faster and they stun the enemy with stinging
+    pain!
   multiplier: 1.08
   upgradeBaseCost: 1000
   damageIncrement: 1

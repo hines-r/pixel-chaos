@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHostile: 0
-  penetrationCount: 1
+  penetrationCount: 2
   slowAmount: 0
   slowDuration: 0
   hasStun: 1

@@ -131,6 +131,7 @@ public class UnitPanelUI : MonoBehaviour
         }
 
         selectedNode.PlaceUnit(selectedUnit);
+        selectionUI.UpdateButton(selectedUnit);
         UpdateEquipText();
     }
 
@@ -172,6 +173,12 @@ public class UnitPanelUI : MonoBehaviour
     void BuyUnit()
     {
         selectedNode.PlaceUnit(selectedUnit);
+
+        if (unitManager.unlockedUnits.ContainsKey(selectedUnit.unitName))
+        {
+            selectedUnit = unitManager.unlockedUnits[selectedUnit.unitName];
+        }
+
         selectionUI.UpdateButton(selectedUnit);
         selectionUI.UnlockButton();
         HideUnitPanel();

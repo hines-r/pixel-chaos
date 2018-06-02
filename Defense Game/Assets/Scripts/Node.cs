@@ -51,6 +51,28 @@ public class Node : MonoBehaviour, IPointerClickHandler
             RemoveUnit(unit);
         }
 
+        if (unitManager.IsUnitAwoken(unitToPlace))
+        {
+            AwokenUnit awokenUnit = unitToPlace.gameObject.GetComponent<AwokenUnit>();
+
+            if (unitManager.unlockedUnits.ContainsKey(awokenUnit.originalUnit.unitName))
+            {
+                Unit unitToRemove = unitManager.unlockedUnits[awokenUnit.originalUnit.unitName];
+                RemoveUnit(unitToRemove);
+            }
+
+            List<AwokenUnit> awokenSiblings = unitManager.FindUnlockedSiblings(awokenUnit);
+
+            if (awokenSiblings.Count > 0)
+            {
+                foreach (AwokenUnit sibling in awokenSiblings)
+                {
+                    print("working");
+                    RemoveUnit(sibling);
+                }
+            }
+        }
+
         if (unitManager.unlockedUnits.ContainsKey(unitToPlace.unitName))
         {
             unitToPlace.gameObject.SetActive(true);
@@ -68,17 +90,6 @@ public class Node : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        if (unitManager.IsUnitAwoken(unitToPlace))
-        {
-            AwokenUnit awokenUnit = unitToPlace.gameObject.GetComponent<AwokenUnit>();
-
-            if (unitManager.unlockedUnits.ContainsKey(awokenUnit.originalUnit.unitName))
-            {
-                Unit unitToRemove = unitManager.unlockedUnits[awokenUnit.originalUnit.unitName];
-                RemoveUnit(unitToRemove);
-            }
-        }
-
         Unit newUnit = Instantiate(unitToPlace, transform.position, Quaternion.identity);
         newUnit.transform.parent = unitManager.transform;
         newUnit.currentNode = this;
@@ -91,6 +102,12 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     public void RemoveUnit(Unit unitToRemove)
     {
+        if (unitToRemove.currentNode != null)
+        {
+            unitToRemove.currentNode.unit = null;
+            unitToRemove.currentNode.isUnitOnNode = false;
+        }
+
         unitToRemove.currentNode = null;
         unitToRemove.gameObject.SetActive(false);
 

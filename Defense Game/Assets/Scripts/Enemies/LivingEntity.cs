@@ -18,8 +18,6 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         startingHealth = EnemyScaler.ScaleHealth(startingHealth, ProceduralSpawner.WaveIndex - 1);
         health = startingHealth;
-
-        print("Health: " + health);
     }
 
     public void TakeDamage(float damage)
