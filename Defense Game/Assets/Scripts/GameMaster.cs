@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
+    #region Singleton
+    public static GameMaster instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.Log("More than one GameMaster in scene!");
+            return;
+        }
+
+        instance = this;
+    }
+    #endregion
+
     public static bool GameIsOver = false;
     public static bool GameIsWon = false;
 
     public GameObject gameOverUI;
     public GameObject gameWinUI;
 
-    public bool isImmortal; // Dev hacks
+    [Header("Dev Hacks")]
+    public bool isImmortal;
+    public bool isBurdenedWithMoney;
 
     void Start()
     {

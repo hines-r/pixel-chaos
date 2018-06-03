@@ -2073,7 +2073,7 @@ MonoBehaviour:
   phase3: {fileID: 1921673566}
   phase4: {fileID: 1873396439}
   phase5: {fileID: 2082663766}
-  IsTutorial: 1
+  IsTutorial: 0
 --- !u!95 &319098978
 Animator:
   serializedVersion: 3
@@ -23018,6 +23018,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 772681413}
   gameWinUI: {fileID: 695459649}
   isImmortal: 1
+  isBurdenedWithMoney: 1
 --- !u!1 &2003636577
 GameObject:
   m_ObjectHideFlags: 0

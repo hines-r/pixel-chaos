@@ -139,7 +139,7 @@ public class UnitPanelUI : MonoBehaviour
     {
         if (!unitManager.IsUnitAwoken(selectedUnit))
         {
-            if (PlayerStats.Gold >= selectedUnit.baseCost)
+            if (PlayerStats.Gold >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
             {
                 PlayerStats.Gold -= selectedUnit.baseCost;
 
@@ -150,6 +150,10 @@ public class UnitPanelUI : MonoBehaviour
                     Tutorial.instance.TriggerPhaseFour();
                 }
             }
+            else if (GameMaster.instance.isBurdenedWithMoney)
+            {
+                BuyUnit();
+            }
             else
             {
                 dialog.DisplayDialog("NOT ENOUGH GOLD!");
@@ -157,16 +161,38 @@ public class UnitPanelUI : MonoBehaviour
         }
         else
         {
-            if (PlayerStats.Gems >= selectedUnit.baseCost)
+            if (PlayerStats.Gems >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
             {
                 PlayerStats.Gems -= selectedUnit.baseCost;
 
+                BuyUnit();
+            }
+            else if (GameMaster.instance.isBurdenedWithMoney)
+            {
                 BuyUnit();
             }
             else
             {
                 dialog.DisplayDialog("NOT ENOUGH GEMS!");
             }
+        }
+    }
+
+    public void UpgradeButton()
+    {
+        if (PlayerStats.Gold >= (int)selectedUnit.upgradeCost && !GameMaster.instance.isBurdenedWithMoney)
+        {
+            PlayerStats.Gold -= (int)selectedUnit.upgradeCost;
+
+            UpgradeUnit();
+        }
+        else if (GameMaster.instance.isBurdenedWithMoney)
+        {
+            UpgradeUnit();
+        }
+        else
+        {
+            dialog.DisplayDialog("NOT ENOUGH GOLD!");
         }
     }
 
@@ -184,20 +210,11 @@ public class UnitPanelUI : MonoBehaviour
         HideUnitPanel();
     }
 
-    public void UpgradeButton()
+    void UpgradeUnit()
     {
-        if (PlayerStats.Gold >= (int)selectedUnit.upgradeCost)
-        {
-            PlayerStats.Gold -= (int)selectedUnit.upgradeCost;
-
-            selectedUnit.Upgrade();
-            selectionUI.UpdateButton(selectedUnit);
-            UpdateUnitStats();
-        }
-        else
-        {
-            dialog.DisplayDialog("NOT ENOUGH GOLD!");
-        }
+        selectedUnit.Upgrade();
+        selectionUI.UpdateButton(selectedUnit);
+        UpdateUnitStats();
     }
 
     public void ShowUnitPanel()
