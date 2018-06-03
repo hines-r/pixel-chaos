@@ -12,8 +12,8 @@ public class Randomizer : MonoBehaviour
 
     public float GetSpawnInterval(float waveIndex)
     {
-        waveIndex *= 0.15f;
-        return 1f / (Mathf.Pow(waveIndex, 1.1f) + 5f + Mathf.Sin(waveIndex)) * 5f;
+        waveIndex *= 0.05f;
+        return 1f / (Mathf.Pow(waveIndex, 1.1f) + 9f + Mathf.Sin(waveIndex)) * 10f;
     }
 
     public int GetEnemyCount(float waveIndex)
@@ -36,7 +36,7 @@ public class Randomizer : MonoBehaviour
 
     public int GetEndWaveGold(int waveIndex)
     {
-        return (int)Mathf.Pow(GetEnemyCount(waveIndex), 1.7f) + 100;
+        return (int)Mathf.Pow(waveIndex, 1.9f) + 175;
     }
 
     public int GetWeightedIndex(List<EnemyType> types)
