@@ -99,9 +99,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0095f31a600f0274f8ff38d4b3fa168f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHostile: 0
+  penetrationCount: 1
+  slowAmount: 0
+  slowDuration: 0
+  hasStun: 0
+  stunDuration: 0
+  hasDot: 0
+  isStinging: 0
+  isStacking: 0
+  damageDuration: 0
+  isExplosive: 0
+  splashRadius: 0
+  impactEffect: {fileID: 0}
   throwHeight: 1
-  isNearest: 0
-  isRandom: 1
+  isCrushing: 0
+  isScatter: 0
 --- !u!212 &212635186826789000
 SpriteRenderer:
   m_ObjectHideFlags: 1

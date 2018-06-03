@@ -105,6 +105,7 @@ MonoBehaviour:
     type: 2}
   throwHeight: 2
   isCrushing: 0
+  isScatter: 0
 --- !u!212 &212735907244055780
 SpriteRenderer:
   m_ObjectHideFlags: 1
