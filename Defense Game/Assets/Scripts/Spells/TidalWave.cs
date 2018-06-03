@@ -8,6 +8,11 @@ public class TidalWave : Attack
     [Header("Properties")]
     public float speed = 5f;
 
+    [Space]
+    public bool hasKnockup;
+    public float xForce = 0f;
+    public float yForce = 0f;
+
     private readonly float startPositionX = -4f;
     private readonly float distanceXTillFade = 0f;
 
@@ -19,7 +24,10 @@ public class TidalWave : Attack
         anim = GetComponent<Animator>();
         bc2d = GetComponent<BoxCollider2D>();
 
-        transform.position = new Vector3(startPositionX, Target.transform.position.y, Target.transform.position.z);
+        if (Target != null)
+        {
+            transform.position = new Vector3(startPositionX, Target.transform.position.y, Target.transform.position.z);
+        }
     }
 
     void Update()
@@ -52,6 +60,14 @@ public class TidalWave : Attack
     {
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-        enemy.TakeDamage(Damage);
+        if (enemy != null)
+        {
+            if (hasKnockup)
+            {
+                enemy.KnockUp(xForce, yForce);
+            }
+
+            enemy.TakeDamage(Damage);
+        }
     }
 }

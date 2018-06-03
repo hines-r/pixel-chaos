@@ -24,6 +24,9 @@ public class Enemy : LivingEntity
     internal bool isLivingBomb;
     private float bombDetonationTime;
 
+    private bool isKnockedUp;
+    private Vector3 knockUpPosition;
+
     // Attack animation
     private readonly float minLungeDistance = 0.5f;
     private readonly float maxLungeDistance = 1.5f;
@@ -44,6 +47,7 @@ public class Enemy : LivingEntity
     public GameObject slowDebuff;
     public GameObject stunnedDebuff;
     public GameObject bombDebuff;
+    public GameObject knockUpDebuff;
 
     internal bool isUnderForces;
 
@@ -116,13 +120,26 @@ public class Enemy : LivingEntity
             bombDebuff.SetActive(false);
         }
 
-        if (!isUnderForces)
+        if (isKnockedUp)
         {
-            rb.velocity = Vector2.zero; // Sets velocity to 0 after exiting a black hole
+            knockUpDebuff.SetActive(true);
+
+            if (transform.position.y < knockUpPosition.y)
+            {
+                isKnockedUp = false;
+                knockUpDebuff.SetActive(false);
+                rb.gravityScale = 0;
+                rb.velocity = Vector2.zero;
+            }
         }
-        else if(rb.velocity.x > 0 || rb.velocity.y > 0)
+
+        if(rb.velocity.x > 0 || rb.velocity.y > 0)
         {
             isUnderForces  = true;
+        }
+        else if (!isUnderForces)
+        {
+            rb.velocity = Vector2.zero; // Sets velocity to 0 after exiting a black hole
         }
 
         if (Time.time > nextAttackTime && currentState == State.Attacking)
@@ -145,15 +162,15 @@ public class Enemy : LivingEntity
         {
             currentState = State.Moving;
 
-            // Can only move is not stunned
-            if (!isStunned)
+            // Can only move is not stunned or knocked up
+            if (!isStunned && !isKnockedUp)
             {
                 transform.position -= transform.right * speed * Time.deltaTime;
             }
         }
         else
         {
-            if (!isUnderForces && !isStunned)
+            if (!isUnderForces && !isStunned && !isKnockedUp)
             {
                 currentState = State.Attacking;
             }
@@ -205,6 +222,14 @@ public class Enemy : LivingEntity
             isLivingBomb = true;
             bombDetonationTime = _bombDetonationTime;
         }
+    }
+
+    public void KnockUp(float xForce, float yForce)
+    {
+        isKnockedUp = true;
+        knockUpPosition = transform.position; // The position before being knocked up
+        rb.gravityScale = 1;
+        rb.AddForce(new Vector2(xForce, yForce));
     }
 
     public float GetVelocity()
