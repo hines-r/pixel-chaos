@@ -127,6 +127,7 @@ public class Enemy : LivingEntity
             if (transform.position.y < knockUpPosition.y)
             {
                 isKnockedUp = false;
+                isUnderForces = false;
                 knockUpDebuff.SetActive(false);
                 rb.gravityScale = 0;
                 rb.velocity = Vector2.zero;

@@ -60,11 +60,16 @@ public class UnitManager : MonoBehaviour
 
         for (int i = 0; i < unitToSearch.originalUnit.awokenUnits.Length; i++)
         {
-            if (unitToSearch.unitName != unitToSearch.originalUnit.awokenUnits[i].unitName)
+            AwokenUnit sibling = unitToSearch.originalUnit.awokenUnits[i];
+
+            if (sibling != null)
             {
-                if (unlockedUnits.ContainsKey(unitToSearch.originalUnit.awokenUnits[i].unitName))
+                if (unitToSearch.unitName != sibling.unitName)
                 {
-                    siblings.Add(unlockedUnits[unitToSearch.originalUnit.awokenUnits[i].unitName] as AwokenUnit);
+                    if (unlockedUnits.ContainsKey(sibling.unitName))
+                    {
+                        siblings.Add(unlockedUnits[sibling.unitName] as AwokenUnit);
+                    }
                 }
             }
         }

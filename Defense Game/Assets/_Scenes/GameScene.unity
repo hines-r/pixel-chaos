@@ -13327,12 +13327,12 @@ Prefab:
     - target: {fileID: 114931570628101240, guid: f4ff5606bc825704d851c495b875e42f,
         type: 2}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.7567792
       objectReference: {fileID: 0}
     - target: {fileID: 114931570628101240, guid: f4ff5606bc825704d851c495b875e42f,
         type: 2}
       propertyPath: m_Color.b
-      value: 0.9450981
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114771736183212382, guid: f4ff5606bc825704d851c495b875e42f,
         type: 2}
@@ -22979,7 +22979,7 @@ MonoBehaviour:
   experienceToNextLevel: 200
   startingHealth: 100
   startGold: 500
-  startingGems: 99999
+  startingGems: 0
 --- !u!114 &1978738897
 MonoBehaviour:
   m_ObjectHideFlags: 0

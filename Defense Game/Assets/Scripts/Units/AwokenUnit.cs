@@ -27,11 +27,14 @@ public class AwokenUnit : Unit
 
     void CloneOriginal()
     {
-        Unit unitToClone = unitManager.FindUnlockedUnit(originalUnit);
-
-        if (unitToClone != null)
+        if (unitManager != null)
         {
-            level = unitToClone.level;
+            Unit unitToClone = unitManager.FindUnlockedUnit(originalUnit);
+
+            if (unitToClone != null)
+            {
+                level = unitToClone.level;
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Collider2D), typeof(Animator))]
 public class TidalWave : Attack
 {
     [Header("Properties")]
@@ -16,13 +16,15 @@ public class TidalWave : Attack
     private readonly float startPositionX = -4f;
     private readonly float distanceXTillFade = 0f;
 
+    private bool isBeingDestroyed;
+
     private Animator anim;
-    private BoxCollider2D bc2d;
+    private Collider2D c2d;
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        bc2d = GetComponent<BoxCollider2D>();
+        c2d = GetComponent<Collider2D>();
 
         if (Target != null)
         {
@@ -34,7 +36,7 @@ public class TidalWave : Attack
     {
         transform.position += transform.right * speed * Time.deltaTime;
 
-        if (transform.position.x >= distanceXTillFade)
+        if (!isBeingDestroyed && transform.position.x >= distanceXTillFade)
         {
             StartCoroutine(SelfDestruct());
         }
@@ -42,6 +44,8 @@ public class TidalWave : Attack
 
     IEnumerator SelfDestruct()
     {
+        isBeingDestroyed = true;
+
         float timeTillDisable = 2f;
         float timeTillDestroy = 3.5f;
 
@@ -49,7 +53,7 @@ public class TidalWave : Attack
 
         yield return new WaitForSeconds(timeTillDisable);
 
-        bc2d.enabled = false;
+        c2d.enabled = false;
 
         yield return new WaitForSeconds(timeTillDestroy - timeTillDisable);
 
