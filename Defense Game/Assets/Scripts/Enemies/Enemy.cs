@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteRenderer), typeof(Rigidbody2D))]
 public class Enemy : LivingEntity
 {
     [Header("Enemy Attributes")]
@@ -26,6 +26,7 @@ public class Enemy : LivingEntity
 
     private bool isKnockedUp;
     private Vector3 knockUpPosition;
+    private readonly float minYPosition = -5f; // Minimum y position enemy can fall to
 
     // Attack animation
     private readonly float minLungeDistance = 0.5f;
@@ -52,6 +53,7 @@ public class Enemy : LivingEntity
     internal bool isUnderForces;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
     private Color startColor;
 
@@ -63,6 +65,7 @@ public class Enemy : LivingEntity
         base.Start();
 
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         speed = startSpeed;
         currentState = State.Moving;
@@ -124,6 +127,7 @@ public class Enemy : LivingEntity
         {
             knockUpDebuff.SetActive(true);
 
+            // The enemy has landed at its initial y position before being knocked up
             if (transform.position.y < knockUpPosition.y)
             {
                 isKnockedUp = false;
@@ -134,13 +138,9 @@ public class Enemy : LivingEntity
             }
         }
 
-        if(rb.velocity.x > 0 || rb.velocity.y > 0)
+        if (!isUnderForces)
         {
-            isUnderForces  = true;
-        }
-        else if (!isUnderForces)
-        {
-            rb.velocity = Vector2.zero; // Sets velocity to 0 after exiting a black hole
+            rb.velocity = Vector2.zero; // Sets velocity to 0 whenever a force has ended
         }
 
         if (Time.time > nextAttackTime && currentState == State.Attacking)
@@ -175,6 +175,13 @@ public class Enemy : LivingEntity
             {
                 currentState = State.Attacking;
             }
+        }
+
+        // Checks if the enemy has decended below the visible screen
+        // If so, sets the y position at the very bottom adjusted by the sprites height
+        if (transform.position.y < minYPosition + sr.bounds.size.y / 2)
+        {
+            transform.position = new Vector3(transform.position.x, minYPosition + sr.bounds.size.y / 2, transform.position.z);
         }
     }
 
@@ -227,8 +234,12 @@ public class Enemy : LivingEntity
 
     public void KnockUp(float xForce, float yForce)
     {
-        isKnockedUp = true;
-        knockUpPosition = transform.position; // The position before being knocked up
+        if (!isKnockedUp)
+        {
+            isKnockedUp = true;
+            knockUpPosition = transform.position; // The position before being knocked up
+        }
+
         rb.gravityScale = 1;
         rb.AddForce(new Vector2(xForce, yForce));
     }

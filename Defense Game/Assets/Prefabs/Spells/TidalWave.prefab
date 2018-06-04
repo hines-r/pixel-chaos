@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4696158820219014}
-  - component: {fileID: 61147465150221658}
+  - component: {fileID: 70299869326521032}
   - component: {fileID: 95490611217164468}
   - component: {fileID: 114920393907447144}
   m_Layer: 15
@@ -85,15 +85,15 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1895746519028992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.43, z: 0}
+  m_LocalPosition: {x: 2.56, y: -0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224972096615842596}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61147465150221658
-BoxCollider2D:
+--- !u!70 &70299869326521032
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -105,18 +105,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 2.5}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.75, y: 2.5}
+  m_Direction: 0
 --- !u!95 &95490611217164468
 Animator:
   serializedVersion: 3
@@ -9374,6 +9364,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}

@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4516221055336436}
-  - component: {fileID: 58147294961791130}
+  - component: {fileID: 70083763333127536}
   - component: {fileID: 95496317489759388}
   - component: {fileID: 114618831641413768}
   m_Layer: 15
@@ -92,8 +92,8 @@ Transform:
   m_Father: {fileID: 224311006259857794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!58 &58147294961791130
-CircleCollider2D:
+--- !u!70 &70083763333127536
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -105,8 +105,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.5, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.25
+  m_Size: {x: 2, y: 2.5}
+  m_Direction: 0
 --- !u!95 &95496317489759388
 Animator:
   serializedVersion: 3
@@ -165,9 +165,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHostile: 0
   speed: 3
+  distanceXTillFade: 3
   hasKnockup: 1
   xForce: 75
-  yForce: 500
+  yForce: 350
 --- !u!198 &198336329194376724
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class TidalWave : Attack
 {
     [Header("Properties")]
     public float speed = 5f;
+    public float distanceXTillFade = 0f;
 
     [Space]
     public bool hasKnockup;
@@ -14,8 +15,6 @@ public class TidalWave : Attack
     public float yForce = 0f;
 
     private readonly float startPositionX = -4f;
-    private readonly float distanceXTillFade = 0f;
-
     private bool isBeingDestroyed;
 
     private Animator anim;
@@ -68,6 +67,7 @@ public class TidalWave : Attack
         {
             if (hasKnockup)
             {
+                enemy.isUnderForces = true;
                 enemy.KnockUp(xForce, yForce);
             }
 
