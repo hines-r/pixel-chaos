@@ -116,6 +116,8 @@ MonoBehaviour:
   speed: 3
   frequency: 2
   magnitude: 0.5
+  xForce: 0
+  yForce: 500
   sizeSpeed: 5
   rotationSpeed: 5
 --- !u!198 &198204799834872198

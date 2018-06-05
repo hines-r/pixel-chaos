@@ -33,6 +33,7 @@ public class ProceduralSpawner : MonoBehaviour
     [Header("Testing")]
     public int startWave = 0;
 
+    private Coroutine spawnWave;
     private readonly float startCountdownTime = 5f;
     private float countdown;
     private List<GameObject> activeEnemies;
@@ -92,6 +93,7 @@ public class ProceduralSpawner : MonoBehaviour
     void WaveDefeat()
     {
         StartCoroutine(DisplayWaveCompletePanel(waveDefeatPanel));
+        StopCoroutine(spawnWave);
         ToggleBattleBtn();
 
         foreach (GameObject enemy in activeEnemies)
@@ -155,7 +157,7 @@ public class ProceduralSpawner : MonoBehaviour
 
             if (countdown <= 0)
             {
-                StartCoroutine(SpawnWave());
+                spawnWave = StartCoroutine(SpawnWave());
                 countdownText.gameObject.SetActive(false);
             }
         }

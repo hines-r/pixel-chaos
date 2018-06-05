@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bubble : SineWaveProjectile
 {
     [Header("Bubble Properties")]
+    public float xForce;
+    public float yForce;
     public float sizeSpeed = 5f; // Multiplier for sizing interpolation when attached to an enemy
     public float rotationSpeed = 5f; // Mulitplier for rotating the bubble in relation to enemy velocity
 
@@ -50,6 +52,11 @@ public class Bubble : SineWaveProjectile
         else
         {
             base.Update();
+
+            if (GameMaster.GameIsOver)
+            {
+                Burst();
+            }
         }
     }
 
@@ -69,7 +76,17 @@ public class Bubble : SineWaveProjectile
             {
                 isOnTarget = true;
                 enemyAttachedTo.isUnderForces = true;
-                enemyAttachedTo.MakeAirborne(0, 500);
+                enemyAttachedTo.GetRigidbody2D().velocity = Vector3.zero;
+
+                if (enemyAttachedTo.IsAirborne())
+                {
+                    enemyAttachedTo.MakeAirborne(xForce, yForce / 2.25f); // Applies less force if enemy is already airborne
+                }
+                else
+                {
+                    enemyAttachedTo.MakeAirborne(xForce, yForce);
+                }
+
                 Vector3 enemySize = enemyAttachedTo.GetComponent<SpriteRenderer>().bounds.size;
 
                 float enemyLargestSize = enemySize.x < enemySize.y ? enemySize.y : enemySize.x;
