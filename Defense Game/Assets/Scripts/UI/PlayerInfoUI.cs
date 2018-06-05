@@ -29,10 +29,10 @@ public class PlayerInfoUI : MonoBehaviour
         {
             currentTime -= Time.deltaTime;
             waveBarImg.fillAmount = currentTime / randomizer.GetTotalSpawnTime();
-            waveBarText.text = "Wave " + ProceduralSpawner.WaveIndex;
         }
         else
         {
+            waveBarText.text = "Wave " + ProceduralSpawner.WaveIndex;
             waveBarImg.fillAmount = Mathf.Lerp(waveBarImg.fillAmount, 1, fillSpeed * Time.deltaTime);
         }
 

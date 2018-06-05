@@ -11,6 +11,7 @@ public class ProceduralSpawner : MonoBehaviour
     public static State CurrentState;
 
     public GameObject waveCompletePanel;
+    public GameObject waveDefeatPanel;
 
     [Header("UI Components")]
     public Text enemiesAliveText;
@@ -34,6 +35,7 @@ public class ProceduralSpawner : MonoBehaviour
 
     private readonly float startCountdownTime = 5f;
     private float countdown;
+    private List<GameObject> activeEnemies;
 
     private Randomizer randomizer;
 
@@ -42,18 +44,25 @@ public class ProceduralSpawner : MonoBehaviour
         Waiting,
         Countdown,
         Spawning,
-        WaveComplete
+        WaveDone
     }
 
     void Start()
     {
         CurrentState = State.Waiting;
+        activeEnemies = new List<GameObject>();
         randomizer = GetComponent<Randomizer>();
         WaveIndex = startWave;
     }
 
     void Update()
     {
+        if (GameMaster.GameIsOver && CurrentState != State.WaveDone)
+        {
+            WaveDefeat();
+            return;
+        }
+
         if (CurrentState == State.Waiting)
         {
             return;
@@ -80,17 +89,33 @@ public class ProceduralSpawner : MonoBehaviour
         }
     }
 
+    void WaveDefeat()
+    {
+        StartCoroutine(DisplayWaveCompletePanel(waveDefeatPanel));
+        ToggleBattleBtn();
+
+        foreach (GameObject enemy in activeEnemies)
+        {
+            Destroy(enemy);
+        }
+
+        PlayerStats.Health = player.startingHealth;
+        GameMaster.GameIsOver = false;
+    }
+
     void WaveComplete()
     {
         int endWaveGold = randomizer.GetEndWaveGold(WaveIndex);
         bonusGoldText.text = "Bonus: " + endWaveGold + "g";
 
-        StartCoroutine(DisplayWaveCompletePanel());
+        StartCoroutine(DisplayWaveCompletePanel(waveCompletePanel));
         ToggleBattleBtn();
 
         PlayerStats.Gold += endWaveGold;
         PlayerStats.Gems++; // Gives the player a gem after each wave
         PlayerStats.Health = player.startingHealth;
+
+        WaveIndex++;
     }
 
     public void BattleButtonClick()
@@ -105,7 +130,6 @@ public class ProceduralSpawner : MonoBehaviour
         ToggleBattleBtn();
         countdown = startCountdownTime;
 
-        WaveIndex++;
         StartNextWave();
     }
 
@@ -157,24 +181,24 @@ public class ProceduralSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator DisplayWaveCompletePanel()
+    IEnumerator DisplayWaveCompletePanel(GameObject panel)
     {
         float timeTillFade = 2f;
         float timeTillDisable = .25f;
 
-        CurrentState = State.WaveComplete;
+        CurrentState = State.WaveDone;
 
-        waveCompletePanel.SetActive(true);
+        panel.SetActive(true);
         yield return new WaitForSeconds(timeTillFade);
 
-        Animator anim = waveCompletePanel.GetComponent<Animator>();
+        Animator anim = panel.GetComponent<Animator>();
         if (anim != null)
         {
             anim.SetTrigger("PanelExit");
         }
 
         yield return new WaitForSeconds(timeTillDisable);
-        waveCompletePanel.SetActive(false);
+        panel.SetActive(false);
 
         CurrentState = State.Waiting;
     }
@@ -186,7 +210,8 @@ public class ProceduralSpawner : MonoBehaviour
 
         GameObject enemyToSpawn = spawnableTypes[index].enemy;
 
-        Instantiate(enemyToSpawn, GetSpawnPosition(enemyToSpawn), Quaternion.identity);
+        GameObject spawnedEnemy = Instantiate(enemyToSpawn, GetSpawnPosition(enemyToSpawn), Quaternion.identity);
+        activeEnemies.Add(spawnedEnemy);
     }
 
     Vector2 GetSpawnPosition(GameObject enemy)

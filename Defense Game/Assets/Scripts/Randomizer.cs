@@ -7,7 +7,6 @@ public class Randomizer : MonoBehaviour
     public PlayerInfoUI playerInfoUI;
 
     private const float MaxTimePerWave = 30f; // Max of 30 seconds of spawn time per wave
-
     private float totalSpawnTime;
 
     public float GetSpawnInterval(float waveIndex)

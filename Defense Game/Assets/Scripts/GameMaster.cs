@@ -56,7 +56,7 @@ public class GameMaster : MonoBehaviour
     void EndGame()
     {
         GameIsOver = true;
-        gameOverUI.SetActive(true);
+        //gameOverUI.SetActive(true);
     }
 
     void WinGame()
