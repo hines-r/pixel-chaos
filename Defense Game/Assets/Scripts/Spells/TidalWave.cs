@@ -68,7 +68,7 @@ public class TidalWave : Attack
             if (hasKnockup)
             {
                 enemy.isUnderForces = true;
-                enemy.KnockUp(xForce, yForce);
+                enemy.MakeAirborne(xForce, yForce);
             }
 
             enemy.TakeDamage(Damage);

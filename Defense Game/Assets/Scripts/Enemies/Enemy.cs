@@ -24,9 +24,11 @@ public class Enemy : LivingEntity
     internal bool isLivingBomb;
     private float bombDetonationTime;
 
-    private bool isKnockedUp;
-    private Vector3 knockUpPosition;
+    private bool isAirborne;
+    private Vector3 airbornePosition;
     private readonly float minYPosition = -5f; // Minimum y position enemy can fall to
+
+    internal bool isUnderForces;
 
     // Attack animation
     private readonly float minLungeDistance = 0.5f;
@@ -50,12 +52,8 @@ public class Enemy : LivingEntity
     public GameObject bombDebuff;
     public GameObject knockUpDebuff;
 
-    internal bool isUnderForces;
-
     private Rigidbody2D rb;
     private SpriteRenderer sr;
-
-    private Color startColor;
 
     public enum State { Moving, Attacking, UnderForces }
     internal State currentState;
@@ -123,14 +121,14 @@ public class Enemy : LivingEntity
             bombDebuff.SetActive(false);
         }
 
-        if (isKnockedUp)
+        if (isAirborne)
         {
             knockUpDebuff.SetActive(true);
 
             // The enemy has landed at its initial y position before being knocked up
-            if (transform.position.y < knockUpPosition.y)
+            if (transform.position.y < airbornePosition.y)
             {
-                isKnockedUp = false;
+                isAirborne = false;
                 isUnderForces = false;
                 knockUpDebuff.SetActive(false);
                 rb.gravityScale = 0;
@@ -164,14 +162,14 @@ public class Enemy : LivingEntity
             currentState = State.Moving;
 
             // Can only move is not stunned or knocked up
-            if (!isStunned && !isKnockedUp)
+            if (!isStunned && !isAirborne)
             {
                 transform.position -= transform.right * speed * Time.deltaTime;
             }
         }
         else
         {
-            if (!isUnderForces && !isStunned && !isKnockedUp)
+            if (!isUnderForces && !isStunned && !isAirborne)
             {
                 currentState = State.Attacking;
             }
@@ -232,12 +230,12 @@ public class Enemy : LivingEntity
         }
     }
 
-    public void KnockUp(float xForce, float yForce)
+    public void MakeAirborne(float xForce, float yForce)
     {
-        if (!isKnockedUp)
+        if (!isAirborne)
         {
-            isKnockedUp = true;
-            knockUpPosition = transform.position; // The position before being knocked up
+            isAirborne = true;
+            airbornePosition = transform.position; // The position before being knocked up
         }
 
         rb.gravityScale = 1;
@@ -247,6 +245,11 @@ public class Enemy : LivingEntity
     public float GetVelocity()
     {
         return velocity;
+    }
+
+    public Rigidbody2D GetRigidbody2D()
+    {
+        return rb;
     }
 
     protected override void Die()

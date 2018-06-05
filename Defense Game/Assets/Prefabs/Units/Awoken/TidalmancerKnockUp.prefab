@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1645054063729234}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.87, y: -2.72, z: 0}
+  m_LocalPosition: {x: -5.49, y: -2.72, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224122068153972246}
@@ -148,8 +148,8 @@ MonoBehaviour:
   description: Summons a wave of water that pushes enemies back and knocks them up
     in the air.
   multiplier: 1.08
-  upgradeBaseCost: 0
-  damageIncrement: 0
+  upgradeBaseCost: 1000
+  damageIncrement: 5
   unitAI: 0
   originalUnit: {fileID: 114208648251682132, guid: 493100f44bce2cb44a4cb5dab3718fc6,
     type: 2}

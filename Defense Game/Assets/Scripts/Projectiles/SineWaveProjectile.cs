@@ -16,6 +16,8 @@ public class SineWaveProjectile : Projectile
     {
         base.Start();
 
+        FaceTarget();
+
         pos = transform.position;
         axis = transform.up;
     }
@@ -26,5 +28,18 @@ public class SineWaveProjectile : Projectile
 
         pos += transform.right * Time.deltaTime * speed;
         transform.position = pos + axis * Mathf.Sin(Time.time * frequency) * magnitude;
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+    }
+
+    void FaceTarget()
+    {
+        if (Target != null)
+        {
+            transform.right = Target.transform.position - transform.position;
+        }
     }
 }
