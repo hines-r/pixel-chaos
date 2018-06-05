@@ -34,7 +34,7 @@ public class Projectile : Attack
 
     protected virtual void Start()
     {
-        Destroy(gameObject, maxTimeAlive);
+        Invoke("DestroyProjectile", maxTimeAlive);
     }
 
     protected virtual void Update()
@@ -44,6 +44,11 @@ public class Projectile : Attack
             StartCoroutine(DestroyProjectileAtRandomTime());
             return;
         }
+    }
+
+    void DestroyProjectile()
+    {
+        Destroy(gameObject);
     }
 
     IEnumerator DestroyProjectileAtRandomTime()

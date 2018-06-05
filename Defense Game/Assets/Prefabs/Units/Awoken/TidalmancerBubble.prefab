@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 212080500697347164}
   - component: {fileID: 61300975240524726}
   - component: {fileID: 114367084665363818}
-  - component: {fileID: 114374406003601508}
   m_Layer: 8
   m_Name: TidalmancerBubble
   m_TagString: Untagged
@@ -197,19 +196,6 @@ MonoBehaviour:
   unitAI: 0
   originalUnit: {fileID: 114208648251682132, guid: 493100f44bce2cb44a4cb5dab3718fc6,
     type: 2}
---- !u!114 &114374406003601508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1079838712625108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327a01da3e1b0874594f30b80c6f6c89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castArea: {fileID: 1663979108887614}
-  castProgress: {fileID: 114499138463928080}
 --- !u!114 &114499138463928080
 MonoBehaviour:
   m_ObjectHideFlags: 1

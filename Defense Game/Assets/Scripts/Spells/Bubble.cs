@@ -15,6 +15,7 @@ public class Bubble : SineWaveProjectile
     protected override void Start()
     {
         base.Start();
+        CancelInvoke("DestroyProjectile");
     }
 
     protected override void Update()
@@ -76,5 +77,11 @@ public class Bubble : SineWaveProjectile
                 bubbleSize = new Vector3(enemyLargestSize, enemyLargestSize, enemySize.z) * 2.5f;
             }
         }
+    }
+
+    void OnBecameInvisible()
+    {
+        float timeToDestroy = 1f;
+        Destroy(gameObject, timeToDestroy);
     }
 }
