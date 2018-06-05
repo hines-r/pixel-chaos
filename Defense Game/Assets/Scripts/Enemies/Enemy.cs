@@ -252,6 +252,16 @@ public class Enemy : LivingEntity
         return rb;
     }
 
+    public bool IsAirborne()
+    {
+        return isAirborne;
+    }
+
+    public Vector3 GetAirbornePosition()
+    {
+        return airbornePosition;
+    }
+
     protected override void Die()
     {
         base.Die();

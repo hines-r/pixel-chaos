@@ -14,6 +14,7 @@ public class ParabolicProjectile : Projectile
     private Rigidbody2D rb;
 
     private Vector3 impactLocation;
+    private Enemy targetEnemy;
     private bool isOnGround;
 
     protected override void Start()
@@ -62,6 +63,11 @@ public class ParabolicProjectile : Projectile
             }
             else
             {
+                if (targetEnemy != null && targetEnemy.IsAirborne())
+                {
+                    impactLocation = targetEnemy.GetAirbornePosition();
+                }
+
                 if (transform.position.x > impactLocation.x && transform.position.y < impactLocation.y)
                 {
                     HitGround();
@@ -107,7 +113,7 @@ public class ParabolicProjectile : Projectile
 
     Vector2 CalculateLaunchVelocity(GameObject entityToHit)
     {
-        Enemy enemy = entityToHit.GetComponent<Enemy>();
+        targetEnemy = entityToHit.GetComponent<Enemy>();
         Vector3 target = entityToHit.GetComponent<Transform>().position;
 
         float h = target.y - transform.position.y + throwHeight; ;
@@ -122,9 +128,9 @@ public class ParabolicProjectile : Projectile
 
         // Will attempt to aim at the stopping point of an enemy if it is attacking
         // This way the projectile won't miss as often when enemies are performing a lunge attack
-        if (enemy != null && enemy.currentState == Enemy.State.Attacking)
+        if (targetEnemy != null && targetEnemy.currentState == Enemy.State.Attacking)
         {
-            target.x = enemy.stoppingPoint;
+            target.x = targetEnemy.stoppingPoint;
         }
 
         float displacementX = target.x - transform.position.x;
@@ -135,7 +141,7 @@ public class ParabolicProjectile : Projectile
 
         // Calculates future position if the entity to hit is a moving enemy
         // Doesn't need to be calculated for a static enemy like the player
-        if (enemy != null && !enemy.isUnderForces)
+        if (targetEnemy != null && !targetEnemy.isUnderForces)
         {
             float targetVelocity = entityToHit.GetComponent<Enemy>().GetVelocity();
             float distanceTraveledInTime = targetVelocity * timeToTarget;

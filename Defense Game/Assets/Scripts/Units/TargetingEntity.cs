@@ -5,7 +5,6 @@ using UnityEngine;
 public class TargetingEntity : MonoBehaviour
 {
     protected float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
-    protected float maxYAttackRanage = 0.5f; // Can only attack enemies when they're below this y point
 
     protected GameObject TargetNearestEnemy()
     {
@@ -25,7 +24,7 @@ public class TargetingEntity : MonoBehaviour
         {
             Vector3 directionToTarget = enemy.transform.position - currentPosition;
             float dSqrtToTarget = directionToTarget.sqrMagnitude;
-            if (dSqrtToTarget < closestDistanceSqr && enemy.transform.position.y <= maxYAttackRanage)
+            if (dSqrtToTarget < closestDistanceSqr)
             {
                 closestDistanceSqr = dSqrtToTarget;
                 nearestEnemy = enemy;
