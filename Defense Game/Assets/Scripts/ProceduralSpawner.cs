@@ -31,7 +31,7 @@ public class ProceduralSpawner : MonoBehaviour
     public float xSpawnPos = 10f;
 
     [Header("Testing")]
-    public int startWave = 0;
+    public int startWave = 1;
 
     private Coroutine spawnWave;
     private readonly float startCountdownTime = 5f;

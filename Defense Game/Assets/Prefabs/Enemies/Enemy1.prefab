@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 222125868202429842}
   - component: {fileID: 114844488832014246}
   m_Layer: 5
-  m_Name: KnockedUp
+  m_Name: Airborne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   slowDebuff: {fileID: 1179498946125424}
   stunnedDebuff: {fileID: 1278816299025806}
   bombDebuff: {fileID: 1615441162438362}
-  knockUpDebuff: {fileID: 1369956624437286}
+  airborneDebuff: {fileID: 1369956624437286}
 --- !u!114 &114115884965458104
 MonoBehaviour:
   m_ObjectHideFlags: 1

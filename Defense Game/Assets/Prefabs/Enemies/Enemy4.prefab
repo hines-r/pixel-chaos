@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 222731260251087620}
   - component: {fileID: 114670314457086956}
   m_Layer: 5
-  m_Name: KnockedUp
+  m_Name: Airborne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
   slowDebuff: {fileID: 1173504440285108}
   stunnedDebuff: {fileID: 1672402036615072}
   bombDebuff: {fileID: 1645289196192636}
-  knockUpDebuff: {fileID: 1409371625095638}
+  airborneDebuff: {fileID: 1409371625095638}
   projectile: {fileID: 1275422147326350, guid: 51ca9c29bc64d3c439c3cb2624c4053b, type: 2}
   castle: {fileID: 1474536848834078, guid: 15596088e45aa914c976fa4e8af816c8, type: 2}
 --- !u!114 &114052761605502614

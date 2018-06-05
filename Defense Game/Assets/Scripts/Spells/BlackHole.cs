@@ -15,6 +15,7 @@ public class BlackHole : Attack
     public float damageDampening = 5f; // Dampens the periodic damage taken (Damage / damageDampening)
 
     private bool isBeingDestroyed;
+    private bool isInSky;
 
     private PointEffector2D pe2d;
     private CircleCollider2D c2d;
@@ -34,6 +35,16 @@ public class BlackHole : Attack
         // Summons the black hole over the target position
         Vector3 summonLocation = new Vector3(Target.transform.position.x + xOffset, Target.transform.position.y, 0);
         transform.position = summonLocation;
+
+        Enemy enemyToSummonOn = Target.GetComponent<Enemy>();
+
+        if (enemyToSummonOn != null)
+        {
+            if (transform.position.y >= enemyToSummonOn.GetAirborneYThreshold())
+            {
+                isInSky = true;
+            }
+        }
 
         StartCoroutine(DamageEnemiesWithin());
     }
@@ -157,6 +168,11 @@ public class BlackHole : Attack
         if (enemy != null)
         {
             enemy.isUnderForces = true;
+
+            if (isInSky)
+            {
+                enemy.MakeAirborne(0f, 0f);
+            }
         }
     }
 

@@ -26,6 +26,7 @@ public class Enemy : LivingEntity
 
     private bool isAirborne;
     private Vector3 airbornePosition;
+    private readonly float airborneYThreshold = 0.25f; // Maximum y position until considered airborne
     private readonly float minYPosition = -5f; // Minimum y position enemy can fall to
 
     internal bool isUnderForces;
@@ -50,7 +51,7 @@ public class Enemy : LivingEntity
     public GameObject slowDebuff;
     public GameObject stunnedDebuff;
     public GameObject bombDebuff;
-    public GameObject knockUpDebuff;
+    public GameObject airborneDebuff;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -121,30 +122,39 @@ public class Enemy : LivingEntity
             bombDebuff.SetActive(false);
         }
 
+        if (transform.position.y > airborneYThreshold && !isAirborne)
+        {
+            isAirborne = true;
+        }
+
         if (isAirborne)
         {
-            knockUpDebuff.SetActive(true);
+            airborneDebuff.SetActive(true);
 
-            // The enemy has landed at its initial y position before being knocked up
+            // The enemy has landed at its initial y position before becoming airborne
             if (transform.position.y < airbornePosition.y)
             {
                 isAirborne = false;
                 isUnderForces = false;
-                knockUpDebuff.SetActive(false);
+                airborneDebuff.SetActive(false);
                 rb.gravityScale = 0;
                 rb.velocity = Vector2.zero;
             }
         }
 
-        if (!isUnderForces)
+        if (!isUnderForces && isAirborne)
         {
-            rb.velocity = Vector2.zero; // Sets velocity to 0 whenever a force has ended
+            rb.velocity = new Vector2(0f, rb.velocity.y); // If an enemy ends up above the airborne threshold, allows them to fall back down
+        }
+        else if (!isUnderForces)
+        {
+            rb.velocity = Vector2.zero;  // Sets velocity to 0 whenever a force has ended
         }
 
         if (Time.time > nextAttackTime && currentState == State.Attacking)
         {
             // Can't attack if under the effects of a black hole or other force
-            if (!isUnderForces)
+            if (!isUnderForces && !isStunned && !isAirborne)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
                 StartCoroutine(Attack());
@@ -161,7 +171,7 @@ public class Enemy : LivingEntity
         {
             currentState = State.Moving;
 
-            // Can only move is not stunned or knocked up
+            // Can only move is not stunned or airborne
             if (!isStunned && !isAirborne)
             {
                 transform.position -= transform.right * speed * Time.deltaTime;
@@ -235,7 +245,7 @@ public class Enemy : LivingEntity
         if (!isAirborne)
         {
             isAirborne = true;
-            airbornePosition = transform.position; // The position before being knocked up
+            airbornePosition = transform.position; // The position before being airborne
         }
 
         rb.gravityScale = 1;
@@ -255,6 +265,11 @@ public class Enemy : LivingEntity
     public bool IsAirborne()
     {
         return isAirborne;
+    }
+
+    public float GetAirborneYThreshold()
+    {
+        return airborneYThreshold;
     }
 
     public Vector3 GetAirbornePosition()
