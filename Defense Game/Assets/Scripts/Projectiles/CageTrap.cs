@@ -10,16 +10,11 @@ public class CageTrap : Attack
     public float distanceAboveTarget = 4f;
     public float distanceToActivate = 1f;
 
-    private Vector3 impactLocation;
-    private Cage newCage;
-
     void Start()
     {
         Vector3 targetPos = Target.transform.position;
         Vector3 spawnPos = new Vector3(targetPos.x, targetPos.y + distanceAboveTarget, targetPos.z);
         transform.position = spawnPos;
-
-        impactLocation = Target.transform.position;
     }
 
     void Update()
@@ -41,7 +36,7 @@ public class CageTrap : Attack
 
     void DeployCage()
     {
-        newCage = Instantiate(cage, transform.position, Quaternion.identity);
+        Cage newCage = Instantiate(cage, transform.position, Quaternion.identity);
         newCage.Target = Target;
         newCage.fallSpeed = fallSpeed;
         newCage.duration = duration;
