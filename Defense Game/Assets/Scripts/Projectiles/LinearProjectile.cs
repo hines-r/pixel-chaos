@@ -42,7 +42,7 @@ public class LinearProjectile : Projectile
         }
     }
 
-    void FaceTarget()
+    protected virtual void FaceTarget()
     {
         transform.right = Target.transform.position - transform.position;
     }
@@ -58,7 +58,7 @@ public class LinearProjectile : Projectile
                 ChainToRandomEnemy(enemyHit);
             }
         }
-        
+
         base.OnTriggerEnter2D(collision);
     }
 
