@@ -29,6 +29,8 @@ public class Enemy : LivingEntity
     private readonly float airborneYThreshold = 0.25f; // Maximum y position until considered airborne
     private readonly float minYPosition = -5f; // Minimum y position enemy can fall to
 
+    internal bool isTrapped;
+
     internal bool isUnderForces;
 
     // Attack animation
@@ -154,7 +156,7 @@ public class Enemy : LivingEntity
         if (Time.time > nextAttackTime && currentState == State.Attacking)
         {
             // Can't attack if under the effects of a black hole or other force
-            if (!isUnderForces && !isStunned && !isAirborne)
+            if (!isUnderForces && !isStunned && !isAirborne && !isTrapped)
             {
                 nextAttackTime = Time.time + timeBetweenAttacks;
                 StartCoroutine(Attack());
@@ -172,7 +174,7 @@ public class Enemy : LivingEntity
             currentState = State.Moving;
 
             // Can only move is not stunned or airborne
-            if (!isStunned && !isAirborne)
+            if (!isStunned && !isAirborne && !isTrapped)
             {
                 transform.position -= transform.right * speed * Time.deltaTime;
             }

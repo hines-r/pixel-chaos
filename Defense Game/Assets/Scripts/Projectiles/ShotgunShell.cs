@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class ShotgunShell : LinearProjectile
 {
+    [Header("Properties")]
     public int burstCount = 10;
 
     [Range(0f, 2f)]
     public float scatterOffset = 0.5f;
+    public float minSpeedOffset = 0.95f;     // Modifier used to slightly vary the projectile speed
+    public float maxSpeedOffset = 1.15f;
 
     public GameObject muzzleFlash;
-    private readonly float flashTime = 1.5f;
 
-    // Modifier used to slightly vary the projectile speed
-    private readonly float minSpeedOffset = 0.95f;
-    private readonly float maxSpeedOffset = 1.15f;
+    private readonly float flashTime = 1.5f;
 
     protected override void Start()
     {
