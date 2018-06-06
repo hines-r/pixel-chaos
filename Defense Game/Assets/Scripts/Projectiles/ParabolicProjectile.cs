@@ -9,7 +9,7 @@ public class ParabolicProjectile : Projectile
     public float throwHeight = 5;
     public bool isCrushing; // The projectile will hit the ground further below its target
     public bool isScatter; // Randomizes launch velocity
-    private float yOffset = 1f;
+    private readonly float yOffset = 1f;
 
     private Rigidbody2D rb;
 
@@ -85,6 +85,11 @@ public class ParabolicProjectile : Projectile
         // instantiate the effect and destroy the object
         if (impactEffect != null)
         {
+            if (isExplosive)
+            {
+                Explode();
+            }
+
             Impact();
             Destroy(gameObject);
             return;

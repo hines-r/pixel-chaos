@@ -57,7 +57,7 @@ public class Projectile : Attack
         Destroy(gameObject);
     }
 
-    void Explode()
+    protected void Explode()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), splashRadius);
 
@@ -147,7 +147,7 @@ public class Projectile : Attack
         }
     }
 
-    public void Impact()
+    protected void Impact()
     {
         GameObject impact = Instantiate(impactEffect, transform.position, Quaternion.identity);
         Destroy(impact, particleTime);
