@@ -11,7 +11,7 @@ public class Randomizer : MonoBehaviour
 
     public float GetSpawnInterval(float waveIndex)
     {
-        waveIndex *= 0.05f;
+        waveIndex *= 0.1f;
         return 1f / (Mathf.Pow(waveIndex, 1.1f) + 9f + Mathf.Sin(waveIndex)) * 10f;
     }
 
