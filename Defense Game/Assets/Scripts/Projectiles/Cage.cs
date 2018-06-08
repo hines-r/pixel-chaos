@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Cage : Attack
 {
-    public Collider2D[] bars;
-
     internal float fallSpeed;
     internal float duration;
 
@@ -24,7 +22,7 @@ public class Cage : Attack
 
         if (enemyTarget != null)
         {
-            transform.localScale = enemyTarget.gameObject.transform.localScale * 2f;
+            transform.localScale = enemyTarget.gameObject.transform.localScale * 2.5f;
         }
 
         StartCoroutine(StartDestroy());
@@ -34,6 +32,11 @@ public class Cage : Attack
     {
         if (isLanded)
         {
+            if (enemiesTrapped.Count <= 0)
+            {
+                Destroy(gameObject, 1f);
+            }
+
             return;
         }
 
@@ -52,9 +55,7 @@ public class Cage : Attack
     {
         yield return new WaitForSeconds(duration);
 
-        List<Enemy> enemiesToFree = new List<Enemy>(enemiesTrapped);
-
-        foreach (Enemy enemy in enemiesToFree)
+        foreach (Enemy enemy in enemiesTrapped)
         {
             enemy.isTrapped = false;
         }
@@ -62,25 +63,44 @@ public class Cage : Attack
         Destroy(gameObject);
     }
 
-    void OnTriggerStay2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemyWithin = collision.GetComponent<Enemy>();
-
-        if (enemyWithin != null)
+        if (!isLanded)
         {
-            enemyWithin.isTrapped = true;
-            enemiesTrapped.Add(enemyWithin);
+            Enemy enemyWithin = collision.GetComponent<Enemy>();
+
+            if (enemyWithin != null)
+            {
+                enemiesTrapped.Add(enemyWithin);
+            }
         }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        // TODO add interaction for when trapped enemies get pushed out of the trap
     }
 
     void HitGround()
     {
-        foreach (Collider2D collider in bars)
+        foreach (Enemy enemy in enemiesTrapped)
         {
-            collider.enabled = false;
+            SpriteRenderer enemyBounds = enemy.GetSpriteRenderer();
+
+            if (enemyBounds != null)
+            {
+                if (c2d.bounds.Contains(enemyBounds.bounds))
+                {
+                    enemy.TakeDamage(Damage);
+                    enemy.isTrapped = true;
+                }
+                else
+                {
+                    enemiesTrapped.Remove(enemy);
+                }
+            }
         }
 
-        c2d.enabled = false;
         isLanded = true;
     }
 }

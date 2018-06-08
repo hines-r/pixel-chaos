@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000606442225766}
   - component: {fileID: 212674513368044610}
-  - component: {fileID: 61598398889732892}
+  - component: {fileID: 58901290951546508}
   - component: {fileID: 114893977619553562}
   m_Layer: 10
   m_Name: CageTrap
@@ -42,8 +42,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &61598398889732892
-BoxCollider2D:
+--- !u!58 &58901290951546508
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -55,18 +55,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.26666668, y: 0.26666668}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.13333334
 --- !u!114 &114893977619553562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,9 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHostile: 0
   cage: {fileID: 114223645273066928, guid: 59c7d2391ae1fb94093c45d5a5d59cfa, type: 2}
-  fallSpeed: 6
-  duration: 3
-  distanceAboveTarget: 5
+  fallSpeed: 15
+  duration: 4
+  distanceAboveTarget: 4
   distanceToActivate: 1.5
 --- !u!212 &212674513368044610
 SpriteRenderer:

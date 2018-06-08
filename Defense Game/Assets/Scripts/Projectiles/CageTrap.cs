@@ -37,6 +37,7 @@ public class CageTrap : Attack
     void DeployCage()
     {
         Cage newCage = Instantiate(cage, transform.position, Quaternion.identity);
+        newCage.Damage = Damage;
         newCage.Target = Target;
         newCage.fallSpeed = fallSpeed;
         newCage.duration = duration;

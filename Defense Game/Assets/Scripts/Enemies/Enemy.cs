@@ -54,6 +54,7 @@ public class Enemy : LivingEntity
     public GameObject stunnedDebuff;
     public GameObject bombDebuff;
     public GameObject airborneDebuff;
+    public GameObject trappedDebuff;
 
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -122,6 +123,15 @@ public class Enemy : LivingEntity
         {
             isLivingBomb = false;
             bombDebuff.SetActive(false);
+        }
+
+        if (isTrapped)
+        {
+            trappedDebuff.SetActive(true);
+        }
+        else
+        {
+            trappedDebuff.SetActive(false);
         }
 
         if (transform.position.y > airborneYThreshold && !isAirborne)
@@ -254,31 +264,6 @@ public class Enemy : LivingEntity
         rb.AddForce(new Vector2(xForce, yForce));
     }
 
-    public float GetVelocity()
-    {
-        return velocity;
-    }
-
-    public Rigidbody2D GetRigidbody2D()
-    {
-        return rb;
-    }
-
-    public bool IsAirborne()
-    {
-        return isAirborne;
-    }
-
-    public float GetAirborneYThreshold()
-    {
-        return airborneYThreshold;
-    }
-
-    public Vector3 GetAirbornePosition()
-    {
-        return airbornePosition;
-    }
-
     protected override void Die()
     {
         base.Die();
@@ -296,5 +281,35 @@ public class Enemy : LivingEntity
 
         PlayerStats.Gold += goldValue;
         PlayerStats.Experience += expAmount;
+    }
+
+    public float GetVelocity()
+    {
+        return velocity;
+    }
+
+    public Rigidbody2D GetRigidbody2D()
+    {
+        return rb;
+    }
+
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        return sr;
+    }
+
+    public bool IsAirborne()
+    {
+        return isAirborne;
+    }
+
+    public float GetAirborneYThreshold()
+    {
+        return airborneYThreshold;
+    }
+
+    public Vector3 GetAirbornePosition()
+    {
+        return airbornePosition;
     }
 }

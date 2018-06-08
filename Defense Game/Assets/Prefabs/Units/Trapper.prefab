@@ -55,8 +55,8 @@ MonoBehaviour:
   attackPrefab: {fileID: 114893977619553562, guid: ec1469f09e5266e4eb84e2a8f6fb92b4,
     type: 2}
   level: 1
-  damage: 15
-  attackSpeed: 5
+  damage: 50
+  attackSpeed: 5.5
   hasAbility: 0
   isPassiveCaster: 0
   hasBurstAttack: 0
@@ -65,7 +65,8 @@ MonoBehaviour:
   unitName: Trapper
   baseCost: 5000
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  description: Work in progress.
+  description: Unleashes a large cage that will trap enemies caught inside rendering
+    them unable to attack or move!
   multiplier: 1.08
   upgradeBaseCost: 1000
   damageIncrement: 1
