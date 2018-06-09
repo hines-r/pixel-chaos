@@ -153,6 +153,11 @@ public class UnitPanelUI : MonoBehaviour
             else if (GameMaster.instance.isBurdenedWithMoney)
             {
                 BuyUnit();
+
+                if (Tutorial.instance.IsTutorial)
+                {
+                    Tutorial.instance.TriggerPhaseFour();
+                }
             }
             else
             {

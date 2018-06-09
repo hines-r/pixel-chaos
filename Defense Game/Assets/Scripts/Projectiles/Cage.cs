@@ -32,11 +32,6 @@ public class Cage : Attack
     {
         if (isLanded)
         {
-            if (enemiesTrapped.Count <= 0)
-            {
-                Destroy(gameObject, 1f);
-            }
-
             return;
         }
 

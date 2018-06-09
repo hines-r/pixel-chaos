@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4620911133697806}
   - component: {fileID: 212635186826789000}
   - component: {fileID: 50644142181254936}
-  - component: {fileID: 61671362467551974}
+  - component: {fileID: 61991519954139112}
   - component: {fileID: 114098000540765098}
   m_Layer: 10
   m_Name: Arrow
@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1222516748984328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1539, y: -1.3919, z: 0}
-  m_LocalScale: {x: 0.4117868, y: 0.043317698, z: 1}
+  m_LocalPosition: {x: -0.0939, y: -1.4041, z: 0}
+  m_LocalScale: {x: 1.2723444, y: 1.2723444, z: 1.2723444}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,7 +63,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61671362467551974
+--- !u!61 &61991519954139112
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -79,14 +79,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.44, y: 0.09}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.44, y: 0.09}
   m_EdgeRadius: 0
 --- !u!114 &114098000540765098
 MonoBehaviour:
@@ -150,8 +150,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 3ce2c425934b90242b44bb9815ca2ea5, type: 3}
-  m_Color: {r: 0.3897059, g: 0.3135433, b: 0.25502813, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e9b2d10c837c3c14f8f9f22b72600839, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
