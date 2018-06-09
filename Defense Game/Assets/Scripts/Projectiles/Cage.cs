@@ -8,6 +8,7 @@ public class Cage : Attack
     internal float duration;
 
     private bool isLanded;
+    private Vector3 impactLocation;
 
     private Collider2D c2d;
 
@@ -22,6 +23,7 @@ public class Cage : Attack
 
         if (enemyTarget != null)
         {
+            impactLocation = enemyTarget.transform.position;
             transform.localScale = enemyTarget.gameObject.transform.localScale * 2.5f;
         }
 
@@ -35,7 +37,7 @@ public class Cage : Attack
             return;
         }
 
-        if (transform.position.y < Target.transform.position.y)
+        if (transform.position.y < impactLocation.y)
         {
             HitGround();
         }
@@ -71,13 +73,10 @@ public class Cage : Attack
         }
     }
 
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        // TODO add interaction for when trapped enemies get pushed out of the trap
-    }
-
     void HitGround()
     {
+        isLanded = true;
+
         foreach (Enemy enemy in enemiesTrapped)
         {
             SpriteRenderer enemyBounds = enemy.GetSpriteRenderer();
@@ -89,13 +88,7 @@ public class Cage : Attack
                     enemy.TakeDamage(Damage);
                     enemy.isTrapped = true;
                 }
-                else
-                {
-                    enemiesTrapped.Remove(enemy);
-                }
             }
         }
-
-        isLanded = true;
     }
 }
