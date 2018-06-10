@@ -101,8 +101,7 @@ MonoBehaviour:
   damageDuration: 0
   isExplosive: 1
   splashRadius: 1
-  impactEffect: {fileID: 1110272665707090, guid: 1333c746142fe2b489905cc6f9cb81a3,
-    type: 2}
+  impactEffect: {fileID: 0}
   throwHeight: 1
   isRotating: 0
   isCrushing: 0
@@ -112,6 +111,8 @@ MonoBehaviour:
   timesToBounce: 1
   bounceForce: 0.75
   targetXOffset: 1
+  triggerEffect: {fileID: 1110272665707090, guid: 1333c746142fe2b489905cc6f9cb81a3,
+    type: 2}
 --- !u!212 &212698749690589572
 SpriteRenderer:
   m_ObjectHideFlags: 1
