@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4640072269080262}
   - component: {fileID: 212495334454957602}
+  - component: {fileID: 70866881342923082}
   - component: {fileID: 50222845615982522}
-  - component: {fileID: 58771189730639166}
   - component: {fileID: 114079547730602034}
   m_Layer: 10
   m_Name: Grenade
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &58771189730639166
-CircleCollider2D:
+--- !u!70 &70866881342923082
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,8 +76,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.13333334
+  m_Size: {x: 0.24, y: 0.36}
+  m_Direction: 0
 --- !u!114 &114079547730602034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -141,8 +141,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: cee757492b70dff45a0072aa61f22c51, type: 3}
-  m_Color: {r: 0.33333334, g: 0.47058827, b: 0.2392157, a: 1}
+  m_Sprite: {fileID: 21300000, guid: df4d5be2ef6450c44828eec1e08e2f5a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
