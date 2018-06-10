@@ -7,8 +7,10 @@ public class ParabolicProjectile : Projectile
 {
     [Header("Properties")]
     public float throwHeight = 5;
+    public bool isRotating = true;
     public bool isCrushing; // The projectile will hit the ground further below its target
     public bool isScatter; // Randomizes launch velocity
+    public bool isATrap; // Allows the collider to remain active even if the projectile is on the ground
     private readonly float yOffset = 1f;
 
     [Header("Bounciness")]
@@ -24,13 +26,18 @@ public class ParabolicProjectile : Projectile
 
     private Vector3 impactLocation;
     private Enemy targetEnemy;
-    private bool isOnGround;
+    protected bool isOnGround;
 
     protected override void Start()
     {
         base.Start();
         rb = GetComponent<Rigidbody2D>();
-        RotateToTarget(CalculateLaunchVelocity(Target));
+
+        if (isRotating)
+        {
+            RotateToTarget(CalculateLaunchVelocity(Target));
+        }
+
         Launch();
     }
 
@@ -85,7 +92,10 @@ public class ParabolicProjectile : Projectile
             }
         }
 
-        RotateToTarget(rb.velocity);
+        if (isRotating)
+        {
+            RotateToTarget(rb.velocity);
+        }
     }
 
     void HitGround()
@@ -104,6 +114,7 @@ public class ParabolicProjectile : Projectile
             else
             {
                 isBouncing = false;
+                isOnGround = true;
             }
 
             if (isBouncing)
@@ -116,8 +127,6 @@ public class ParabolicProjectile : Projectile
         // instantiate the effect and destroy the object
         if (impactEffect != null)
         {
-            Debug.Log("working");
-
             if (isExplosive)
             {
                 Explode();
@@ -133,19 +142,22 @@ public class ParabolicProjectile : Projectile
         rb.gravityScale = 0;
         rb.velocity = Vector3.zero;
 
-        Collider2D collider = GetComponent<Collider2D>();
-
-        if (collider != null)
+        if (!isATrap)
         {
-            collider.enabled = false;
-        }
+            Collider2D collider = GetComponent<Collider2D>();
 
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            if (collider != null)
+            {
+                collider.enabled = false;
+            }
 
-        if (spriteRenderer != null)
-        {
-            // Sets the sorting order so enemies appear to walk over the projectile
-            spriteRenderer.sortingOrder = -1;
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+            if (spriteRenderer != null)
+            {
+                // Sets the sorting order so enemies appear to walk over the projectile
+                spriteRenderer.sortingOrder = -1;
+            }
         }
     }
 
