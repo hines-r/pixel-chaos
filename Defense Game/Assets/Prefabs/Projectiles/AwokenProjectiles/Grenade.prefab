@@ -106,6 +106,10 @@ MonoBehaviour:
   throwHeight: 2.5
   isCrushing: 0
   isScatter: 0
+  isBouncy: 1
+  timesToBounce: 3
+  bounceForce: 0.85
+  targetXOffset: 2
 --- !u!212 &212495334454957602
 SpriteRenderer:
   m_ObjectHideFlags: 1
