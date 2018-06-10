@@ -89,7 +89,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1723510710516466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.8863748, y: -2.5427332, z: 0}
+  m_LocalPosition: {x: -5.530091, y: -2.7854512, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 224443546861387790}
@@ -185,8 +185,8 @@ MonoBehaviour:
   attackPrefab: {fileID: 114000816672841966, guid: fd41b203d73c31542ae23daa0ff44256,
     type: 2}
   level: 1
-  damage: 100
-  attackSpeed: 10
+  damage: 150
+  attackSpeed: 6
   hasAbility: 1
   isPassiveCaster: 0
   hasBurstAttack: 0

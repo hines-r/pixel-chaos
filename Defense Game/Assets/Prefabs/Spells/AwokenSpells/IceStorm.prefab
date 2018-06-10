@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHostile: 0
   iceSpear: {fileID: 114791890259352556, guid: f521c3ed5c680b5478e73cea5722c40b, type: 2}
-  duration: 3
-  frequency: 0.25
-  xMin: -1.5
-  xMax: 1.5
+  duration: 4
+  frequency: 0.1
+  xMin: -2.5
+  xMax: 2.5

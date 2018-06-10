@@ -141,9 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHostile: 0
-  penetrationCount: 3
-  slowAmount: 0.5
-  slowDuration: 3
+  penetrationCount: 10
+  slowAmount: 0.75
+  slowDuration: 5
   hasStun: 0
   stunDuration: 0
   hasDot: 0
