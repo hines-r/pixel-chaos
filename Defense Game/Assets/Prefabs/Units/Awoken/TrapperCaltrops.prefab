@@ -52,24 +52,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 0}
+  attackPrefab: {fileID: 114643181956815106, guid: 0099f07280679ec48aa75bf171c5d0ca,
+    type: 2}
   level: 1
   damage: 10
-  attackSpeed: 0.5
+  attackSpeed: 3
   hasAbility: 0
   isPassiveCaster: 0
-  hasBurstAttack: 0
-  burstCount: 0
+  hasBurstAttack: 1
+  burstCount: 3
   timeBetweenBursts: 0
-  unitName: 
-  baseCost: 0
+  unitName: Disabler
+  baseCost: 25
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
-  description: 
+  description: Throws three caltrops in front of enemies that stun and slow within
+    a radius.
   multiplier: 1.08
-  upgradeBaseCost: 0
-  damageIncrement: 0
+  upgradeBaseCost: 1000
+  damageIncrement: 1
   unitAI: 0
-  originalUnit: {fileID: 0}
+  originalUnit: {fileID: 114585233173437254, guid: 2576c292bc4a8ef479113fb5e1521fd2,
+    type: 2}
 --- !u!212 &212526749841462198
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -72,7 +72,7 @@ MonoBehaviour:
   damageIncrement: 1
   unitAI: 0
   awokenUnits:
-  - {fileID: 0}
+  - {fileID: 114928694636905362, guid: 1240170b2c0ac494aa387c97b44f0b25, type: 2}
   - {fileID: 0}
   levelToAwaken: 25
 --- !u!212 &212788312610665224
