@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1692178043654200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5919, y: -2.0981, z: 0}
+  m_LocalPosition: {x: -0.152, y: -0.154, z: 0}
   m_LocalScale: {x: 0.93578964, y: 0.93578964, z: 0.93578964}
   m_Children:
   - {fileID: 4772430347547730}
@@ -119,7 +119,7 @@ MonoBehaviour:
   xForce: 0
   yForce: 500
   sizeSpeed: 5
-  rotationSpeed: 5
+  rotationSpeed: 0
 --- !u!198 &198204799834872198
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -252,8 +252,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 3
-      minScalar: 2
+      scalar: 0.5
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -743,7 +743,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 5
     enabled: 1
-    type: 4
+    type: 0
     angle: 11.280497
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
