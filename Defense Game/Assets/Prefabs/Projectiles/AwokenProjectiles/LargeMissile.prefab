@@ -144,7 +144,7 @@ MonoBehaviour:
   splashRadius: 2.5
   impactEffect: {fileID: 1296292410876432, guid: a74ab1f0dabe7814fabf42428b92efb5,
     type: 2}
-  speed: 10
+  speed: 8
   rotationSpeed: 275
 --- !u!198 &198928790677601454
 ParticleSystem:
