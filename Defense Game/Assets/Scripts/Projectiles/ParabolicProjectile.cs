@@ -11,6 +11,15 @@ public class ParabolicProjectile : Projectile
     public bool isScatter; // Randomizes launch velocity
     private readonly float yOffset = 1f;
 
+    [Header("Bounciness")]
+    public bool isBouncy;
+    public float timesToBounce;
+    [Range(0f, 1f)]
+    public float bounceForce;
+    public float targetXOffset; // The position the projectile should land before bouncing
+    private float numBounces;
+    private bool isBouncing;
+
     private Rigidbody2D rb;
 
     private Vector3 impactLocation;
@@ -81,10 +90,34 @@ public class ParabolicProjectile : Projectile
 
     void HitGround()
     {
+        if (isBouncy)
+        {
+            if (numBounces < timesToBounce)
+            {
+                // Only bounces when the velocity is negative
+                if (rb.velocity.y < 0f)
+                {
+                    Bounce();
+                    return;
+                }
+            }
+            else
+            {
+                isBouncing = false;
+            }
+
+            if (isBouncing)
+            {
+                return;
+            }
+        }
+
         // If the projectile has an impact effect (ex. rock), then just 
         // instantiate the effect and destroy the object
         if (impactEffect != null)
         {
+            Debug.Log("working");
+
             if (isExplosive)
             {
                 Explode();
@@ -116,6 +149,20 @@ public class ParabolicProjectile : Projectile
         }
     }
 
+    void Bounce()
+    {
+        isBouncing = true;
+        numBounces++;
+
+        // Gets the reflection of the vector multiplied by the bounce force from 0f-1f
+        Vector3 projectileVelocity = rb.velocity;
+        Vector3 n = impactLocation - transform.position;
+        Vector3 reflection = bounceForce * (-2 * Vector3.Dot(projectileVelocity, n.normalized) * n.normalized + projectileVelocity);
+
+        // Vector should always be positive
+        rb.velocity = new Vector3(Mathf.Abs(reflection.x), Mathf.Abs(reflection.y), Mathf.Abs(reflection.z));
+    }
+
     Vector2 CalculateLaunchVelocity(GameObject entityToHit)
     {
         targetEnemy = entityToHit.GetComponent<Enemy>();
@@ -138,11 +185,20 @@ public class ParabolicProjectile : Projectile
             target.x = targetEnemy.stoppingPoint;
         }
 
+        // Only subtracts the offset if the target position is in front of the origin (facing right)
+        if (isBouncy)
+        {
+            if (transform.position.x - targetXOffset < transform.position.x)
+            {
+                target.x -= targetXOffset;
+            }
+        }
+
         float displacementX = target.x - transform.position.x;
         float displacementY = target.y - transform.position.y;
         float timeToTarget = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
 
-        impactLocation = Target.transform.position; // The calculated impact location unadjusted for future position
+        impactLocation = target; // The calculated impact location unadjusted for future position
 
         // Calculates future position if the entity to hit is a moving enemy
         // Doesn't need to be calculated for a static enemy like the player
