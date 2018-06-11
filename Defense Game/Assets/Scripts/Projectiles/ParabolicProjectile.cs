@@ -19,6 +19,8 @@ public class ParabolicProjectile : Projectile
     public bool isATrap; // Allows the collider to remain active even if the projectile is on the ground
     private readonly float yOffset = 1f;
 
+    private float finalVelocityY;
+
     [Header("Bounciness")]
     public bool isBouncy;
     public float timesToBounce;
@@ -38,12 +40,6 @@ public class ParabolicProjectile : Projectile
     {
         base.Start();
         rb = GetComponent<Rigidbody2D>();
-
-        if (isRotating)
-        {
-            RotateToTarget(CalculateLaunchVelocity(Target));
-        }
-
         Launch();
     }
 
@@ -51,7 +47,14 @@ public class ParabolicProjectile : Projectile
     {
         if (Target != null)
         {
-            rb.velocity = CalculateLaunchVelocity(Target);
+            Vector3 launchVelocity = CalculateLaunchVelocity(Target);
+
+            if (isRotating)
+            {
+                RotateToTarget(launchVelocity);
+            }
+
+            rb.velocity = launchVelocity;
         }
     }
 
@@ -83,7 +86,7 @@ public class ParabolicProjectile : Projectile
                     impactLocation = targetEnemy.GetAirbornePosition();
                 }
 
-                if (transform.position.x > impactLocation.x && transform.position.y < impactLocation.y)
+                if (transform.position.x >= impactLocation.x && transform.position.y <= impactLocation.y)
                 {
                     HitGround();
                     return;
@@ -165,13 +168,28 @@ public class ParabolicProjectile : Projectile
         isBouncing = true;
         numBounces++;
 
-        // Gets the reflection of the vector multiplied by the bounce force from 0f-1f
-        Vector3 projectileVelocity = rb.velocity;
-        Vector3 n = impactLocation - transform.position;
-        Vector3 reflection = bounceForce * (-2 * Vector3.Dot(projectileVelocity, n.normalized) * n.normalized + projectileVelocity);
+        // Makes the bounce perfect by settings the position and velocity to the original impact calculation
+        transform.position = impactLocation;
+        rb.velocity = new Vector2(rb.velocity.x, finalVelocityY);
 
-        // Vector should always be positive
-        rb.velocity = new Vector3(Mathf.Abs(reflection.x), Mathf.Abs(reflection.y), Mathf.Abs(reflection.z));
+        // Gets the reflection of the vector multiplied by the bounce force from 0f - 1f
+        Vector3 projectileVelocity = rb.velocity;
+        Vector3 normal = Vector3.up;
+
+        Vector3 reflection = bounceForce * (-2 * Vector3.Dot(projectileVelocity, normal) * normal + projectileVelocity);
+
+        rb.velocity = reflection;
+
+        float angle = Vector3.Angle(transform.right, Vector3.right);
+        Vector3 initialVelocity = rb.velocity;
+        Vector3 finalVelocity = Vector3.zero; // Velocity at max height
+        float gravity = Physics2D.gravity.y;
+
+        float time = 2 * (-initialVelocity.y / gravity); // Time at max height multiplied by 2 to get total time to land
+        float displacementX = initialVelocity.x * time; // Distance traveled after bouncing
+        float displacementY = -(initialVelocity.y * initialVelocity.y) / (2 * gravity); // Max height reached after bounce
+
+        impactLocation = new Vector3(impactLocation.x + displacementX, impactLocation.y, impactLocation.z);
     }
 
     Vector2 CalculateLaunchVelocity(GameObject entityToHit)
@@ -235,10 +253,13 @@ public class ParabolicProjectile : Projectile
             }
         }
 
-        Vector2 velocityX = Vector2.right * displacementX / timeToTarget;
-        Vector2 velocityY = Vector2.up * Mathf.Sqrt(-2 * gravity * h);
+        Vector3 velocityX = Vector2.right * displacementX / timeToTarget;
+        Vector3 velocityY = Vector2.up * Mathf.Sqrt(-2 * gravity * h);
+        Vector3 initialVelocity = velocityX + velocityY;
 
-        return velocityX + velocityY * -Mathf.Sign(gravity);
+        finalVelocityY = initialVelocity.y + gravity * timeToTarget;
+
+        return initialVelocity * -Mathf.Sign(gravity);
     }
 
     void RotateToTarget(Vector3 velocity)
