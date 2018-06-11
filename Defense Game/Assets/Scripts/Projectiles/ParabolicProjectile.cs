@@ -9,7 +9,13 @@ public class ParabolicProjectile : Projectile
     public float throwHeight = 5;
     public bool isRotating = true;
     public bool isCrushing; // The projectile will hit the ground further below its target
+    [Space]
     public bool isScatter; // Randomizes launch velocity
+    [Range(-2f, 1f)]
+    public float minScatter; // Amount of varience when the projectile is set to scatter
+    [Range(1f, 2f)]
+    public float maxScatter;
+    [Space]
     public bool isATrap; // Allows the collider to remain active even if the projectile is on the ground
     private readonly float yOffset = 1f;
 
@@ -45,14 +51,7 @@ public class ParabolicProjectile : Projectile
     {
         if (Target != null)
         {
-            if (isScatter)
-            {
-                rb.velocity = CalculateLaunchVelocity(Target) * Random.Range(0.95f, 1.05f);
-            }
-            else
-            {
-                rb.velocity = CalculateLaunchVelocity(Target);
-            }
+            rb.velocity = CalculateLaunchVelocity(Target);
         }
     }
 
@@ -180,7 +179,7 @@ public class ParabolicProjectile : Projectile
         targetEnemy = entityToHit.GetComponent<Enemy>();
         Vector3 target = entityToHit.GetComponent<Transform>().position;
 
-        float h = target.y - transform.position.y + throwHeight; ;
+        float h = target.y - transform.position.y + throwHeight;
         float gravity = Physics2D.gravity.y;
 
         // Won't add any additional throw height if the unit is throwing from a point above the target
@@ -195,6 +194,13 @@ public class ParabolicProjectile : Projectile
         if (targetEnemy != null && targetEnemy.currentState == Enemy.State.Attacking)
         {
             target.x = targetEnemy.stoppingPoint;
+        }
+
+        // Offsets the target a bit by the min and max of scatter
+        if (isScatter)
+        {
+            target.x += Random.Range(minScatter, maxScatter);
+            target.y += Random.Range(minScatter, maxScatter);
         }
 
         // Only subtracts the offset if the target position is in front of the origin (facing right)

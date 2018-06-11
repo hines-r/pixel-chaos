@@ -109,7 +109,7 @@ MonoBehaviour:
   isATrap: 1
   isBouncy: 1
   timesToBounce: 1
-  bounceForce: 0.75
+  bounceForce: 0
   targetXOffset: 1
   triggerEffect: {fileID: 1110272665707090, guid: 1333c746142fe2b489905cc6f9cb81a3,
     type: 2}

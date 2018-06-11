@@ -9,78 +9,76 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1694346293890070}
+  m_RootGameObject: {fileID: 1026381035039084}
   m_IsPrefabParent: 1
---- !u!1 &1694346293890070
+--- !u!1 &1026381035039084
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4943484987934500}
-  - component: {fileID: 212788312610665224}
-  - component: {fileID: 114585233173437254}
+  - component: {fileID: 4400750870436298}
+  - component: {fileID: 212890849659091850}
+  - component: {fileID: 114882818277520116}
   m_Layer: 8
-  m_Name: Trapper
+  m_Name: TrapperSpikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4943484987934500
+--- !u!4 &4400750870436298
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1694346293890070}
+  m_GameObject: {fileID: 1026381035039084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -2.56, z: 0}
+  m_LocalPosition: {x: -6.74, y: -2.74, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114585233173437254
+--- !u!114 &114882818277520116
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1694346293890070}
+  m_GameObject: {fileID: 1026381035039084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
+  m_Script: {fileID: 11500000, guid: 0af88113bf1a970439216bffa2f26578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 114893977619553562, guid: ec1469f09e5266e4eb84e2a8f6fb92b4,
+  attackPrefab: {fileID: 114763459206465972, guid: de48d1cdbe33d0a47a9bdd83cb0a195e,
     type: 2}
   level: 1
   damage: 50
-  attackSpeed: 5.5
+  attackSpeed: 3
   hasAbility: 0
   isPassiveCaster: 0
-  hasBurstAttack: 0
-  burstCount: 0
+  hasBurstAttack: 1
+  burstCount: 5
   timeBetweenBursts: 0
-  unitName: Trapper
-  baseCost: 5000
-  unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  description: Unleashes a large cage that will trap enemies caught inside rendering
-    them unable to attack or move!
+  unitName: Spike
+  baseCost: 25
+  unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
+  description: Lays down five crippling spikes that slow and damage enemies as they
+    attempt to cross them.
   multiplier: 1.08
   upgradeBaseCost: 1000
   damageIncrement: 1
   unitAI: 0
-  awokenUnits:
-  - {fileID: 114928694636905362, guid: 1240170b2c0ac494aa387c97b44f0b25, type: 2}
-  - {fileID: 114882818277520116, guid: 9ea02dd967b03ff4c917971239f53a12, type: 2}
-  levelToAwaken: 25
---- !u!212 &212788312610665224
+  originalUnit: {fileID: 114585233173437254, guid: 2576c292bc4a8ef479113fb5e1521fd2,
+    type: 2}
+--- !u!212 &212890849659091850
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1694346293890070}
+  m_GameObject: {fileID: 1026381035039084}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -110,7 +108,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
   m_Color: {r: 0.5066305, g: 0.6509434, b: 0.6083864, a: 1}
   m_FlipX: 0
   m_FlipY: 0
