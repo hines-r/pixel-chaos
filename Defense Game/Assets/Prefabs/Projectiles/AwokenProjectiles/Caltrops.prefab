@@ -92,7 +92,7 @@ MonoBehaviour:
   isHostile: 0
   penetrationCount: 1
   slowAmount: 0.5
-  slowDuration: 5
+  slowDuration: 3
   hasStun: 1
   stunDuration: 1
   hasDot: 0
@@ -105,12 +105,14 @@ MonoBehaviour:
   throwHeight: 1
   isRotating: 0
   isCrushing: 0
-  isScatter: 1
+  hasSpread: 1
+  spreadCount: 5
+  spreadVariance: 1.5
   isATrap: 1
   isBouncy: 1
-  timesToBounce: 1
-  bounceForce: 0
-  targetXOffset: 1
+  bounceForce: 0.25
+  timesToBounce: 2
+  targetXOffset: 2
   triggerEffect: {fileID: 1110272665707090, guid: 1333c746142fe2b489905cc6f9cb81a3,
     type: 2}
 --- !u!212 &212698749690589572

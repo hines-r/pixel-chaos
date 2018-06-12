@@ -10,22 +10,22 @@ public class ParabolicProjectile : Projectile
     public bool isRotating = true;
     public bool isCrushing; // The projectile will hit the ground further below its target
     [Space]
-    public bool isScatter; // Randomizes launch velocity
-    [Range(-2f, 1f)]
-    public float minScatter; // Amount of varience when the projectile is set to scatter
-    [Range(1f, 2f)]
-    public float maxScatter;
+
+    [Header("Spread")]
+    public bool hasSpread;
+    public float spreadCount;
+    [Range(0f, 3f)]
+    public float spreadVariance;
+
     [Space]
     public bool isATrap; // Allows the collider to remain active even if the projectile is on the ground
     private readonly float yOffset = 1f;
 
-
-
     [Header("Bounciness")]
     public bool isBouncy;
-    public float timesToBounce;
     [Range(0f, 1f)]
-    public float bounceForce;
+    public float bounceForce; // Amount of velocity to retain after a bounce
+    public int timesToBounce;
     public float targetXOffset; // The position the projectile should land before bouncing
     private float numBounces;
     private bool isBouncing;
@@ -48,6 +48,17 @@ public class ParabolicProjectile : Projectile
     {
         if (Target != null)
         {
+            if (hasSpread)
+            {
+                for (int i = 0; i < spreadCount; i++)
+                {
+                    ParabolicProjectile duplicate = Instantiate(this, transform.position, Quaternion.identity);
+                    duplicate.Damage = Damage;
+                    duplicate.Target = Target;
+                    duplicate.spreadCount = 0;
+                }
+            }
+
             Vector3 launchVelocity = CalculateLaunchVelocity(Target);
 
             if (isRotating)
@@ -117,7 +128,6 @@ public class ParabolicProjectile : Projectile
             else
             {
                 isBouncing = false;
-                isOnGround = true;
             }
 
             if (isBouncing)
@@ -200,34 +210,35 @@ public class ParabolicProjectile : Projectile
         targetEnemy = entityToHit.GetComponent<Enemy>();
         Vector3 target = entityToHit.GetComponent<Transform>().position;
 
-        float h = target.y - transform.position.y + throwHeight;
+        if (hasSpread)
+        {
+            target.x += Random.Range(-spreadVariance, spreadVariance);
+            target.y -= Random.Range(-spreadVariance / 2f, spreadVariance / 2f);
+        }
+
+        float totalVerticalDisplacement = target.y - transform.position.y + throwHeight; // Peak height of projectile
         float gravity = Physics2D.gravity.y;
 
         // Won't add any additional throw height if the unit is throwing from a point above the target
         // They will instead simply throw the projectile downwards
-        if (h < 0)
+        if (totalVerticalDisplacement < 0)
         {
-            h = 0;
+            totalVerticalDisplacement = 0;
         }
 
         // Will attempt to aim at the stopping point of an enemy if it is attacking
         // This way the projectile won't miss as often when enemies are performing a lunge attack
-        if (targetEnemy != null && targetEnemy.currentState == Enemy.State.Attacking)
+        if (targetEnemy != null && !hasSpread && targetEnemy.currentState == Enemy.State.Attacking)
         {
             target.x = targetEnemy.stoppingPoint;
         }
 
-        // Offsets the target a bit by the min and max of scatter
-        if (isScatter)
+        // Only subtracts the offset if the impact location is greater or equal to the stopping point of the enemy
+        // Won't subtract the offset if the enemy is attacking
+        // This greatly improves the accuracy of the projectile when an enemy nearing its attack range
+        if (isBouncy && targetEnemy.currentState != Enemy.State.Attacking)
         {
-            target.x += Random.Range(minScatter, maxScatter);
-            target.y += Random.Range(minScatter, maxScatter);
-        }
-
-        // Only subtracts the offset if the target position is in front of the origin (facing right)
-        if (isBouncy)
-        {
-            if (transform.position.x - targetXOffset < transform.position.x)
+            if (target.x - targetXOffset >= targetEnemy.stoppingPoint)
             {
                 target.x -= targetXOffset;
             }
@@ -235,7 +246,7 @@ public class ParabolicProjectile : Projectile
 
         float displacementX = target.x - transform.position.x;
         float displacementY = target.y - transform.position.y;
-        float timeToTarget = (Mathf.Sqrt(-2 * h / gravity) + Mathf.Sqrt(2 * (displacementY - h) / gravity));
+        float timeToTarget = (Mathf.Sqrt(-2 * totalVerticalDisplacement / gravity) + Mathf.Sqrt(2 * (displacementY - totalVerticalDisplacement) / gravity));
 
         impactLocation = target; // The calculated impact location unadjusted for future position
 
@@ -243,21 +254,21 @@ public class ParabolicProjectile : Projectile
         // Doesn't need to be calculated for a static enemy like the player
         if (targetEnemy != null && !targetEnemy.isUnderForces)
         {
-            float targetVelocity = entityToHit.GetComponent<Enemy>().GetVelocity();
+            float targetVelocity = targetEnemy.GetVelocity();
             float distanceTraveledInTime = targetVelocity * timeToTarget;
             float futurePositionX = target.x - distanceTraveledInTime;
 
-            if (futurePositionX >= entityToHit.GetComponent<Enemy>().stoppingPoint)
+            if (futurePositionX >= targetEnemy.stoppingPoint)
             {
                 displacementX -= distanceTraveledInTime; // Compensates for location of the target moving at a constant speed
 
                 // The calculated impact location of the projectile adjusted for future position if applicable
-                impactLocation = new Vector3(futurePositionX, Target.transform.position.y, Target.transform.position.z);
+                impactLocation = new Vector3(futurePositionX, target.y, target.z);
             }
         }
 
         Vector3 velocityX = Vector3.right * displacementX / timeToTarget;
-        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * h);
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * totalVerticalDisplacement);
         Vector3 initialVelocity = velocityX + velocityY;
 
         float maxHeight = -(initialVelocity.y * initialVelocity.y) / (2 * gravity);

@@ -59,8 +59,8 @@ MonoBehaviour:
   attackSpeed: 3
   hasAbility: 0
   isPassiveCaster: 0
-  hasBurstAttack: 1
-  burstCount: 5
+  hasBurstAttack: 0
+  burstCount: 0
   timeBetweenBursts: 0
   unitName: Spike
   baseCost: 25

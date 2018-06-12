@@ -105,14 +105,14 @@ MonoBehaviour:
   throwHeight: 2
   isRotating: 0
   isCrushing: 0
-  isScatter: 1
-  minScatter: -1
-  maxScatter: 2
+  hasSpread: 1
+  spreadCount: 10
+  spreadVariance: 2
   isATrap: 1
-  isBouncy: 0
-  timesToBounce: 0
-  bounceForce: 0
-  targetXOffset: 0
+  isBouncy: 1
+  bounceForce: 0.25
+  timesToBounce: 2
+  targetXOffset: 2
 --- !u!212 &212279808539017992
 SpriteRenderer:
   m_ObjectHideFlags: 1
