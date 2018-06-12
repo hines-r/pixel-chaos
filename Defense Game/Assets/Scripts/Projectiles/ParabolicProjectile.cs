@@ -19,7 +19,7 @@ public class ParabolicProjectile : Projectile
     public bool isATrap; // Allows the collider to remain active even if the projectile is on the ground
     private readonly float yOffset = 1f;
 
-    private float finalVelocityY;
+
 
     [Header("Bounciness")]
     public bool isBouncy;
@@ -29,6 +29,7 @@ public class ParabolicProjectile : Projectile
     public float targetXOffset; // The position the projectile should land before bouncing
     private float numBounces;
     private bool isBouncing;
+    private float finalVelocityY;
 
     private Rigidbody2D rb;
 
@@ -189,10 +190,12 @@ public class ParabolicProjectile : Projectile
         float displacementX = initialVelocity.x * time; // Distance traveled after bouncing
         float displacementY = -(initialVelocity.y * initialVelocity.y) / (2 * gravity); // Max height reached after bounce
 
+        finalVelocityY = initialVelocity.y + gravity * time;
+
         impactLocation = new Vector3(impactLocation.x + displacementX, impactLocation.y, impactLocation.z);
     }
 
-    Vector2 CalculateLaunchVelocity(GameObject entityToHit)
+    Vector3 CalculateLaunchVelocity(GameObject entityToHit)
     {
         targetEnemy = entityToHit.GetComponent<Enemy>();
         Vector3 target = entityToHit.GetComponent<Transform>().position;
@@ -253,9 +256,11 @@ public class ParabolicProjectile : Projectile
             }
         }
 
-        Vector3 velocityX = Vector2.right * displacementX / timeToTarget;
-        Vector3 velocityY = Vector2.up * Mathf.Sqrt(-2 * gravity * h);
+        Vector3 velocityX = Vector3.right * displacementX / timeToTarget;
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * h);
         Vector3 initialVelocity = velocityX + velocityY;
+
+        float maxHeight = -(initialVelocity.y * initialVelocity.y) / (2 * gravity);
 
         finalVelocityY = initialVelocity.y + gravity * timeToTarget;
 
