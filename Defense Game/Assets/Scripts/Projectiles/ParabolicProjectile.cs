@@ -233,14 +233,19 @@ public class ParabolicProjectile : Projectile
             target.x = targetEnemy.stoppingPoint;
         }
 
-        // Only subtracts the offset if the impact location is greater or equal to the stopping point of the enemy
+        // If the projectile is a trap, only subtracts the offset if the impact location 
+        // is greater or equal to the stopping point of the enemy
         // Won't subtract the offset if the enemy is attacking
-        // This greatly improves the accuracy of the projectile when an enemy nearing its attack range
-        if (isBouncy && targetEnemy.currentState != Enemy.State.Attacking)
+        // This greatly improves the accuracy of the projectile when an enemy is nearing its attack range
+        if (isBouncy)
         {
-            if (target.x - targetXOffset >= targetEnemy.stoppingPoint)
+            if (isATrap && target.x - targetXOffset >= targetEnemy.stoppingPoint && targetEnemy.currentState != Enemy.State.Attacking)
             {
                 target.x -= targetXOffset;
+            }
+            else if (!isATrap && target.x - targetXOffset > transform.position.x)
+            {
+                target.x -= targetXOffset; // Won't subtract offset if the impact would be behind the unit
             }
         }
 
