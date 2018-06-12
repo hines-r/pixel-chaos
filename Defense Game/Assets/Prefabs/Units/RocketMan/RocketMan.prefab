@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7782d67338671f34eaef49efa1030ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canAttackFlying: 1
   attackPrefab: {fileID: 114295661426203218, guid: 80c9670453ec13c4280588f759869165,
     type: 2}
   level: 1

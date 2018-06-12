@@ -93,9 +93,10 @@ public class ParabolicProjectile : Projectile
             }
             else
             {
-                if (targetEnemy != null && targetEnemy.IsAirborne())
+                if (CanAttackFlying && targetEnemy != null && targetEnemy.IsAirborne())
                 {
-                    impactLocation = targetEnemy.GetAirbornePosition();
+                    Vector3 airborneImpact = targetEnemy.GetAirbornePosition();
+                    impactLocation = airborneImpact;
                 }
 
                 if (transform.position.x >= impactLocation.x && transform.position.y <= impactLocation.y)
@@ -183,10 +184,10 @@ public class ParabolicProjectile : Projectile
         transform.position = impactLocation;
         rb.velocity = new Vector2(rb.velocity.x, finalVelocityY);
 
-        // Gets the reflection of the vector multiplied by the bounce force from 0f - 1f
         Vector3 projectileVelocity = rb.velocity;
         Vector3 normal = Vector3.up;
 
+        // Gets the reflection of the vector multiplied by the bounce force from 0f - 1f
         Vector3 reflection = bounceForce * (-2 * Vector3.Dot(projectileVelocity, normal) * normal + projectileVelocity);
 
         rb.velocity = reflection;
@@ -213,7 +214,7 @@ public class ParabolicProjectile : Projectile
         if (hasSpread)
         {
             target.x += Random.Range(-spreadVariance, spreadVariance);
-            target.y -= Random.Range(-spreadVariance / 2f, spreadVariance / 2f);
+            target.y += Random.Range(-spreadVariance / 2f, spreadVariance / 2f);
         }
 
         float totalVerticalDisplacement = target.y - transform.position.y + throwHeight; // Peak height of projectile
@@ -276,9 +277,7 @@ public class ParabolicProjectile : Projectile
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * totalVerticalDisplacement);
         Vector3 initialVelocity = velocityX + velocityY;
 
-        float maxHeight = -(initialVelocity.y * initialVelocity.y) / (2 * gravity);
-
-        finalVelocityY = initialVelocity.y + gravity * timeToTarget;
+        finalVelocityY = initialVelocity.y + gravity * timeToTarget; // The final velocity at impact
 
         return initialVelocity * -Mathf.Sign(gravity);
     }

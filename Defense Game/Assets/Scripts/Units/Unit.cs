@@ -160,6 +160,7 @@ public class Unit : TargetingEntity, IUpgradeable
                 unitAttack.originEntity = gameObject; // Indicates the exact unit the attack came from
                 unitAttack.Damage = damage; // Sets the damage of the attack
                 unitAttack.Target = target; // Sets the target for the attack
+                unitAttack.CanAttackFlying = canAttackFlying;
             }
         }
     }

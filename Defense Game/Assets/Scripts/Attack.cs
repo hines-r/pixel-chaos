@@ -12,4 +12,6 @@ public class Attack : MonoBehaviour
     public float Damage { get; set; }
 
     public GameObject Target { get; set; }
+
+    public bool CanAttackFlying { get; set; }
 }

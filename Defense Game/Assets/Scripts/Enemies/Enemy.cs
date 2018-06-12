@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class Enemy : LivingEntity
 {
     [Header("Enemy Attributes")]
+    public Type enemyType = Type.Ground;
     public float startSpeed = 1;
     private float speed;
-
     public float damage = 5f;
     public float attackSpeed = 1f;
     public float timeBetweenAttacks = 1f;
@@ -60,6 +60,8 @@ public class Enemy : LivingEntity
     private SpriteRenderer sr;
 
     public enum State { Moving, Attacking, UnderForces }
+    public enum Type { Ground, Flying }
+
     internal State currentState;
 
     protected override void Start()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetingEntity : MonoBehaviour
 {
+    public bool canAttackFlying;
     protected float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units
 
     protected GameObject TargetNearestEnemy()
@@ -24,8 +25,16 @@ public class TargetingEntity : MonoBehaviour
         {
             Vector3 directionToTarget = enemy.transform.position - currentPosition;
             float dSqrtToTarget = directionToTarget.sqrMagnitude;
+
             if (dSqrtToTarget < closestDistanceSqr)
             {
+                Enemy e = enemy.GetComponent<Enemy>();
+
+                if (!canAttackFlying && (e.IsAirborne() || e.enemyType == Enemy.Type.Flying))
+                {
+                    continue;
+                }
+
                 closestDistanceSqr = dSqrtToTarget;
                 nearestEnemy = enemy;
             }
@@ -44,6 +53,13 @@ public class TargetingEntity : MonoBehaviour
             // Random target must be within attack range of the unit
             if (enemy.transform.position.x <= maxAttackRange)
             {
+                Enemy e = enemy.GetComponent<Enemy>();
+
+                if (!canAttackFlying && (e.IsAirborne() || e.enemyType == Enemy.Type.Flying))
+                {
+                    continue;
+                }
+
                 enemiesInRange.Add(enemy);
             }
         }
@@ -64,13 +80,18 @@ public class TargetingEntity : MonoBehaviour
 
         foreach (GameObject enemy in possibleTargets)
         {
-            LivingEntity livingEnemy = enemy.GetComponent<Enemy>();
+            Enemy e = enemy.GetComponent<Enemy>();
 
-            if (livingEnemy != null)
+            if (e != null)
             {
-                if (!livingEnemy.isDamagedOverTime)
+                if (!e.isDamagedOverTime)
                 {
-                    enemiesWithDoT.Add(livingEnemy.gameObject);
+                    if (!canAttackFlying && (e.IsAirborne() || e.enemyType == Enemy.Type.Flying))
+                    {
+                        continue;
+                    }
+
+                    enemiesWithDoT.Add(e.gameObject);
                 }
             }
         }
