@@ -93,7 +93,7 @@ public class ParabolicProjectile : Projectile
             }
             else
             {
-                if (CanAttackFlying && targetEnemy != null && targetEnemy.IsAirborne())
+                if (CanAttackFlying && targetEnemy != null && targetEnemy.IsAirborne() || targetEnemy.enemyType == Enemy.Type.Flying)
                 {
                     Vector3 airborneImpact = targetEnemy.GetAirbornePosition();
                     impactLocation = airborneImpact;

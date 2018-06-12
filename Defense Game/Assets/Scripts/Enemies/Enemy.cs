@@ -8,6 +8,7 @@ public class Enemy : LivingEntity
 {
     [Header("Enemy Attributes")]
     public Type enemyType = Type.Ground;
+    private readonly float altitude = 3.5f; // Simulated distance above the ground (how high the flyer actually is)
     public float startSpeed = 1;
     private float speed;
     public float damage = 5f;
@@ -183,6 +184,11 @@ public class Enemy : LivingEntity
     {
         velocity = ((transform.position - previousPosition).magnitude) / Time.deltaTime;
         previousPosition = transform.position;
+
+        if (enemyType == Type.Flying)
+        {
+            airbornePosition = new Vector3(transform.position.x, transform.position.y - altitude);
+        }
 
         if (transform.position.x >= stoppingPoint)
         {
