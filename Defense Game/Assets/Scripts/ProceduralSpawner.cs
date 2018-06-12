@@ -40,7 +40,6 @@ public class ProceduralSpawner : MonoBehaviour
     private Coroutine spawnWave;
     private readonly float startCountdownTime = 5f;
     private float countdown;
-    private List<Enemy> activeEnemies;
 
     private Randomizer randomizer;
 
@@ -55,7 +54,6 @@ public class ProceduralSpawner : MonoBehaviour
     void Start()
     {
         CurrentState = State.Waiting;
-        activeEnemies = new List<Enemy>();
         randomizer = GetComponent<Randomizer>();
         WaveIndex = startWave;
     }
@@ -100,7 +98,9 @@ public class ProceduralSpawner : MonoBehaviour
         StopCoroutine(spawnWave);
         ToggleBattleBtn();
 
-        foreach (Enemy enemy in activeEnemies)
+        GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in activeEnemies)
         {
             Destroy(enemy);
         }
@@ -217,7 +217,6 @@ public class ProceduralSpawner : MonoBehaviour
         Enemy enemyToSpawn = spawnableTypes[index].enemy;
 
         Enemy spawnedEnemy = Instantiate(enemyToSpawn, GetSpawnPosition(enemyToSpawn), Quaternion.identity);
-        activeEnemies.Add(spawnedEnemy);
     }
 
     Vector2 GetSpawnPosition(Enemy enemy)
