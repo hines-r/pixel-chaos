@@ -30,8 +30,10 @@ public class TargetingEntity : MonoBehaviour
             {
                 Enemy e = enemy.GetComponent<Enemy>();
 
-                if (!canAttackFlying && (e.IsAirborne() || e.enemyType == Enemy.Type.Flying))
+                if (!canAttackFlying)
                 {
+                    if (e.enemyType == Enemy.Type.Flying || (e.IsAirborne() && e.transform.position.y > e.GetAirborneYThreshold()))
+
                     continue;
                 }
 
@@ -55,9 +57,11 @@ public class TargetingEntity : MonoBehaviour
             {
                 Enemy e = enemy.GetComponent<Enemy>();
 
-                if (!canAttackFlying && (e.IsAirborne() || e.enemyType == Enemy.Type.Flying))
+                if (!canAttackFlying)
                 {
-                    continue;
+                    if (e.enemyType == Enemy.Type.Flying || (e.IsAirborne() && e.transform.position.y > e.GetAirborneYThreshold()))
+
+                        continue;
                 }
 
                 enemiesInRange.Add(enemy);
@@ -86,9 +90,11 @@ public class TargetingEntity : MonoBehaviour
             {
                 if (!e.isDamagedOverTime)
                 {
-                    if (!canAttackFlying && (e.IsAirborne() || e.enemyType == Enemy.Type.Flying))
+                    if (!canAttackFlying)
                     {
-                        continue;
+                        if (e.enemyType == Enemy.Type.Flying || (e.IsAirborne() && e.transform.position.y > e.GetAirborneYThreshold()))
+
+                            continue;
                     }
 
                     enemiesWithDoT.Add(e.gameObject);

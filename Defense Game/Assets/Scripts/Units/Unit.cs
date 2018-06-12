@@ -109,7 +109,11 @@ public class Unit : TargetingEntity, IUpgradeable
                     if (enemy.transform.position.x < maxAttackRange)
                     {
                         target = ObtainTarget();
-                        return true;
+
+                        if (target != null)
+                        {
+                            return true;
+                        }
                     }
                 }
             }
