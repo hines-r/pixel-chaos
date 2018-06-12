@@ -138,7 +138,10 @@ public class Enemy : LivingEntity
 
         if (transform.position.y > airborneYThreshold && !isAirborne)
         {
-            isAirborne = true;
+            if (enemyType != Type.Flying)
+            {
+                isAirborne = true;
+            }
         }
 
         if (isAirborne)

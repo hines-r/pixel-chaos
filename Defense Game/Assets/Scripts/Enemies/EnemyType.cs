@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class EnemyType
 {
-    public GameObject enemy;
+    public Enemy enemy;
 
     // Which wave to start and stop spawning
     public int waveStart;

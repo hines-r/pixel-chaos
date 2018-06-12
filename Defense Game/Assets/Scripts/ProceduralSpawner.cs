@@ -28,6 +28,10 @@ public class ProceduralSpawner : MonoBehaviour
     [Header("Spawner Position")]
     public float yMinSpawnPos = -5f;
     public float yMaxSpawnPos = 0;
+
+    public float yMinFlyerPos = 5f;
+    public float yMaxFlyerPos = 0f;
+
     public float xSpawnPos = 10f;
 
     [Header("Testing")]
@@ -36,7 +40,7 @@ public class ProceduralSpawner : MonoBehaviour
     private Coroutine spawnWave;
     private readonly float startCountdownTime = 5f;
     private float countdown;
-    private List<GameObject> activeEnemies;
+    private List<Enemy> activeEnemies;
 
     private Randomizer randomizer;
 
@@ -51,7 +55,7 @@ public class ProceduralSpawner : MonoBehaviour
     void Start()
     {
         CurrentState = State.Waiting;
-        activeEnemies = new List<GameObject>();
+        activeEnemies = new List<Enemy>();
         randomizer = GetComponent<Randomizer>();
         WaveIndex = startWave;
     }
@@ -96,7 +100,7 @@ public class ProceduralSpawner : MonoBehaviour
         StopCoroutine(spawnWave);
         ToggleBattleBtn();
 
-        foreach (GameObject enemy in activeEnemies)
+        foreach (Enemy enemy in activeEnemies)
         {
             Destroy(enemy);
         }
@@ -210,17 +214,28 @@ public class ProceduralSpawner : MonoBehaviour
         List<EnemyType> spawnableTypes = GetSpawnableTypes();
         int index = randomizer.GetWeightedIndex(spawnableTypes);
 
-        GameObject enemyToSpawn = spawnableTypes[index].enemy;
+        Enemy enemyToSpawn = spawnableTypes[index].enemy;
 
-        GameObject spawnedEnemy = Instantiate(enemyToSpawn, GetSpawnPosition(enemyToSpawn), Quaternion.identity);
+        Enemy spawnedEnemy = Instantiate(enemyToSpawn, GetSpawnPosition(enemyToSpawn), Quaternion.identity);
         activeEnemies.Add(spawnedEnemy);
     }
 
-    Vector2 GetSpawnPosition(GameObject enemy)
+    Vector2 GetSpawnPosition(Enemy enemy)
     {
         float enemyHeight = enemy.GetComponent<SpriteRenderer>().bounds.size.y;
 
-        return new Vector2(xSpawnPos, Random.Range(yMinSpawnPos + enemyHeight, yMaxSpawnPos - enemyHeight));
+        Vector2 spawnPos = new Vector2();
+
+        if (enemy.enemyType == Enemy.Type.Ground)
+        {
+            spawnPos = new Vector2(xSpawnPos, Random.Range(yMinSpawnPos + enemyHeight, yMaxSpawnPos - enemyHeight));
+        }
+        else if (enemy.enemyType == Enemy.Type.Flying)
+        {
+            spawnPos = new Vector2(xSpawnPos, Random.Range(yMinFlyerPos + enemyHeight, yMaxFlyerPos - enemyHeight));
+        }
+
+        return spawnPos;
     }
 
     List<EnemyType> GetSpawnableTypes()
@@ -241,5 +256,8 @@ public class ProceduralSpawner : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.DrawLine(new Vector3(xSpawnPos, yMinSpawnPos), new Vector3(xSpawnPos, yMaxSpawnPos));
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(new Vector3(xSpawnPos, yMinFlyerPos), new Vector3(xSpawnPos, yMaxFlyerPos));
     }
 }
