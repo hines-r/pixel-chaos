@@ -17,12 +17,15 @@ public class Spikes : ParabolicProjectile
         {
             enemy.GetRigidbody2D().sleepMode = RigidbodySleepMode2D.NeverSleep;
 
-            if (slowAmount > 0f)
+            if (enemy.enemyType != Enemy.Type.Flying || !enemy.IsAirborne())
             {
-                enemy.Slow(slowAmount, slowDuration);
-            }
+                if (slowAmount > 0f)
+                {
+                    enemy.Slow(slowAmount, slowDuration);
+                }
 
-            enemy.TakeDamage(Damage * Time.deltaTime);
+                enemy.TakeDamage(Damage * Time.deltaTime);
+            }
         }
     }
 
