@@ -15,5 +15,11 @@ public class SpawnEditor : Editor
             ProceduralSpawner spawner = target as ProceduralSpawner;
             spawner.StartCoroutine(spawner.SpawnWave());
         }
+
+        if (GUILayout.Button("Estimate Earnings"))
+        {
+            ProceduralSpawner spawner = target as ProceduralSpawner;
+            spawner.EstimateTotalEarnings();
+        }
     }
 }

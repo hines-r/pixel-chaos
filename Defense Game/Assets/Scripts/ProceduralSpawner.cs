@@ -37,6 +37,7 @@ public class ProceduralSpawner : MonoBehaviour
     [Header("Testing")]
     public int startWave = 1;
 
+    private Queue<Enemy> enemiesThisWave;
     private Coroutine spawnWave;
     private readonly float startCountdownTime = 5f;
     private float countdown;
@@ -178,13 +179,109 @@ public class ProceduralSpawner : MonoBehaviour
 
         Debug.Log("Spawning wave: " + WaveIndex + " | Count: " + enemyCount + " | Interval: " + spawnInterval);
 
+        CalculateEnemiesInWave();
+
         while (enemyCount > 0)
         {
-            SpawnEnemy();
+            Enemy enemyToSpawn = enemiesThisWave.Dequeue();
+            SpawnEnemy(enemyToSpawn);
             enemyCount--;
 
             yield return new WaitForSeconds(spawnInterval); // Consistent spawn interval
         }
+    }
+
+    void CalculateEnemiesInWave()
+    {
+        enemiesThisWave = new Queue<Enemy>();
+        List<EnemyType> spawnableTypes = GetSpawnableTypes(WaveIndex);
+
+        int totalEnemyGoldValue = 0;
+        int goldAfterWaveComplete = 0;
+
+        for (int i = 0; i < EnemiesAlive; i++)
+        {
+            int index = randomizer.GetWeightedIndex(spawnableTypes);
+
+            Enemy enemyInWave = spawnableTypes[index].enemy;
+            enemiesThisWave.Enqueue(enemyInWave);
+
+            totalEnemyGoldValue += EnemyScaler.ScaleGold(enemyInWave.goldValue, WaveIndex);
+            goldAfterWaveComplete = totalEnemyGoldValue + randomizer.GetEndWaveGold(WaveIndex);
+        }
+
+        Debug.Log("Wave: " + WaveIndex + " | Enemy gold value: " + totalEnemyGoldValue);
+        Debug.Log("Wave: " + WaveIndex + " | Wave complete value: " + goldAfterWaveComplete);
+
+        foreach (Enemy enemy in enemiesThisWave)
+        {
+            Debug.Log("Wave: " + WaveIndex + " | " + enemy);
+        }
+    }
+
+    public void EstimateTotalEarnings()
+    {
+        int totalGoldEarnedFromEnemies = 0;
+        int grandTotal = 0;
+
+        for (int i = 0; i < startWave; i++)
+        {
+            int enemyCount = randomizer.GetEnemyCount(startWave);
+
+            for (int j = 0; j < enemyCount; j++)
+            {
+                List<EnemyType> spawnableTypes = GetSpawnableTypes(startWave);
+
+                int index = randomizer.GetWeightedIndex(spawnableTypes);
+
+                Enemy enemyInWave = spawnableTypes[index].enemy;
+
+                totalGoldEarnedFromEnemies += EnemyScaler.ScaleGold(enemyInWave.goldValue, i);
+            }
+
+            grandTotal += totalGoldEarnedFromEnemies + randomizer.GetEndWaveGold(i);
+        }
+
+        Debug.Log("Estimated gold earned from enemies: " + totalGoldEarnedFromEnemies);
+        Debug.Log("Estimated grand total earned: " + grandTotal);
+    }
+
+    void SpawnEnemy(Enemy enemyToSpawn)
+    {
+        Instantiate(enemyToSpawn, GetSpawnPosition(enemyToSpawn), Quaternion.identity);
+    }
+
+    Vector2 GetSpawnPosition(Enemy enemy)
+    {
+        float enemyHeight = enemy.GetComponent<SpriteRenderer>().bounds.size.y;
+
+        Vector2 spawnPos = new Vector2();
+
+        if (enemy.enemyType == Enemy.Type.Ground)
+        {
+            spawnPos = new Vector2(xSpawnPos, Random.Range(yMinSpawnPos + enemyHeight, yMaxSpawnPos - enemyHeight));
+        }
+        else if (enemy.enemyType == Enemy.Type.Flying)
+        {
+            spawnPos = new Vector2(xSpawnPos, Random.Range(yMinFlyerPos + enemyHeight, yMaxFlyerPos - enemyHeight));
+        }
+
+        return spawnPos;
+    }
+
+    List<EnemyType> GetSpawnableTypes(int waveIndex)
+    {
+        List<EnemyType> spawnableTypes = new List<EnemyType>();
+
+        foreach (EnemyType enemyType in enemyTypes)
+        {
+            if (enemyType.waveStart <= waveIndex)
+            {
+                spawnableTypes.Add(enemyType);
+            }
+        }
+
+        return spawnableTypes;
     }
 
     IEnumerator DisplayWaveCompletePanel(GameObject panel)
@@ -207,49 +304,6 @@ public class ProceduralSpawner : MonoBehaviour
         panel.SetActive(false);
 
         CurrentState = State.Waiting;
-    }
-
-    void SpawnEnemy()
-    {
-        List<EnemyType> spawnableTypes = GetSpawnableTypes();
-        int index = randomizer.GetWeightedIndex(spawnableTypes);
-
-        Enemy enemyToSpawn = spawnableTypes[index].enemy;
-
-        Enemy spawnedEnemy = Instantiate(enemyToSpawn, GetSpawnPosition(enemyToSpawn), Quaternion.identity);
-    }
-
-    Vector2 GetSpawnPosition(Enemy enemy)
-    {
-        float enemyHeight = enemy.GetComponent<SpriteRenderer>().bounds.size.y;
-
-        Vector2 spawnPos = new Vector2();
-
-        if (enemy.enemyType == Enemy.Type.Ground)
-        {
-            spawnPos = new Vector2(xSpawnPos, Random.Range(yMinSpawnPos + enemyHeight, yMaxSpawnPos - enemyHeight));
-        }
-        else if (enemy.enemyType == Enemy.Type.Flying)
-        {
-            spawnPos = new Vector2(xSpawnPos, Random.Range(yMinFlyerPos + enemyHeight, yMaxFlyerPos - enemyHeight));
-        }
-
-        return spawnPos;
-    }
-
-    List<EnemyType> GetSpawnableTypes()
-    {
-        List<EnemyType> spawnableTypes = new List<EnemyType>();
-
-        foreach (EnemyType enemyType in enemyTypes)
-        {
-            if (enemyType.waveStart <= WaveIndex)
-            {
-                spawnableTypes.Add(enemyType);
-            }
-        }
-
-        return spawnableTypes;
     }
 
     void OnDrawGizmosSelected()
