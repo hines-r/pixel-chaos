@@ -297,8 +297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8335c5b49bfb5144fa2f25e9bbaf0464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 35
+  startingHealth: 10
   healthBar: {fileID: 114417829315228530}
+  enemyType: 0
   startSpeed: 5
   damage: 2
   attackSpeed: 5

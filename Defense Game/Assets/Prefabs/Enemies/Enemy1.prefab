@@ -272,12 +272,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 50
   healthBar: {fileID: 114537943307738826}
+  enemyType: 0
   startSpeed: 2
   damage: 5
   attackSpeed: 5
   timeBetweenAttacks: 1
   stoppingPoint: -1.5
-  goldValue: 9
+  goldValue: 5
   expAmount: 10
   deathEffect: {fileID: 1140325616282710, guid: 5733a12ff30c237439c830778a0c34fd,
     type: 2}

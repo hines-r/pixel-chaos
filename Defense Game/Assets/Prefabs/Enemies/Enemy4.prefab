@@ -326,6 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 75
   healthBar: {fileID: 114972637113623340}
+  enemyType: 0
   startSpeed: 1.5
   damage: 5
   attackSpeed: 1

@@ -497,7 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8335c5b49bfb5144fa2f25e9bbaf0464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 50
+  startingHealth: 40
   healthBar: {fileID: 114548535432503048}
   enemyType: 1
   startSpeed: 2
@@ -505,7 +505,7 @@ MonoBehaviour:
   attackSpeed: 5
   timeBetweenAttacks: 1
   stoppingPoint: -1.5
-  goldValue: 9
+  goldValue: 10
   expAmount: 10
   deathEffect: {fileID: 1140325616282710, guid: 5733a12ff30c237439c830778a0c34fd,
     type: 2}
