@@ -66,8 +66,7 @@ MonoBehaviour:
   unitName: Rocket Man v2
   baseCost: 20
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
-  description: He fires a burst of three of rockets now! Rocket Man only wants more
-    rockets.
+  description: He fires a burst of three rockets now! Rocket Man only wants more rockets.
   multiplier: 1.08
   upgradeBaseCost: 1000
   damageIncrement: 1
