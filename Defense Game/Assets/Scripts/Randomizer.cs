@@ -9,6 +9,8 @@ public class Randomizer : MonoBehaviour
     private const float MaxTimePerWave = 30f; // Max of 30 seconds of spawn time per wave
     private float totalSpawnTime;
 
+    public bool IsBossWave { get; set; }
+
     public float GetSpawnInterval(float waveIndex)
     {
         waveIndex *= 0.25f;
@@ -19,7 +21,12 @@ public class Randomizer : MonoBehaviour
     {
         if (waveIndex % 10 == 0)
         {
-            // TODO spawn boss
+            IsBossWave = true;
+            return 1;
+        }
+        else
+        {
+            IsBossWave = false;
         }
 
         float count = (Mathf.Pow(waveIndex, 1.4f) + 5f + Mathf.Sin(waveIndex));

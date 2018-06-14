@@ -22,6 +22,7 @@ public class ProceduralSpawner : MonoBehaviour
 
     [Header("Enemies")]
     public EnemyType[] enemyTypes;
+    public EnemyType[] bosses;
 
     [Space]
 
@@ -274,11 +275,21 @@ public class ProceduralSpawner : MonoBehaviour
     {
         List<EnemyType> spawnableTypes = new List<EnemyType>();
 
-        foreach (EnemyType enemyType in enemyTypes)
+        if (randomizer.IsBossWave)
         {
-            if (enemyType.waveStart <= waveIndex)
+            foreach(EnemyType boss in bosses)
             {
-                spawnableTypes.Add(enemyType);
+                spawnableTypes.Add(boss);
+            }
+        }
+        else
+        {
+            foreach (EnemyType enemyType in enemyTypes)
+            {
+                if (enemyType.waveStart <= waveIndex)
+                {
+                    spawnableTypes.Add(enemyType);
+                }
             }
         }
 

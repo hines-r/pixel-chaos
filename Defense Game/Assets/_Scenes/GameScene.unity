@@ -12246,7 +12246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0.00012207031}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1001149172
@@ -15328,6 +15328,10 @@ MonoBehaviour:
   - enemy: {fileID: 114468010937366554, guid: d9b35b8aae794954a8947979becfc5ac, type: 2}
     waveStart: 25
     weight: 2
+  bosses:
+  - enemy: {fileID: 114460254459290894, guid: a560010e33a682443b9d65199a5c4cf3, type: 2}
+    waveStart: 10
+    weight: 1
   yMinSpawnPos: -5
   yMaxSpawnPos: 0
   yMinFlyerPos: 1
@@ -15949,7 +15953,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.80000305, y: -15.447754}
+  m_AnchoredPosition: {x: 0.80000305, y: -15.447693}
   m_SizeDelta: {x: 203.8, y: -50.8955}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1514379214
@@ -23262,7 +23266,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 772681413}
   gameWinUI: {fileID: 695459649}
   isImmortal: 0
-  isBurdenedWithMoney: 0
+  isBurdenedWithMoney: 1
 --- !u!1 &2003636577
 GameObject:
   m_ObjectHideFlags: 0
@@ -25224,6 +25228,7 @@ GameObject:
   - component: {fileID: 2099585171}
   - component: {fileID: 2099585170}
   - component: {fileID: 2099585174}
+  - component: {fileID: 2099585175}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -25309,6 +25314,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 0
+--- !u!114 &2099585175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2099585169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a31524e2af1b5d9408e651c1474cdbea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2122008756 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224218504228660896, guid: f4ff5606bc825704d851c495b875e42f,
