@@ -22,7 +22,8 @@ public class ProceduralSpawner : MonoBehaviour
 
     [Header("Enemies")]
     public EnemyType[] enemyTypes;
-    public EnemyType[] bosses;
+    [Space]
+    public Enemy[] bosses;
 
     [Space]
 
@@ -179,11 +180,11 @@ public class ProceduralSpawner : MonoBehaviour
 
         float spawnInterval = randomizer.GetSpawnInterval(WaveIndex);
 
-        Debug.Log("Spawning wave: " + WaveIndex + " | Count: " + enemyCount + " | Interval: " + spawnInterval);
-
         CalculateEnemiesInWave();
 
-        while (enemyCount > 0)
+        Debug.Log("Spawning wave: " + WaveIndex + " | Count: " + EnemiesAlive + " | Interval: " + spawnInterval);
+
+        while (enemiesThisWave.Count > 0)
         {
             Enemy enemyToSpawn = enemiesThisWave.Dequeue();
             SpawnEnemy(enemyToSpawn);
@@ -212,13 +213,27 @@ public class ProceduralSpawner : MonoBehaviour
             goldAfterWaveComplete = totalEnemyGoldValue + randomizer.GetEndWaveGold(WaveIndex);
         }
 
+        if (randomizer.IsBossWave)
+        {
+            AddRandomBossToWave();
+            Debug.Log("BOSS INCOMING!");
+        }
+
         Debug.Log("Wave: " + WaveIndex + " | Enemy gold value: " + totalEnemyGoldValue);
         Debug.Log("Wave: " + WaveIndex + " | Wave complete value: " + goldAfterWaveComplete);
 
         foreach (Enemy enemy in enemiesThisWave)
         {
-            Debug.Log("Wave: " + WaveIndex + " | " + enemy);
+            //Debug.Log("Wave: " + WaveIndex + " | " + enemy);
         }
+    }
+
+    void AddRandomBossToWave()
+    {
+        int roll = Random.Range(0, bosses.Length - 1);
+
+        EnemiesAlive++;
+        enemiesThisWave.Enqueue(bosses[roll]);
     }
 
     public void EstimateTotalEarnings()
@@ -275,21 +290,11 @@ public class ProceduralSpawner : MonoBehaviour
     {
         List<EnemyType> spawnableTypes = new List<EnemyType>();
 
-        if (randomizer.IsBossWave)
+        foreach (EnemyType enemyType in enemyTypes)
         {
-            foreach(EnemyType boss in bosses)
+            if (enemyType.waveStart <= waveIndex)
             {
-                spawnableTypes.Add(boss);
-            }
-        }
-        else
-        {
-            foreach (EnemyType enemyType in enemyTypes)
-            {
-                if (enemyType.waveStart <= waveIndex)
-                {
-                    spawnableTypes.Add(enemyType);
-                }
+                spawnableTypes.Add(enemyType);
             }
         }
 

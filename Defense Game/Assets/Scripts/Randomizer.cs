@@ -22,7 +22,6 @@ public class Randomizer : MonoBehaviour
         if (waveIndex % 10 == 0)
         {
             IsBossWave = true;
-            return 1;
         }
         else
         {
