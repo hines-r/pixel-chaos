@@ -56,7 +56,7 @@ MonoBehaviour:
   attackPrefab: {fileID: 114775751994779102, guid: a7ac4171d0633254c97f8494e148324b,
     type: 2}
   level: 1
-  damage: 75
+  damage: 65
   attackSpeed: 1.25
   hasAbility: 0
   isPassiveCaster: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
   burstCount: 0
   timeBetweenBursts: 0
   unitName: Spear Thrower
-  baseCost: 500
+  baseCost: 750
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
   description: Spear Throwers throw many sharp pointy spears! They are well trained
     and never miss (most of the time).
