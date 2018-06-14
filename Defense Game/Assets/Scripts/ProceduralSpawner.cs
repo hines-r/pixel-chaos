@@ -106,6 +106,7 @@ public class ProceduralSpawner : MonoBehaviour
             Destroy(enemy);
         }
 
+        EnemiesAlive = 0;
         PlayerStats.Health = player.startingHealth;
         GameMaster.GameIsOver = false;
     }
