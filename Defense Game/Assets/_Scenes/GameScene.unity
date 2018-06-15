@@ -15315,7 +15315,7 @@ MonoBehaviour:
     weight: 10
   - enemy: {fileID: 114919674329362936, guid: 7d59661d2181ee7428ac47196b119574, type: 2}
     waveStart: 5
-    weight: 5
+    weight: 4
   - enemy: {fileID: 114003774843303226, guid: 0ff8473fc4b74df4e9cc5e52429fd500, type: 2}
     waveStart: 10
     weight: 11
@@ -15329,9 +15329,7 @@ MonoBehaviour:
     waveStart: 25
     weight: 2
   bosses:
-  - enemy: {fileID: 114460254459290894, guid: a560010e33a682443b9d65199a5c4cf3, type: 2}
-    waveStart: 10
-    weight: 1
+  - {fileID: 114460254459290894, guid: a560010e33a682443b9d65199a5c4cf3, type: 2}
   yMinSpawnPos: -5
   yMaxSpawnPos: 0
   yMinFlyerPos: 1
