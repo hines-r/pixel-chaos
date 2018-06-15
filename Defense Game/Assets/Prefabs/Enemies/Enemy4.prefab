@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2e343eae3f9fa4e85e33b6cd33bc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 75
+  startingHealth: 65
   healthBar: {fileID: 114972637113623340}
   enemyType: 0
   startSpeed: 1.5

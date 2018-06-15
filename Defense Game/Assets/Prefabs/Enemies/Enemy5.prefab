@@ -382,7 +382,7 @@ MonoBehaviour:
   healthBar: {fileID: 114221964202452820}
   enemyType: 0
   startSpeed: 0.5
-  damage: 50
+  damage: 25
   attackSpeed: 3
   timeBetweenAttacks: 3
   stoppingPoint: -1.5
