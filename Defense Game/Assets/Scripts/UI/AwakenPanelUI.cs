@@ -61,10 +61,12 @@ public class AwakenPanelUI : MonoBehaviour
                         {
                             Unit unlockedUnit = unitManager.unlockedUnits[standardUnit.awokenUnits[i].unitName];
                             pathButtons[i].button.GetComponent<Image>().color = pathButtons[i].unlockedColor;
+                            pathButtons[i].costText.text = "Unlocked!";
                         }
                         else
                         {
                             pathButtons[i].button.GetComponent<Image>().color = pathButtons[i].originalColor;
+                            pathButtons[i].costText.text = standardUnit.awokenUnits[i].baseCost + " Gems";
                         }
                     }
                     else
@@ -113,6 +115,7 @@ public class AwakenPanelUI : MonoBehaviour
     {
         public Button button;
         public Text nameText;
+        public Text costText;
         public Image awokenSprite;
 
         public Color originalColor;
