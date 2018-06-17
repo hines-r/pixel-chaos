@@ -12234,7 +12234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0.000061035156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1001149172
@@ -15329,6 +15329,7 @@ MonoBehaviour:
     weight: 2
   bosses:
   - {fileID: 114460254459290894, guid: a560010e33a682443b9d65199a5c4cf3, type: 2}
+  - {fileID: 114424361899056432, guid: 1f778b33b979f394c81b91e8562a9243, type: 2}
   yMinSpawnPos: -5
   yMaxSpawnPos: 0
   yMinFlyerPos: 1
