@@ -11,31 +11,38 @@ public class Spikes : ParabolicProjectile
 
     void OnTriggerStay2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null)
+        if (isOnGround)
         {
-            enemy.GetRigidbody2D().sleepMode = RigidbodySleepMode2D.NeverSleep;
+            Enemy enemy = collision.GetComponent<Enemy>();
 
-            if (enemy.enemyType != Enemy.Type.Flying || !enemy.IsAirborne())
+            if (enemy != null && !enemy.IsAirborne() || enemy.enemyType != Enemy.Type.Flying)
             {
-                if (slowAmount > 0f)
-                {
-                    enemy.Slow(slowAmount, slowDuration);
-                }
+                enemy.GetRigidbody2D().sleepMode = RigidbodySleepMode2D.NeverSleep;
 
-                enemy.TakeDamage(Damage * Time.deltaTime);
+                if (enemy.enemyType != Enemy.Type.Flying || !enemy.IsAirborne())
+                {
+                    if (slowAmount > 0f)
+                    {
+                        enemy.Slow(slowAmount, slowDuration);
+                    }
+
+                    enemy.TakeDamage(Damage * Time.deltaTime);
+                }
             }
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-
-        if (enemy != null)
+        if (isOnGround)
         {
-            enemy.GetRigidbody2D().sleepMode = RigidbodySleepMode2D.StartAwake;
+            Enemy enemy = collision.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                enemy.GetRigidbody2D().sleepMode = RigidbodySleepMode2D.StartAwake;
+            }
         }
+
     }
 }
