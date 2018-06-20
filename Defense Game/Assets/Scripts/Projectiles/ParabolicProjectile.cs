@@ -260,7 +260,7 @@ public class ParabolicProjectile : Projectile
         // Doesn't need to be calculated for a static enemy like the player
         if (targetEnemy != null && !targetEnemy.isUnderForces)
         {
-            float targetVelocity = targetEnemy.GetVelocity();
+            float targetVelocity = targetEnemy.GetVelocity().x;
             float distanceTraveledInTime = targetVelocity * timeToTarget;
             float futurePositionX = target.x - distanceTraveledInTime;
 

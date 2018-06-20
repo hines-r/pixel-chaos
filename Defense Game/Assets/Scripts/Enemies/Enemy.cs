@@ -46,7 +46,7 @@ public class Enemy : LivingEntity
     [Header("Death Effect (Optional)")]
     public GameObject deathEffect;
 
-    private float velocity;
+    private Vector3 velocity;
     private Vector3 previousPosition;
 
     [Header("Debuffs")]
@@ -182,7 +182,7 @@ public class Enemy : LivingEntity
 
     void FixedUpdate()
     {
-        velocity = ((transform.position - previousPosition).magnitude) / Time.deltaTime;
+        velocity = (previousPosition - transform.position) / Time.deltaTime;
         previousPosition = transform.position;
 
         if (enemyType == Type.Flying)
@@ -294,7 +294,7 @@ public class Enemy : LivingEntity
         PlayerStats.Experience += expAmount;
     }
 
-    public float GetVelocity()
+    public Vector3 GetVelocity()
     {
         return velocity;
     }
