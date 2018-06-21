@@ -39,10 +39,18 @@ public class ShotgunShell : LinearProjectile
 
     protected override void FaceTarget()
     {
-        Vector3 targetPos = Target.transform.position;
-        Vector3 scatterPos = new Vector3(targetPos.x + Random.Range(-scatterOffset, scatterOffset), 
+        Enemy targetEnemy = Target.GetComponent<Enemy>();
+        Vector3 targetPos = targetEnemy.transform.position;
+
+        Vector3 scatterPos = new Vector3(targetPos.x + Random.Range(-scatterOffset, scatterOffset),
             targetPos.y + Random.Range(-scatterOffset, scatterOffset), targetPos.z);
+
+        if (targetEnemy != null && !targetEnemy.isUnderForces)
+        {
+            scatterPos = CalculateFuturePosition(targetEnemy, scatterPos);
+        }
 
         transform.right = scatterPos - transform.position;
     }
+
 }
