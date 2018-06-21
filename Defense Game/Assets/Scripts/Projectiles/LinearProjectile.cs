@@ -57,34 +57,41 @@ public class LinearProjectile : Projectile
 
         if (targetEnemy != null && !targetEnemy.isUnderForces)
         {
-            Vector3 targetVelocity = targetEnemy.GetVelocity();
-
-            float a = speed * speed - Vector3.Dot(targetVelocity, targetVelocity);
-            float b = -2 * Vector3.Dot(targetVelocity, (targetPos - transform.position));
-            float c = Vector3.Dot(-(targetPos - transform.position), (targetPos - transform.position));
-
-            // Calculates the total time to the target
-            float time = (b + Mathf.Sqrt(b * b - 4 * a * c)) / (2 * a);
-
-            // Gets the displacement in time of the target
-            float displacementX = targetVelocity.x * time;
-            float displacementY = targetVelocity.y * time;
-
-            Vector3 displacement = new Vector3(displacementX, displacementY);
-            Vector3 futurePosition = targetPos - displacement;
-
-            // Aims at the targets stopping point on the x axis if the displacement exceeds it
-            if (futurePosition.x >= targetEnemy.stoppingPoint)
-            {
-                targetPos -= displacement;
-            }
-            else
-            {
-                targetPos.x = targetEnemy.stoppingPoint;
-            }
+            targetPos = CalculateFuturePosition(targetEnemy, targetPos);
         }
 
         transform.right = targetPos - transform.position;
+    }
+
+    public Vector3 CalculateFuturePosition(Enemy targetEnemy, Vector3 targetPos)
+    {
+        Vector3 targetVelocity = targetEnemy.GetVelocity();
+
+        float a = speed * speed - Vector3.Dot(targetVelocity, targetVelocity);
+        float b = -2 * Vector3.Dot(targetVelocity, (targetPos - transform.position));
+        float c = Vector3.Dot(-(targetPos - transform.position), (targetPos - transform.position));
+
+        // Calculates the total time to the target
+        float time = (b + Mathf.Sqrt(b * b - 4 * a * c)) / (2 * a);
+
+        // Gets the displacement in time of the target
+        float displacementX = targetVelocity.x * time;
+        float displacementY = targetVelocity.y * time;
+
+        Vector3 displacement = new Vector3(displacementX, displacementY);
+        Vector3 futurePosition = targetPos - displacement;
+
+        // Aims at the targets stopping point on the x axis if the displacement exceeds it
+        if (targetEnemy.currentState != Enemy.State.Attacking || futurePosition.x >= targetEnemy.stoppingPoint)
+        {
+            targetPos -= displacement;
+        }
+        else
+        {
+            targetPos.x = targetEnemy.stoppingPoint;
+        }
+
+        return targetPos;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
