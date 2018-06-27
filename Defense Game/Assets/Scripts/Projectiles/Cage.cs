@@ -78,10 +78,9 @@ public class Cage : Attack
 
         foreach (Enemy enemy in enemiesTrapped)
         {
-            SpriteRenderer enemyBounds = enemy.GetSpriteRenderer();
-
-            if (enemyBounds != null)
-            {               
+            if (enemy != null)
+            {
+                SpriteRenderer enemyBounds = enemy.GetSpriteRenderer();
                 if (c2d.bounds.Contains(enemyBounds.bounds))
                 {
                     enemy.TakeDamage(Damage);
