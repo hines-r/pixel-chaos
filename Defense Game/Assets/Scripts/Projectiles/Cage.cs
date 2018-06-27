@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Cage : Attack
 {
     internal float fallSpeed;
     internal float duration;
+    internal Vector3 impactLocation;
 
     private bool isLanded;
-    private Vector3 impactLocation;
 
     private Collider2D c2d;
 
@@ -23,8 +24,7 @@ public class Cage : Attack
 
         if (enemyTarget != null)
         {
-            impactLocation = enemyTarget.transform.position;
-            transform.localScale = enemyTarget.gameObject.transform.localScale * 2.5f;
+            transform.localScale = enemyTarget.gameObject.transform.localScale * 1.5f;
         }
 
         StartCoroutine(StartDestroy());
@@ -82,7 +82,7 @@ public class Cage : Attack
             SpriteRenderer enemyBounds = enemy.GetSpriteRenderer();
 
             if (enemyBounds != null)
-            {
+            {               
                 if (c2d.bounds.Contains(enemyBounds.bounds))
                 {
                     enemy.TakeDamage(Damage);

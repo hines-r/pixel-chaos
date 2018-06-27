@@ -71,9 +71,9 @@ MonoBehaviour:
   isHostile: 0
   cage: {fileID: 114223645273066928, guid: 59c7d2391ae1fb94093c45d5a5d59cfa, type: 2}
   fallSpeed: 15
-  duration: 4
-  distanceAboveTarget: 4
-  distanceToActivate: 1.5
+  duration: 2.5
+  distanceAboveTarget: 10
+  distanceToActivate: 2.5
 --- !u!212 &212674513368044610
 SpriteRenderer:
   m_ObjectHideFlags: 1
