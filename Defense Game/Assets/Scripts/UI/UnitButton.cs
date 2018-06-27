@@ -46,6 +46,7 @@ public class UnitButton : MonoBehaviour
     {
         unit = _unit;
         unitImg.sprite = unit.unitSprite;
+        unitImg.material = unit.GetComponent<SpriteRenderer>().sharedMaterial;
         unitName.text = unit.unitName;
         priceTxt.text = unit.baseCost + "g";
         UpdateLevelText(unit);

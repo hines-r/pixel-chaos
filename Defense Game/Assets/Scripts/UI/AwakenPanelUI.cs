@@ -55,6 +55,7 @@ public class AwakenPanelUI : MonoBehaviour
                         pathButtons[i].Unit = standardUnit.awokenUnits[i];
                         pathButtons[i].nameText.text = standardUnit.awokenUnits[i].unitName;
                         pathButtons[i].awokenSprite.sprite = standardUnit.awokenUnits[i].unitSprite;
+                        pathButtons[i].awokenSprite.material = standardUnit.awokenUnits[i].GetComponent<SpriteRenderer>().sharedMaterial;
 
                         // Highlights the button if the unit has been purchased and is located within the unlocked units dictionary
                         if (unitManager.unlockedUnits.ContainsKey(standardUnit.awokenUnits[i].unitName))

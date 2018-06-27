@@ -58,6 +58,8 @@ public class UnitPanelUI : MonoBehaviour
     {
         unitNameTxt.text = selectedUnit.unitName;
         unitImg.sprite = selectedUnit.unitSprite;
+        unitImg.material = selectedUnit.GetComponent<SpriteRenderer>().sharedMaterial;
+
         descrptionTxt.text = selectedUnit.description;
 
         UpdateUnitStats();
