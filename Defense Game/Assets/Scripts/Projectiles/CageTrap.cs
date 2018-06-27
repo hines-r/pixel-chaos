@@ -38,10 +38,6 @@ public class CageTrap : Attack
                 DeployCage();
             }
         }
-        else
-        {
-            Destroy(gameObject);
-        }
 
         transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
     }
@@ -82,7 +78,12 @@ public class CageTrap : Attack
     {
         Cage newCage = Instantiate(cage, transform.position, Quaternion.identity);
         newCage.Damage = Damage;
-        newCage.Target = Target;
+
+        if (Target != null)
+        {
+            newCage.Target = Target;
+        }
+
         newCage.impactLocation = calculatedImpactLocation;
         newCage.fallSpeed = fallSpeed;
         newCage.duration = duration;

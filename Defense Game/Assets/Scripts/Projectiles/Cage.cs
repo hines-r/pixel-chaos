@@ -20,10 +20,9 @@ public class Cage : Attack
         c2d = GetComponent<Collider2D>();
         enemiesTrapped = new HashSet<Enemy>();
 
-        Enemy enemyTarget = Target.GetComponent<Enemy>();
-
-        if (enemyTarget != null)
+        if (Target != null)
         {
+            Enemy enemyTarget = Target.GetComponent<Enemy>();
             transform.localScale = enemyTarget.gameObject.transform.localScale * 1.5f;
         }
 
