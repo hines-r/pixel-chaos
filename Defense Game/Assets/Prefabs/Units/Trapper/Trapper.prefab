@@ -57,7 +57,7 @@ MonoBehaviour:
     type: 2}
   level: 1
   damage: 50
-  attackSpeed: 5.5
+  attackSpeed: 2
   hasAbility: 0
   isPassiveCaster: 0
   hasBurstAttack: 0
