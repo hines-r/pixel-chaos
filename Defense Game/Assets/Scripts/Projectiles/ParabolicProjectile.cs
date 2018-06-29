@@ -258,7 +258,7 @@ public class ParabolicProjectile : Projectile
 
         // Calculates future position if the entity to hit is a moving enemy
         // Doesn't need to be calculated for a static enemy like the player
-        if (targetEnemy != null && !targetEnemy.isUnderForces)
+        if (targetEnemy != null && !targetEnemy.isUnderForces && targetEnemy.currentState != Enemy.State.Attacking)
         {
             float targetVelocity = targetEnemy.GetVelocity().x;
             float distanceTraveledInTime = targetVelocity * timeToTarget;
