@@ -50,7 +50,7 @@ public class ParabolicProjectile : Projectile
         {
             if (hasSpread)
             {
-                for (int i = 0; i < spreadCount; i++)
+                for (int i = 0; i < spreadCount - 1; i++)
                 {
                     ParabolicProjectile duplicate = Instantiate(this, transform.position, Quaternion.identity);
                     duplicate.Damage = Damage;
