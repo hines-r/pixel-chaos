@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1694346293890070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -2.56, z: 0}
+  m_LocalPosition: {x: -5.5411882, y: -1.466222, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,11 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canAttackFlying: 0
-  attackPrefab: {fileID: 114893977619553562, guid: ec1469f09e5266e4eb84e2a8f6fb92b4,
+  attackPrefab: {fileID: 114807696918655896, guid: 4176ad2f8b8aa5946be236255f32cd24,
     type: 2}
   level: 1
-  damage: 50
-  attackSpeed: 2
+  damage: 25
+  attackSpeed: 3
   hasAbility: 0
   isPassiveCaster: 0
   hasBurstAttack: 0
@@ -66,8 +66,8 @@ MonoBehaviour:
   unitName: Trapper
   baseCost: 5000
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  description: Unleashes a large cage that will trap enemies caught inside rendering
-    them unable to attack or move!
+  description: Sprays the ground with three spikes that slightly slow and damage enemies
+    as they walk over them.
   multiplier: 1.08
   upgradeBaseCost: 1000
   damageIncrement: 1

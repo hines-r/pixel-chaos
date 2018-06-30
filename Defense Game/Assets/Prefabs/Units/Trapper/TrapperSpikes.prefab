@@ -66,8 +66,8 @@ MonoBehaviour:
   unitName: Spike
   baseCost: 25
   unitSprite: {fileID: 21300000, guid: b34fbccfcf23e1b45ad1c966a24c9304, type: 3}
-  description: Lays down five crippling spikes that slow and damage enemies as they
-    attempt to cross them.
+  description: Spike throws down even more spikes for a total of ten. They apply a
+    crippling slow and damage enemies as they walk through them.
   multiplier: 1.08
   upgradeBaseCost: 1000
   damageIncrement: 1

@@ -9,45 +9,66 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1664774974939482}
+  m_RootGameObject: {fileID: 1212367595816854}
   m_IsPrefabParent: 1
---- !u!1 &1664774974939482
+--- !u!1 &1212367595816854
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4000606442225766}
-  - component: {fileID: 212674513368044610}
-  - component: {fileID: 58901290951546508}
-  - component: {fileID: 114893977619553562}
+  - component: {fileID: 4572473753761998}
+  - component: {fileID: 212679121958378862}
+  - component: {fileID: 58983453066073346}
+  - component: {fileID: 50784041378046242}
+  - component: {fileID: 114807696918655896}
   m_Layer: 10
-  m_Name: CageTrap
+  m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000606442225766
+--- !u!4 &4572473753761998
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1664774974939482}
+  m_GameObject: {fileID: 1212367595816854}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.851, y: -0.24, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.3725116, y: -1.7092249, z: 0}
+  m_LocalScale: {x: 0.7318566, y: 0.7318566, z: 0.7318566}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58901290951546508
+--- !u!50 &50784041378046242
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212367595816854}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!58 &58983453066073346
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1664774974939482}
+  m_GameObject: {fileID: 1212367595816854}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -56,30 +77,48 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.13333334
---- !u!114 &114893977619553562
+  m_Radius: 0.4
+--- !u!114 &114807696918655896
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1664774974939482}
+  m_GameObject: {fileID: 1212367595816854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d833b2ea6fcfacf4ea8c0d6466b83fa6, type: 3}
+  m_Script: {fileID: 11500000, guid: b54dc113f6c8e6145a18871a4f74f11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isHostile: 0
-  cage: {fileID: 114223645273066928, guid: 59c7d2391ae1fb94093c45d5a5d59cfa, type: 2}
-  fallSpeed: 15
-  duration: 2.5
-  distanceAboveTarget: 10
-  distanceToActivate: 2.5
---- !u!212 &212674513368044610
+  penetrationCount: 1
+  slowAmount: 0.25
+  slowDuration: 0.1
+  hasStun: 0
+  stunDuration: 0
+  hasDot: 0
+  isStinging: 0
+  isStacking: 0
+  damageDuration: 0
+  isExplosive: 0
+  splashRadius: 0
+  impactEffect: {fileID: 0}
+  throwHeight: 1.5
+  isRotating: 0
+  isCrushing: 0
+  hasSpread: 1
+  spreadCount: 3
+  spreadVariance: 1.75
+  isATrap: 1
+  isBouncy: 1
+  bounceForce: 0.25
+  timesToBounce: 1
+  targetXOffset: 2
+--- !u!212 &212679121958378862
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1664774974939482}
+  m_GameObject: {fileID: 1212367595816854}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -109,7 +148,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: cee757492b70dff45a0072aa61f22c51, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72c29e45b77bf1d4c86fc6cb12ae7532, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
