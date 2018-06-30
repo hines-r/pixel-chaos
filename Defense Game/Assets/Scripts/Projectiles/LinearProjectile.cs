@@ -82,13 +82,13 @@ public class LinearProjectile : Projectile
         Vector3 futurePosition = targetPos - displacement;
 
         // Aims at the targets stopping point on the x axis if the displacement exceeds it
-        if (targetEnemy.currentState != Enemy.State.Attacking || futurePosition.x >= targetEnemy.stoppingPoint)
+        if (targetEnemy.currentState == Enemy.State.Attacking || futurePosition.x < targetEnemy.stoppingPoint)
         {
-            targetPos -= displacement;
+            targetPos.x = targetEnemy.stoppingPoint;
         }
         else
         {
-            targetPos.x = targetEnemy.stoppingPoint;
+            targetPos -= displacement;
         }
 
         return targetPos;
