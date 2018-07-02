@@ -11,9 +11,6 @@ public class LinearProjectile : Projectile
     [Header("Properties")]
     public float speed = 25f;
 
-    private Vector3 velocity;
-    private Vector3 previousPosition;
-
     protected override void Start()
     {
         base.Start();
@@ -27,9 +24,6 @@ public class LinearProjectile : Projectile
 
     void FixedUpdate()
     {
-        velocity = (previousPosition - transform.position) / Time.deltaTime;
-        previousPosition = transform.position;
-
         transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
 
