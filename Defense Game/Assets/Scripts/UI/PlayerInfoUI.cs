@@ -42,9 +42,9 @@ public class PlayerInfoUI : MonoBehaviour
         healthBarImg.fillAmount = PlayerStats.Health / player.startingHealth ;
         healthText.text = PlayerStats.Health.ToString();
 
-        goldText.text = "Gold: " + PlayerStats.Gold;
+        goldText.text = PlayerStats.Gold.ToString();
 
-        gemsText.text = "Gems: " + PlayerStats.Gems;
+        gemsText.text = PlayerStats.Gems.ToString();
     }
 
     public void SetTime(float time)
