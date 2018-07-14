@@ -11944,13 +11944,13 @@ MonoBehaviour:
     costText: {fileID: 738202361}
     awokenSprite: {fileID: 1835069803}
     originalColor: {r: 1, g: 1, b: 1, a: 0.4392157}
-    unlockedColor: {r: 0.5258544, g: 0.78971547, b: 0.9528302, a: 0.4392157}
+    unlockedColor: {r: 0.5473478, g: 0.72445774, b: 0.9433962, a: 0.4392157}
   - button: {fileID: 1829910296}
     nameText: {fileID: 219500568}
     costText: {fileID: 2022969416}
     awokenSprite: {fileID: 725930964}
     originalColor: {r: 1, g: 1, b: 1, a: 0.4392157}
-    unlockedColor: {r: 0.5258544, g: 0.78971547, b: 0.9528302, a: 0.4392157}
+    unlockedColor: {r: 0.5473478, g: 0.72445774, b: 0.9433962, a: 0.4392157}
 --- !u!95 &897078677
 Animator:
   serializedVersion: 3
@@ -12406,7 +12406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0.000030517578}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1001149172
