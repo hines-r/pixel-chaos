@@ -14,6 +14,8 @@ public class Bubble : SineWaveProjectile
     private Vector3 bubbleSize;
     private bool isOnTarget;
 
+    private float forceDampening = 2.25f; // Amount used to dampen the force of a bumble impact on flying and already airborne targets
+
     protected override void Start()
     {
         base.Start();
@@ -78,9 +80,9 @@ public class Bubble : SineWaveProjectile
                 enemyAttachedTo.isUnderForces = true;
                 enemyAttachedTo.GetRigidbody2D().velocity = Vector3.zero;
 
-                if (enemyAttachedTo.IsAirborne())
+                if (enemyAttachedTo.IsAirborne() || enemyAttachedTo.enemyType == Enemy.Type.Flying)
                 {
-                    enemyAttachedTo.MakeAirborne(xForce, yForce / 2.25f); // Applies less force if enemy is already airborne
+                    enemyAttachedTo.MakeAirborne(xForce, yForce / forceDampening); // Applies less force if enemy is already airborne
                 }
                 else
                 {

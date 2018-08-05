@@ -185,7 +185,7 @@ public class Enemy : LivingEntity
         velocity = (previousPosition - transform.position) / Time.deltaTime;
         previousPosition = transform.position;
 
-        if (enemyType == Type.Flying)
+        if (enemyType == Type.Flying && !isAirborne)
         {
             airbornePosition = new Vector3(transform.position.x, transform.position.y - altitude);
         }
@@ -265,7 +265,7 @@ public class Enemy : LivingEntity
 
     public void MakeAirborne(float xForce, float yForce)
     {
-        if (!isAirborne && enemyType != Type.Flying)
+        if (!isAirborne)
         {
             isAirborne = true;
             airbornePosition = transform.position; // The position before being airborne
