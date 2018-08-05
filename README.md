@@ -1,5 +1,4 @@
-# defense-game
-This is my first Unity game. It's a physics-based defend the castle style game with elements of a tower defense.
+# Pixel Chaos
 
 <div>
 <ul>
@@ -7,7 +6,7 @@ This is my first Unity game. It's a physics-based defend the castle style game w
   &nbsp;
   <img src="Images/tutorial.gif"/><br/>
   &nbsp;
-  <li>Has 13 units with two upgrade paths each for a total of 39 unique choices! More coming soon.</li><br/>
+  <li>Has 13 unique units with two upgrade paths each for wide variety of choices</li><br/>
   <img src="Images/units.gif"/><br/>
   &nbsp;
   <li>Endless waves of enemies with epic fights and real-time physics</li><br/>
