@@ -2,8 +2,7 @@
 
 <div>
   <ul>
-    <li>Interactive tutorial</li>
-    &nbsp;
+    <li>Interactive tutorial</li><br/>
     <img src="Images/tutorial.gif"/><br/>
     &nbsp;
     <li>Has 13 unique units with two upgrade paths each for a wide variety of choices</li><br/>
