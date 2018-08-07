@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1622504708892870}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1622504708892870
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4093792342880232}
   - component: {fileID: 212635637867990940}
@@ -31,7 +31,7 @@ GameObject:
 --- !u!4 &4093792342880232
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1622504708892870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -44,7 +44,7 @@ Transform:
 --- !u!114 &114373464819735014
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1622504708892870}
   m_Enabled: 1
@@ -66,8 +66,8 @@ MonoBehaviour:
   unitName: Archer
   baseCost: 750
   unitSprite: {fileID: 21300000, guid: ed863c3d4a944c443a5cb75336bdbc25, type: 3}
-  description: Highly skilled with the bow, the Standard Archer is capable of producing
-    devastation on the battlefield with a flurry of arrows.
+  description: Highly skilled with the bow, the Archer is capable of producing devastation
+    on the battlefield with a flurry of arrows.
   multiplier: 1.08
   upgradeBaseCost: 100
   damageIncrement: 2
@@ -79,7 +79,7 @@ MonoBehaviour:
 --- !u!212 &212635637867990940
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1622504708892870}
   m_Enabled: 1
@@ -121,3 +121,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
