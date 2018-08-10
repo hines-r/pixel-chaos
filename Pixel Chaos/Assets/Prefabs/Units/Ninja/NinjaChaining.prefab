@@ -8,15 +8,15 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
+  m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1829701337077484}
-  m_IsPrefabParent: 1
+  m_IsPrefabAsset: 1
 --- !u!1 &1829701337077484
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 4496032243759078}
   - component: {fileID: 212240857822764638}
@@ -31,7 +31,7 @@ GameObject:
 --- !u!4 &4496032243759078
 Transform:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829701337077484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -44,7 +44,7 @@ Transform:
 --- !u!114 &114585891277954422
 MonoBehaviour:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829701337077484}
   m_Enabled: 1
@@ -56,7 +56,7 @@ MonoBehaviour:
   attackPrefab: {fileID: 114561168058688996, guid: e275894ea6ec83f4abb202ec3d955804,
     type: 2}
   level: 1
-  damage: 40
+  damage: 55
   attackSpeed: 1
   hasAbility: 0
   isPassiveCaster: 0
@@ -69,14 +69,14 @@ MonoBehaviour:
   description: His shurikens now bounce between enemies up to 3 times!
   multiplier: 1.08
   upgradeBaseCost: 1000
-  damageIncrement: 0
+  damageIncrement: 3
   unitAI: 0
   originalUnit: {fileID: 114193029848637438, guid: 4f9b15a57d7323041adce882a463cf30,
     type: 2}
 --- !u!212 &212240857822764638
 SpriteRenderer:
   m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1829701337077484}
   m_Enabled: 1
@@ -118,3 +118,4 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
