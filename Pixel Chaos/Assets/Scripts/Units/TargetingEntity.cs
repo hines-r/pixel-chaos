@@ -33,8 +33,7 @@ public class TargetingEntity : MonoBehaviour
                 if (!canAttackFlying)
                 {
                     if (e.enemyType == Enemy.Type.Flying || (e.IsAirborne() && e.transform.position.y > e.GetAirborneYThreshold()))
-
-                    continue;
+                        continue;
                 }
 
                 closestDistanceSqr = dSqrtToTarget;
@@ -60,7 +59,6 @@ public class TargetingEntity : MonoBehaviour
                 if (!canAttackFlying)
                 {
                     if (e.enemyType == Enemy.Type.Flying || (e.IsAirborne() && e.transform.position.y > e.GetAirborneYThreshold()))
-
                         continue;
                 }
 
@@ -93,7 +91,6 @@ public class TargetingEntity : MonoBehaviour
                     if (!canAttackFlying)
                     {
                         if (e.enemyType == Enemy.Type.Flying || (e.IsAirborne() && e.transform.position.y > e.GetAirborneYThreshold()))
-
                             continue;
                     }
 
