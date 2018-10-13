@@ -124,30 +124,20 @@ public class Unit : TargetingEntity, IUpgradeable
 
     public GameObject ObtainTarget()
     {
-        if (unitAI == AIType.Nearest)
+        switch (unitAI)
         {
-            if (TargetNearestEnemy() != null)
-            {
-                return TargetNearestEnemy();
-            }
-        }
-        else if (unitAI == AIType.Random)
-        {
-            if (TargetRandomEnemy() != null)
-            {
-                return TargetRandomEnemy();
-            }
-        }
-        else if (unitAI == AIType.Dot)
-        {
-            if (TargetEnemyForDoT() != null)
-            {
-                return TargetEnemyForDoT();
-            }
-        }
-        else
-        {
-            Debug.Log(this + ": Unit needs to specify targeting AI!");
+            case AIType.Nearest:
+                if (TargetNearestEnemy() != null) return TargetNearestEnemy();
+                break;
+            case AIType.Random:
+                if (TargetRandomEnemy() != null) return TargetRandomEnemy();
+                break;
+            case AIType.Dot:
+                if (TargetEnemyForDoT() != null) return TargetEnemyForDoT();
+                break;
+            default:
+                Debug.Log("No target available for " + unitName + "!");
+                break;
         }
 
         return null;
