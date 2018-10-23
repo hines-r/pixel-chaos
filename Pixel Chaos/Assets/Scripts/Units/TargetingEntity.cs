@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetingEntity : MonoBehaviour
+public abstract class TargetingEntity : MonoBehaviour
 {
     public bool canAttackFlying;
     protected float maxAttackRange = 8f; // Can attack enemies when their x is less than this many world units

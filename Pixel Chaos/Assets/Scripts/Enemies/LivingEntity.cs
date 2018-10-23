@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LivingEntity : MonoBehaviour, IDamageable
+public abstract class LivingEntity : MonoBehaviour, IDamageable
 {
     public float startingHealth;
     public Image healthBar;
