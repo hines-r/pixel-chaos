@@ -296,6 +296,11 @@ public class ParabolicProjectile : Projectile
 
         if (castle != null)
         {
+            if (impactEffect != null)
+            {
+                Impact();
+            }
+
             Destroy(gameObject);
             castle.TakeDamage(Damage);
         }
