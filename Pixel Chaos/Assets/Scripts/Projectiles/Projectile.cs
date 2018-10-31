@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : Attack
+public abstract class Projectile : Attack
 {
     [Header("Piercing")]
     public int penetrationCount = 1;

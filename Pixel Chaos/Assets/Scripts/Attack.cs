@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public abstract class Attack : MonoBehaviour
 {
     internal GameObject originEntity;
 
