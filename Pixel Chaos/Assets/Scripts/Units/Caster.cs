@@ -24,7 +24,7 @@ public class Caster : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        if (ProceduralSpawner.CurrentState == ProceduralSpawner.State.Spawning)
+        if (Spawner.CurrentState == Spawner.State.Spawning)
         {
             bc2d.enabled = true;
             castArea.SetActive(true);

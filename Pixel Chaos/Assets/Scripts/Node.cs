@@ -29,7 +29,7 @@ public class Node : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        if (ProceduralSpawner.CurrentState != ProceduralSpawner.State.Waiting)
+        if (Spawner.CurrentState != Spawner.State.Waiting)
         {
             bc2d.enabled = false;
             if (selectionUI.gameObject.activeSelf || selectionUI.gameObject.activeSelf)

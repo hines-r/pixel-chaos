@@ -25,14 +25,14 @@ public class PlayerInfoUI : MonoBehaviour
 
     void Update()
     {
-        if (ProceduralSpawner.CurrentState == ProceduralSpawner.State.Spawning)
+        if (Spawner.CurrentState == Spawner.State.Spawning)
         {
             currentTime -= Time.deltaTime;
             waveBarImg.fillAmount = currentTime / randomizer.GetTotalSpawnTime();
         }
         else
         {
-            waveBarText.text = "Wave " + ProceduralSpawner.WaveIndex;
+            waveBarText.text = "Wave " + Spawner.WaveIndex;
             waveBarImg.fillAmount = Mathf.Lerp(waveBarImg.fillAmount, 1, fillSpeed * Time.deltaTime);
         }
 

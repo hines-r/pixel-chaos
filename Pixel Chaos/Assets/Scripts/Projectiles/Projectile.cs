@@ -39,7 +39,7 @@ public abstract class Projectile : Attack
 
     protected virtual void Update()
     {
-        if (ProceduralSpawner.EnemiesAlive <= 0)
+        if (Spawner.EnemiesAlive <= 0)
         {
             StartCoroutine(DestroyProjectileAtRandomTime());
             return;

@@ -75,8 +75,8 @@ public class Enemy : LivingEntity
         speed = startSpeed;
         currentState = State.Moving;
 
-        goldValue = EnemyScaler.ScaleGold(goldValue, ProceduralSpawner.WaveIndex - 1);
-        expAmount = EnemyScaler.ScaleExpValue(expAmount, ProceduralSpawner.WaveIndex - 1);
+        goldValue = EnemyScaler.ScaleGold(goldValue, Spawner.WaveIndex - 1);
+        expAmount = EnemyScaler.ScaleExpValue(expAmount, Spawner.WaveIndex - 1);
     }
 
     void Update()

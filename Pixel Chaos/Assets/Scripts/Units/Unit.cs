@@ -60,7 +60,7 @@ public class Unit : TargetingEntity, IUpgradeable
             return;
         }
 
-        if (ProceduralSpawner.EnemiesAlive <= 0)
+        if (Spawner.EnemiesAlive <= 0)
         {
             ResetAttackTime();
             return;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Randomizer))]
-public class ProceduralSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     public static int WaveIndex;
     public static int EnemiesAlive;

@@ -16,7 +16,7 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
-        startingHealth = EnemyScaler.ScaleHealth(startingHealth, ProceduralSpawner.WaveIndex - 1);
+        startingHealth = EnemyScaler.ScaleHealth(startingHealth, Spawner.WaveIndex - 1);
         health = startingHealth;
     }
 
@@ -64,7 +64,7 @@ public abstract class LivingEntity : MonoBehaviour, IDamageable
         isDead = true;
 
         Destroy(gameObject);
-        ProceduralSpawner.EnemiesAlive--;
+        Spawner.EnemiesAlive--;
     }
 
 }
