@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public int gold;
     public int startGold = 1000;
 
-    public int Gems;
+    public int gems;
     public int startingGems = 0;
 
     public int rounds;
@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         experience = startingExperiene;
         level = startingLevel;
         gold = startGold;
-        Gems = startingGems;
+        gems = startingGems;
 
         rounds = 0;
     }

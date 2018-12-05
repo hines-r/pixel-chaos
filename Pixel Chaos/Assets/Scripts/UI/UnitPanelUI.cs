@@ -168,9 +168,9 @@ public class UnitPanelUI : MonoBehaviour
         }
         else
         {
-            if (Player.instance.Gems >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
+            if (Player.instance.gems >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
             {
-                Player.instance.Gems -= selectedUnit.baseCost;
+                Player.instance.gems -= selectedUnit.baseCost;
 
                 BuyUnit();
             }

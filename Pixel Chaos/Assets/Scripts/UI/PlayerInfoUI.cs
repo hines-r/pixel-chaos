@@ -36,15 +36,15 @@ public class PlayerInfoUI : MonoBehaviour
             waveBarImg.fillAmount = Mathf.Lerp(waveBarImg.fillAmount, 1, fillSpeed * Time.deltaTime);
         }
 
-        levelBarImg.fillAmount = Player.instance.experience / player.experienceToNextLevel;
+        levelBarImg.fillAmount = Player.instance.experience / Player.instance.experienceToNextLevel;
         levelText.text = Player.instance.level.ToString();
 
-        healthBarImg.fillAmount = Player.instance.health / player.startingHealth ;
+        healthBarImg.fillAmount = Player.instance.health / Player.instance.startingHealth ;
         healthText.text = Player.instance.health.ToString();
 
         goldText.text = Player.instance.gold.ToString();
 
-        gemsText.text = Player.instance.Gems.ToString();
+        gemsText.text = Player.instance.gems.ToString();
     }
 
     public void SetTime(float time)
