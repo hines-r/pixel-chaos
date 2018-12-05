@@ -13,10 +13,10 @@ public class Player : MonoBehaviour
     public float experienceToNextLevel = 150f;
 
     public float health;
-    public float startingHealth = 100f;
+    public float startingHealth = 125f;
 
     public int gold;
-    public int startGold = 100;
+    public int startGold = 1000;
 
     public int Gems;
     public int startingGems = 0;
