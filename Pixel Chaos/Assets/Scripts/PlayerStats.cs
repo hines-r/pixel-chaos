@@ -5,40 +5,57 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Player Info")]
-    public static int Level;
+    public int level;
     public int startingLevel = 1;
 
-    public static float Experience;
+    public float experience;
     public float startingExperiene;
     public float experienceToNextLevel = 150f;
 
-    public static float Health;
+    public float health;
     public float startingHealth = 100f;
 
-    public static int Gold;
+    public int gold;
     public int startGold = 100;
 
-    public static int Gems;
+    public int Gems;
     public int startingGems = 0;
 
-    public static int Rounds;
+    public int rounds;
 
     private readonly float multiplier = 1.18f;
 
+    #region Singleton
+
+    public static PlayerStats instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogError("More than one Player in scene!");
+            return;
+        }
+
+        instance = this;
+    }
+
+    #endregion
+
     void Start()
     {
-        Health = startingHealth;
-        Experience = startingExperiene;
-        Level = startingLevel;
-        Gold = startGold;
+        health = startingHealth;
+        experience = startingExperiene;
+        level = startingLevel;
+        gold = startGold;
         Gems = startingGems;
 
-        Rounds = 0;
+        rounds = 0;
     }
 
     void Update()
     {
-        if (Experience >= experienceToNextLevel)
+        if (experience >= experienceToNextLevel)
         {
             LevelUp();
         }
@@ -46,11 +63,11 @@ public class PlayerStats : MonoBehaviour
 
     void LevelUp()
     {
-        float carryOverXp = Experience - experienceToNextLevel;
+        float carryOverXp = experience - experienceToNextLevel;
 
         experienceToNextLevel *= multiplier;
-        Experience = carryOverXp;
+        experience = carryOverXp;
 
-        Level++;
+        level++;
     }
 }

@@ -109,7 +109,7 @@ public class ProceduralSpawner : MonoBehaviour
         }
 
         EnemiesAlive = 0;
-        PlayerStats.Health = player.startingHealth;
+        PlayerStats.instance.health = player.startingHealth;
         GameMaster.GameIsOver = false;
     }
 
@@ -121,9 +121,9 @@ public class ProceduralSpawner : MonoBehaviour
         StartCoroutine(DisplayWaveCompletePanel(waveCompletePanel));
         ToggleBattleBtn();
 
-        PlayerStats.Gold += endWaveGold;
-        PlayerStats.Gems++; // Gives the player a gem after each wave
-        PlayerStats.Health = player.startingHealth;
+        PlayerStats.instance.gold += endWaveGold;
+        PlayerStats.instance.Gems++; // Gives the player a gem after each wave
+        PlayerStats.instance.health = player.startingHealth;
 
         WaveIndex++;
     }

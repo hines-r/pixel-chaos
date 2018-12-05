@@ -234,11 +234,11 @@ public class Enemy : LivingEntity
             yield return null;
         }
 
-        PlayerStats.Health -= damage;
+        PlayerStats.instance.health -= damage;
 
-        if (PlayerStats.Health <= 0)
+        if (PlayerStats.instance.health <= 0)
         {
-            PlayerStats.Health = 0;
+            PlayerStats.instance.health = 0;
         }
     }
 
@@ -290,8 +290,8 @@ public class Enemy : LivingEntity
             Destroy(income, effectTime);
         }
 
-        PlayerStats.Gold += goldValue;
-        PlayerStats.Experience += expAmount;
+        PlayerStats.instance.gold += goldValue;
+        PlayerStats.instance.experience += expAmount;
     }
 
     public Vector3 GetVelocity()
