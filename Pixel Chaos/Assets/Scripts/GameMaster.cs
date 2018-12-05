@@ -53,10 +53,27 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    public void SaveGame()
+    {
+        SaveSystem.SaveGame();
+    }
+
+    public void LoadGame()
+    {
+        GameData data = SaveSystem.LoadGame();
+
+        Spawner.WaveIndex = data.waveIndex;
+
+        Player.instance.level = data.level;
+        Player.instance.experience = data.experience;
+        Player.instance.experienceToNextLevel = data.experienceToNextLevel;
+        Player.instance.gold = data.gold;
+        Player.instance.gems = data.gems;
+    }
+
     void EndGame()
     {
         GameIsOver = true;
-        //gameOverUI.SetActive(true);
     }
 
     void WinGame()
