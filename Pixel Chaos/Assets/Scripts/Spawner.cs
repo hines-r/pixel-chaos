@@ -18,7 +18,7 @@ public class Spawner : MonoBehaviour
     public Text countdownText;
     public Text bonusGoldText;
     public Button battleBtn;
-    public PlayerStats player;
+    public Player player;
 
     [Header("Enemies")]
     public EnemyType[] enemyTypes;
@@ -109,7 +109,7 @@ public class Spawner : MonoBehaviour
         }
 
         EnemiesAlive = 0;
-        PlayerStats.instance.health = player.startingHealth;
+        Player.instance.health = player.startingHealth;
         GameMaster.GameIsOver = false;
     }
 
@@ -121,9 +121,9 @@ public class Spawner : MonoBehaviour
         StartCoroutine(DisplayWaveCompletePanel(waveCompletePanel));
         ToggleBattleBtn();
 
-        PlayerStats.instance.gold += endWaveGold;
-        PlayerStats.instance.Gems++; // Gives the player a gem after each wave
-        PlayerStats.instance.health = player.startingHealth;
+        Player.instance.gold += endWaveGold;
+        Player.instance.Gems++; // Gives the player a gem after each wave
+        Player.instance.health = player.startingHealth;
 
         WaveIndex++;
     }

@@ -141,9 +141,9 @@ public class UnitPanelUI : MonoBehaviour
     {
         if (!unitManager.IsUnitAwoken(selectedUnit))
         {
-            if (PlayerStats.instance.gold >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
+            if (Player.instance.gold >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
             {
-                PlayerStats.instance.gold -= selectedUnit.baseCost;
+                Player.instance.gold -= selectedUnit.baseCost;
 
                 BuyUnit();
 
@@ -168,9 +168,9 @@ public class UnitPanelUI : MonoBehaviour
         }
         else
         {
-            if (PlayerStats.instance.Gems >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
+            if (Player.instance.Gems >= selectedUnit.baseCost && !GameMaster.instance.isBurdenedWithMoney)
             {
-                PlayerStats.instance.Gems -= selectedUnit.baseCost;
+                Player.instance.Gems -= selectedUnit.baseCost;
 
                 BuyUnit();
             }
@@ -187,9 +187,9 @@ public class UnitPanelUI : MonoBehaviour
 
     public void UpgradeButton()
     {
-        if (PlayerStats.instance.gold >= (int)selectedUnit.upgradeCost && !GameMaster.instance.isBurdenedWithMoney)
+        if (Player.instance.gold >= (int)selectedUnit.upgradeCost && !GameMaster.instance.isBurdenedWithMoney)
         {
-            PlayerStats.instance.gold -= (int)selectedUnit.upgradeCost;
+            Player.instance.gold -= (int)selectedUnit.upgradeCost;
 
             UpgradeUnit();
         }

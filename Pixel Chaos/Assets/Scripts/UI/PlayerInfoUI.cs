@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerInfoUI : MonoBehaviour
 {
-    public PlayerStats player;
+    public Player player;
     public Randomizer randomizer;
 
     public Image waveBarImg;
@@ -36,15 +36,15 @@ public class PlayerInfoUI : MonoBehaviour
             waveBarImg.fillAmount = Mathf.Lerp(waveBarImg.fillAmount, 1, fillSpeed * Time.deltaTime);
         }
 
-        levelBarImg.fillAmount = PlayerStats.instance.experience / player.experienceToNextLevel;
-        levelText.text = PlayerStats.instance.level.ToString();
+        levelBarImg.fillAmount = Player.instance.experience / player.experienceToNextLevel;
+        levelText.text = Player.instance.level.ToString();
 
-        healthBarImg.fillAmount = PlayerStats.instance.health / player.startingHealth ;
-        healthText.text = PlayerStats.instance.health.ToString();
+        healthBarImg.fillAmount = Player.instance.health / player.startingHealth ;
+        healthText.text = Player.instance.health.ToString();
 
-        goldText.text = PlayerStats.instance.gold.ToString();
+        goldText.text = Player.instance.gold.ToString();
 
-        gemsText.text = PlayerStats.instance.Gems.ToString();
+        gemsText.text = Player.instance.Gems.ToString();
     }
 
     public void SetTime(float time)

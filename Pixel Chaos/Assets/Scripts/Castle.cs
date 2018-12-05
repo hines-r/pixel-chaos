@@ -6,11 +6,11 @@ public class Castle : MonoBehaviour, IDamageable
 {
     public void TakeDamage(float damage)
     {
-        PlayerStats.instance.health -= damage;
+        Player.instance.health -= damage;
 
-        if (PlayerStats.instance.health <= 0)
+        if (Player.instance.health <= 0)
         {
-            PlayerStats.instance.health = 0;
+            Player.instance.health = 0;
         }
     }
 }

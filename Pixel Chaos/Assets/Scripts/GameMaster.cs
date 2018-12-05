@@ -47,7 +47,7 @@ public class GameMaster : MonoBehaviour
             WinGame();
         }
 
-        if (PlayerStats.instance.health <= 0 && !isImmortal)
+        if (Player.instance.health <= 0 && !isImmortal)
         {
             EndGame();
         }

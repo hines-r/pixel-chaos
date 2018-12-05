@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [Header("Player Info")]
     public int level;
@@ -27,7 +27,7 @@ public class PlayerStats : MonoBehaviour
 
     #region Singleton
 
-    public static PlayerStats instance;
+    public static Player instance;
 
     void Awake()
     {
