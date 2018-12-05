@@ -257,7 +257,7 @@ public class ParabolicProjectile : Projectile
         impactLocation = target; // The calculated impact location unadjusted for future position
 
         // Calculates future position if the entity to hit is a moving enemy
-        // Doesn't need to be calculated for a static enemy like the player
+        // Doesn't need to be calculated for a static entity like the player
         if (targetEnemy != null && !targetEnemy.isUnderForces && targetEnemy.currentState != Enemy.State.Attacking)
         {
             float targetVelocity = targetEnemy.GetVelocity().x;
