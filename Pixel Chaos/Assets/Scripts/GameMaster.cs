@@ -80,7 +80,7 @@ public class GameMaster : MonoBehaviour
 
         // Searches for any units saved within the game data file
         // If any are found, gets the UnitButton value from the button dictionary
-        // and places the cooresponding unit on the node and unlocks the button
+        // and places the corresponding unit on the node and unlocks the button
         for (int i = 0; i < data.nodeUnitNames.Count; i++)
         {
             if (data.nodeUnitNames[i] != null)
