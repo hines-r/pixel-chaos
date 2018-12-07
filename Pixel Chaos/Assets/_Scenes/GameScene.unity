@@ -1353,6 +1353,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 426229729}
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &144992750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 844576096}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1 &168979153
 GameObject:
   m_ObjectHideFlags: 0
@@ -1633,6 +1639,12 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 10
   m_TargetDisplay: 0
+--- !u!114 &215687608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1892278208}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!114 &219500568 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114768434883148788, guid: 9c1e8a9248553384ab5518e05b35ba2a,
@@ -3517,6 +3529,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4ff5606bc825704d851c495b875e42f, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &442954132 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1853903842}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1 &472089394
 GameObject:
   m_ObjectHideFlags: 0
@@ -3952,6 +3970,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520559211}
   m_CullTransparentMesh: 0
+--- !u!114 &530784642 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 400055243}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1 &547460765
 GameObject:
   m_ObjectHideFlags: 0
@@ -9808,8 +9832,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: SavePlayerStats
+      - m_Target: {fileID: 1978738900}
+        m_MethodName: SaveGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10091,6 +10115,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 669367521}
   m_CullTransparentMesh: 0
+--- !u!114 &682792281 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 1703111045}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1 &695459649
 GameObject:
   m_ObjectHideFlags: 0
@@ -11424,6 +11454,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4ff5606bc825704d851c495b875e42f, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &781917922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 810578173}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1001 &810578173
 Prefab:
   m_ObjectHideFlags: 0
@@ -12734,7 +12770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: 0.000061035156}
+  m_AnchoredPosition: {x: 0.000038146973, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1001149172
@@ -14398,6 +14434,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ab3aa7e6d10454c8329e6ae64b18ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodes:
+  - {fileID: 442954132}
+  - {fileID: 1820102373}
+  - {fileID: 1356374404}
+  - {fileID: 2073578518}
+  - {fileID: 781917922}
+  - {fileID: 682792281}
+  - {fileID: 144992750}
+  - {fileID: 215687608}
+  - {fileID: 530784642}
 --- !u!4 &1193631909
 Transform:
   m_ObjectHideFlags: 0
@@ -15453,6 +15499,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c1e8a9248553384ab5518e05b35ba2a, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1356374404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 95311478}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1 &1365456489
 GameObject:
   m_ObjectHideFlags: 0
@@ -15892,7 +15944,6 @@ MonoBehaviour:
   countdownText: {fileID: 1347928584}
   bonusGoldText: {fileID: 406101733}
   battleBtn: {fileID: 1068715759}
-  player: {fileID: 0}
   enemyTypes:
   - enemy: {fileID: 114054746013343616, guid: 99abec9cb1f19304fa94f4d6fd3877e7, type: 2}
     waveStart: 1
@@ -18662,6 +18713,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -60.339996}
   m_SizeDelta: {x: 100, y: 60.34}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1820102373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 2074073095}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1 &1822433091
 GameObject:
   m_ObjectHideFlags: 0
@@ -24068,7 +24125,7 @@ MonoBehaviour:
   startingHealth: 125
   gold: 0
   startGold: 1000
-  Gems: 0
+  gems: 0
   startingGems: 0
   rounds: 0
 --- !u!114 &1978738897
@@ -24108,6 +24165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 772681413}
   gameWinUI: {fileID: 695459649}
+  unitSelectionUI: {fileID: 1644629196}
   isImmortal: 0
   isBurdenedWithMoney: 1
 --- !u!1 &2003636577
@@ -25727,6 +25785,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog: {fileID: 2057171419}
   dialogText: {fileID: 1769460497}
+--- !u!114 &2073578518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114571195053056014, guid: 8229916203bb32a43841f5a9ce8e1df7,
+    type: 2}
+  m_PrefabInternal: {fileID: 240754408}
+  m_Script: {fileID: 11500000, guid: 082366710eba59446ae04c813dd6851f, type: 3}
 --- !u!1001 &2074073095
 Prefab:
   m_ObjectHideFlags: 0
@@ -26289,8 +26353,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LoadPlayerStats
+      - m_Target: {fileID: 1978738900}
+        m_MethodName: LoadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

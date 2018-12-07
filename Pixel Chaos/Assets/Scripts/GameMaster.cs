@@ -24,6 +24,7 @@ public class GameMaster : MonoBehaviour
 
     public GameObject gameOverUI;
     public GameObject gameWinUI;
+    public UnitSelectionUI unitSelectionUI;
 
     [Header("Dev Hacks")]
     public bool isImmortal;
@@ -69,6 +70,34 @@ public class GameMaster : MonoBehaviour
         Player.instance.experienceToNextLevel = data.experienceToNextLevel;
         Player.instance.gold = data.gold;
         Player.instance.gems = data.gems;
+
+        LoadUnits(data);
+    }
+
+    void LoadUnits(GameData data)
+    {
+        Dictionary<string, UnitButton> unitButtons = unitSelectionUI.buttons;
+
+        // Searches for any units saved within the game data file
+        // If any are found, gets the UnitButton value from the button dictionary
+        // and places the cooresponding unit on the node and unlocks the button
+        for (int i = 0; i < data.nodeUnitNames.Count; i++)
+        {
+            if (data.nodeUnitNames[i] != null)
+            {
+                Unit unitToLoad = unitButtons[data.nodeUnitNames[i]].unit;
+
+                if (unitToLoad != null)
+                {
+                    UnitButton buttonToUpdate = unitButtons[data.nodeUnitNames[i]];
+                    buttonToUpdate.UnlockButton();
+
+                    // TODO: set appropriate upgrades for the loaded unit
+
+                    UnitManager.instance.nodes[i].PlaceUnit(unitToLoad);
+                }
+            }
+        }
     }
 
     void EndGame()

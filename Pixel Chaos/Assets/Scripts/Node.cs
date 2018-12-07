@@ -67,7 +67,6 @@ public class Node : MonoBehaviour, IPointerClickHandler
             {
                 foreach (AwokenUnit sibling in awokenSiblings)
                 {
-                    print("working");
                     RemoveUnit(sibling);
                 }
             }

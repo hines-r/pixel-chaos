@@ -20,6 +20,7 @@ public class UnitManager : MonoBehaviour
     #endregion
 
     public Dictionary<string, Unit> unlockedUnits;
+    public Node[] nodes;
 
     void Start()
     {
