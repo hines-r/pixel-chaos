@@ -47,9 +47,13 @@ public class Unit : TargetingEntity, IUpgradeable
     internal Node currentNode; // The node the unit is currently placed on
     private GameObject target;
 
+    protected virtual void Awake()
+    {
+        upgradeCost = upgradeBaseCost;      
+    }
+
     protected virtual void Start()
     {
-        upgradeCost = upgradeBaseCost;
         ResetAttackTime();
     }
 
@@ -176,6 +180,18 @@ public class Unit : TargetingEntity, IUpgradeable
         float upgradedCost = upgradeBaseCost * Mathf.Pow(multiplier, level);
 
         upgradeCost = (int)upgradedCost;
+    }
+
+    public void SetLevel(int levelToSetTo)
+    {
+        level = levelToSetTo;
+        damage += damageIncrement * level;
+
+        if (level > 1)
+        {
+            float upgradedCost = upgradeBaseCost * Mathf.Pow(multiplier, level);
+            upgradeCost = (int)upgradedCost;
+        }
     }
 
     public void Toggle()

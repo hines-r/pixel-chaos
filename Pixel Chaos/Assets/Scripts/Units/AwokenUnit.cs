@@ -9,8 +9,9 @@ public class AwokenUnit : Unit
 
     private UnitManager unitManager;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         unitManager = UnitManager.instance;
         CloneOriginal(); // Carries over the stats of the unawakened unit
     }
