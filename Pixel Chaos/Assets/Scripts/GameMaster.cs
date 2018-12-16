@@ -108,6 +108,7 @@ public class GameMaster : MonoBehaviour
 
                 unitToLoad.SetLevel(data.unitLevels[i]);
                 unitToLoad.gameObject.SetActive(data.unitActiveStatuses[i]);
+                unitToLoad.unitAI = data.unitActiveAI[i];
                 unitToLoad.transform.parent = UnitManager.instance.transform;
                 UnitManager.instance.UnlockUnit(unitToLoad);
 

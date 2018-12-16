@@ -20,6 +20,7 @@ public class GameData
     public List<string> unlockedUnits = new List<string>();
     public List<int> unitLevels = new List<int>();
     public List<bool> unitActiveStatuses = new List<bool>();
+    public List<Unit.AIType> unitActiveAI = new List<Unit.AIType>();
 
     public List<string> nodeUnitNames = new List<string>();
 
@@ -42,6 +43,7 @@ public class GameData
                 unlockedUnits.Add(unit.unitName);
                 unitLevels.Add(unit.level);
                 unitActiveStatuses.Add(unit.gameObject.activeSelf);
+                unitActiveAI.Add(unit.unitAI);
             }
         }
 
