@@ -53,11 +53,7 @@ public class UnitSelectionUI : MonoBehaviour
     {
         if (buttons.ContainsKey(unitForButton.unitName))
         {
-            buttons[unitForButton.unitName].UpdateLevelText(unitForButton);         
-        }
-        else
-        {
-            buttonSelection.UpdateButton(unitForButton);
+            buttonSelection.UpdateButton(unitForButton);       
         }
     }
 
