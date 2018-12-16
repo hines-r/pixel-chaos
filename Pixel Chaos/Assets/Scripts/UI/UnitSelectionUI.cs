@@ -29,6 +29,11 @@ public class UnitSelectionUI : MonoBehaviour
             unitButtons[i].button.onClick.AddListener(() => OnButtonClick(index));
 
             buttons.Add(unitButtons[i].unit.unitName, unitButtons[i]);
+            
+            foreach (AwokenUnit awokenUnit in unitButtons[i].awokenUnitOptions)
+            {
+                buttons.Add(awokenUnit.unitName, unitButtons[i]);
+            }
         }
     }
 
