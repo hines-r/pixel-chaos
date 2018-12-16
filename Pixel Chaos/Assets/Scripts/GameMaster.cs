@@ -80,14 +80,32 @@ public class GameMaster : MonoBehaviour
 
         for (int i = 0; i < data.unlockedUnits.Count; i++)
         {
+            // Gets the unit that needs to be loaded in and sets appropriate level and active status
             string unitName = data.unlockedUnits[i];
 
             Unit unitToLoad = null;
 
             if (!UnitManager.instance.unlockedUnits.ContainsKey(unitName))
             {
-                // Gets the unit that needs to be loaded in and sets appropriate level and active status
-                unitToLoad = Instantiate(unitButtons[unitName].unit);
+                // If the standard unit name from the button doesn't match, it is an awoken unit
+                if (unitButtons[unitName].unit.unitName != unitName)
+                {
+                    // Searches available awoken units to find correct name
+                    // Sets the awoken unit to the unit to be loaded
+                    foreach (AwokenUnit awokenUnit in unitButtons[unitName].awokenUnitOptions)
+                    {
+                        if (unitName == awokenUnit.unitName)
+                        {
+                            unitToLoad = Instantiate(awokenUnit);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    unitToLoad = Instantiate(unitButtons[unitName].unit);
+                }
+
                 unitToLoad.SetLevel(data.unitLevels[i]);
                 unitToLoad.gameObject.SetActive(data.unitActiveStatuses[i]);
                 unitToLoad.transform.parent = UnitManager.instance.transform;
