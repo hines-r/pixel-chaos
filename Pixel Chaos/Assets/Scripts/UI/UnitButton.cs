@@ -8,6 +8,9 @@ public class UnitButton : MonoBehaviour
     [Header("Unit Prefab")]
     public Unit unit;
 
+    [Header("Upgraded Version")]
+    public AwokenUnit[] awokenUnitOptions;
+
     [Header("Image")]
     public Image unitImg;
 
