@@ -78,23 +78,31 @@ public class GameMaster : MonoBehaviour
     {
         Dictionary<string, UnitButton> unitButtons = unitSelectionUI.buttons;
 
-        // Searches for any units saved within the game data file
-        // If any are found, gets the UnitButton value from the button dictionary
-        // and places the corresponding unit on the node and unlocks the button
-        for (int i = 0; i < data.nodeUnitNames.Count; i++)
+        for (int i = 0; i < data.unlockedUnits.Count; i++)
         {
-            if (data.nodeUnitNames[i] != null)
+            string unitName = data.unlockedUnits[i];
+
+            Unit unitToLoad = null;
+
+            if (!UnitManager.instance.unlockedUnits.ContainsKey(unitName))
             {
-                Unit unitToLoad = unitButtons[data.nodeUnitNames[i]].unit;
+                // Gets the unit that needs to be loaded in and sets appropriate level and active status
+                unitToLoad = Instantiate(unitButtons[unitName].unit);
+                unitToLoad.SetLevel(data.unitLevels[i]);
+                unitToLoad.gameObject.SetActive(data.unitActiveStatuses[i]);
+                unitToLoad.transform.parent = UnitManager.instance.transform;
+                UnitManager.instance.UnlockUnit(unitToLoad);
 
-                if (unitToLoad != null)
+                // Updates the button within unit selection panel with original unit status
+                UnitButton buttonToUpdate = unitButtons[unitName];
+                buttonToUpdate.UnlockButton();
+                buttonToUpdate.UpdateButton(unitToLoad);
+
+                if (data.nodeUnitNames.Contains(unitName))
                 {
-                    UnitButton buttonToUpdate = unitButtons[data.nodeUnitNames[i]];
-                    buttonToUpdate.UnlockButton();
-
-                    // TODO: set appropriate upgrades for the loaded unit
-
-                    UnitManager.instance.nodes[i].PlaceUnit(unitToLoad);
+                    int nodeIndex = data.nodeUnitNames.IndexOf(unitName);
+                    Node nodeWithUnit = UnitManager.instance.nodes[nodeIndex];
+                    nodeWithUnit.PlaceUnit(unitToLoad);
                 }
             }
         }

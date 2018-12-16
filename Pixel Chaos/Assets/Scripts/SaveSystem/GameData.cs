@@ -17,6 +17,10 @@ public class GameData
     public int gems;
 
     // Scene/Unit data
+    public List<string> unlockedUnits = new List<string>();
+    public List<int> unitLevels = new List<int>();
+    public List<bool> unitActiveStatuses = new List<bool>();
+
     public List<string> nodeUnitNames = new List<string>();
 
     public GameData()
@@ -29,22 +33,30 @@ public class GameData
         gold = Player.instance.gold;
         gems = Player.instance.gems;
 
+        foreach (Transform childUnit in UnitManager.instance.transform)
+        {
+            Unit unit = childUnit.GetComponent<Unit>();
+
+            if (unit != null)
+            {
+                unlockedUnits.Add(unit.unitName);
+                unitLevels.Add(unit.level);
+                unitActiveStatuses.Add(unit.gameObject.activeSelf);
+            }
+        }
+
         Node[] nodes = UnitManager.instance.nodes;
 
-        for (int i = 0; i < nodes.Length; i++)
+        foreach (Node node in nodes)
         {
-            Node tempNode = nodes[i];
-
-            if (tempNode.IsUnitOnNode())
+            if (node.IsUnitOnNode())
             {
-                nodeUnitNames.Add(tempNode.GetUnitOnNode().unitName);
+                nodeUnitNames.Add(node.GetUnitOnNode().unitName);
             }
             else
             {
                 nodeUnitNames.Add(null);
             }
         }
-
-        // TODO: get save data for each unlocked unit ex. level, upgrades, etc
     }
 }
