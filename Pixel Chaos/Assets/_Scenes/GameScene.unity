@@ -20116,6 +20116,7 @@ GameObject:
   - component: {fileID: 1731720588}
   - component: {fileID: 1731720587}
   - component: {fileID: 1731720591}
+  - component: {fileID: 1731720592}
   m_Layer: 5
   m_Name: DevCanvas
   m_TagString: Untagged
@@ -20216,6 +20217,25 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &1731720592
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731720586}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d1f4ea5d828c6624aaced97aee8b7df8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1735420807
 GameObject:
   m_ObjectHideFlags: 0
