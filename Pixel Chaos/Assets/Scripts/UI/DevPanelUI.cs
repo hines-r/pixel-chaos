@@ -24,7 +24,10 @@ public class DevPanelUI : MonoBehaviour
 
         godModeToggle.isOn = gm.isImmortal;
         goldGemToggle.isOn = gm.isBurdenedWithMoney;
+    }
 
+    void OnEnable()
+    {
         waveInput.text = Spawner.WaveIndex.ToString();
         goldInput.text = Player.instance.gold.ToString();
         gemInput.text = Player.instance.gems.ToString();
