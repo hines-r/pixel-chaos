@@ -59,14 +59,14 @@ public class Randomizer : MonoBehaviour
         }
 
         float pick = Random.value * totalSpawnWeight;
-        float cumulataiveWeight = types[0].weight;
+        float cumulativeWeight = types[0].weight;
 
         int index = 0;
 
-        while (pick > cumulataiveWeight && index < types.Count - 1)
+        while (pick > cumulativeWeight && index < types.Count - 1)
         {
             index++;
-            cumulataiveWeight += types[index].weight;
+            cumulativeWeight += types[index].weight;
         }
 
         return index;
