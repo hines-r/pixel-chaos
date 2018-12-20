@@ -18351,7 +18351,7 @@ MonoBehaviour:
   yMinFlyerPos: 1
   yMaxFlyerPos: 4.25
   xSpawnPos: 10
-  startWave: 20
+  startWave: 1
 --- !u!4 &1465183147
 Transform:
   m_ObjectHideFlags: 0
