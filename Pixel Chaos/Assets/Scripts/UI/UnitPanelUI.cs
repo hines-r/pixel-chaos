@@ -28,6 +28,9 @@ public class UnitPanelUI : MonoBehaviour
     public GameObject purchaseBtn;
     public GameObject awakenBtn;
 
+    // Unit Dev Panel
+    public GameObject unitDevPanel;
+
     [Header("Dialog Box")]
     public DialogUI dialog;
 
@@ -66,7 +69,7 @@ public class UnitPanelUI : MonoBehaviour
         DisplayCorrectButtons();
     }
 
-    void UpdateUnitStats()
+    public void UpdateUnitStats()
     {
         unitLevelTxt.text = "Level: " + selectedUnit.level;
         damageTxt.text = "Damage: " + selectedUnit.damage;
@@ -81,6 +84,7 @@ public class UnitPanelUI : MonoBehaviour
             equipUpgradeBtnGroup.SetActive(true);
             purchaseBtn.SetActive(false);
             awakenBtn.SetActive(true);
+            unitDevPanel.SetActive(true);
 
             UpdateEquipText();
         }
@@ -89,6 +93,7 @@ public class UnitPanelUI : MonoBehaviour
             equipUpgradeBtnGroup.SetActive(false);
             purchaseBtn.SetActive(true);
             awakenBtn.SetActive(false);
+            unitDevPanel.SetActive(false);
 
             UpdatePurchaseText();
         }
