@@ -62,16 +62,19 @@ public class GameMaster : MonoBehaviour
     public void LoadGame()
     {
         GameData data = SaveSystem.LoadGame();
+        
+        if (data != null)
+        {
+            Spawner.WaveIndex = data.waveIndex;
 
-        Spawner.WaveIndex = data.waveIndex;
+            Player.instance.level = data.level;
+            Player.instance.experience = data.experience;
+            Player.instance.experienceToNextLevel = data.experienceToNextLevel;
+            Player.instance.gold = data.gold;
+            Player.instance.gems = data.gems;
 
-        Player.instance.level = data.level;
-        Player.instance.experience = data.experience;
-        Player.instance.experienceToNextLevel = data.experienceToNextLevel;
-        Player.instance.gold = data.gold;
-        Player.instance.gems = data.gems;
-
-        LoadUnits(data);
+            LoadUnits(data);
+        }
     }
 
     void LoadUnits(GameData data)
